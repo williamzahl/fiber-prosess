@@ -2,317 +2,218 @@
 <html lang="no">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slik får du fiber hjem</title>
-<meta name="description" content="En enkel oversikt over hvordan fiber føres frem og installeres til boligen.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Fiber hjem – slik fungerer installasjonen</title>
+<meta name="description" content="En enkel og oversiktlig forklaring på hvordan fiber føres fra Telenors nett i nabolaget og inn til boligen.">
+<link rel="icon" href="favicon.png">
 <style>
 :root{
-  --blue:#087dcc;
-  --dark:#07183f;
-  --text:#18344d;
-  --muted:#60788d;
-  --bg:#f4f9fc;
-  --line:#d9e9f3;
-  --cyan:#11bceb;
-  --white:#fff;
+  --blue:#087dcc;--blue2:#0aaee7;--dark:#07183f;--ink:#102d47;--muted:#60788d;
+  --bg:#f4f9fc;--line:#d8e9f3;--soft:#e8f7fd;--cyan:#11bceb;--white:#fff;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:inherit}
+button{font:inherit}
+
+/* TOP */
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(216,233,243,.9)}
+.topbar-inner{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-weight:900;color:var(--dark);font-size:20px;line-height:.92;text-decoration:none;letter-spacing:-.5px}
+.brand span{color:var(--blue)}
+.nav{display:flex;gap:26px;font-size:14px;font-weight:700;color:#486278}
+.nav a{text-decoration:none}
+.nav a:hover{color:var(--blue)}
+.lang-wrap{position:relative}
+.lang-btn{height:44px;min-width:142px;border:1px solid #cfe4ef;background:#fff;border-radius:15px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:9px;color:var(--dark);font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(11,75,110,.07)}
+.lang-btn .globe{font-size:19px}.chev{font-size:16px;transition:transform .2s}.lang-wrap.open .chev{transform:rotate(180deg)}
+.lang-menu{display:none;position:absolute;right:0;top:51px;width:190px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:7px;box-shadow:0 16px 40px rgba(10,54,80,.16)}
+.lang-wrap.open .lang-menu{display:block}
+.lang-option{width:100%;border:0;background:transparent;border-radius:11px;padding:11px 12px;text-align:left;display:flex;align-items:center;gap:10px;font-weight:750;color:var(--dark);cursor:pointer}.lang-option:hover,.lang-option.active{background:var(--soft);color:var(--blue)}
+
+/* MOBILE COMPACT BAR */
+.mobile-progress{display:none;background:linear-gradient(135deg,#0780cf,#0aaee7);color:#fff;position:fixed;top:0;left:0;right:0;z-index:900;padding:9px 14px 10px;box-shadow:0 7px 20px rgba(0,65,105,.2)}
+.mobile-progress-inner{display:flex;align-items:center;gap:12px}.progress-copy{flex:1;min-width:0}.progress-top{display:flex;justify-content:space-between;gap:10px;font-weight:850;font-size:14px}.progress-line{height:5px;background:rgba(255,255,255,.38);border-radius:999px;margin-top:6px;overflow:hidden}.progress-fill{height:100%;background:#fff;border-radius:999px;width:0}.mobile-menu-btn{height:44px;padding:0 15px;border-radius:14px;border:1px solid rgba(255,255,255,.48);background:rgba(255,255,255,.07);color:#fff;font-weight:800;display:flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap}.hamb{font-size:20px;line-height:1;display:block;transform:translateY(-1px)}
+.mobile-menu{display:none;position:fixed;right:14px;top:66px;width:min(330px,calc(100vw - 28px));background:#fff;border:1px solid var(--line);border-radius:18px;padding:9px;z-index:950;box-shadow:0 18px 45px rgba(5,38,64,.22)}
+.mobile-menu.open{display:block}.mobile-menu a{display:block;padding:11px 12px;border-radius:11px;text-decoration:none;font-weight:750;color:var(--dark)}.mobile-menu a:hover{background:var(--soft);color:var(--blue)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%);color:#fff;overflow:hidden}
+.hero-inner{max-width:1180px;margin:auto;padding:72px 22px 76px;display:grid;grid-template-columns:1.02fr .98fr;gap:50px;align-items:center}
+.eyebrow{font-size:14px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase;opacity:.92;margin-bottom:14px}
+.hero h1{font-size:clamp(40px,5.4vw,68px);line-height:1.01;letter-spacing:-2.5px;margin:0;max-width:700px}
+.hero p{font-size:20px;line-height:1.55;max-width:670px;margin:22px 0 0;opacity:.97}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}.pill{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.38);padding:9px 13px;border-radius:999px;font-size:14px;font-weight:800}
+.hero-visual{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:28px;padding:14px;box-shadow:0 18px 45px rgba(0,45,85,.15)}
+.hero-visual img{display:block;width:100%;height:auto;border-radius:20px;background:#fff}
+
+/* CONTENT */
+.layout{max-width:1180px;margin:auto;padding:70px 22px 90px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+.sidebar{position:sticky;top:78px;height:max-content;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 15px;box-shadow:0 8px 25px rgba(14,64,96,.05)}
+.side-title{font-size:12px;font-weight:900;letter-spacing:1.3px;color:#557086;margin:0 0 12px;padding:0 8px;text-transform:uppercase}
+.side-link{display:flex;gap:9px;align-items:flex-start;text-decoration:none;padding:9px 8px;border-radius:10px;font-size:13px;font-weight:750;color:#52697c;line-height:1.25}.side-link b{color:var(--blue);width:20px}.side-link:hover{background:var(--soft);color:var(--dark)}
+.main{min-width:0}.intro{text-align:center;max-width:780px;margin:0 auto 48px}.intro .eyebrow{color:var(--blue);margin-bottom:8px}.intro h2{font-size:clamp(30px,4vw,44px);letter-spacing:-1.3px;color:var(--dark);margin:0}.intro p{font-size:18px;line-height:1.65;color:var(--muted);margin:15px auto 0}
+
+.step{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;margin-bottom:25px;box-shadow:0 10px 28px rgba(14,64,96,.055);scroll-margin-top:90px}
+.step-inner{padding:31px 34px 34px}.step-head{display:flex;align-items:center;gap:16px}.num{width:50px;height:50px;border-radius:50%;background:#e4f6fd;color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:900;flex:0 0 auto}.step h3{margin:0;color:var(--dark);font-size:27px;letter-spacing:-.5px}.step p{font-size:17px;line-height:1.72;margin:18px 0 0}.step-media{margin:25px -34px -34px;background:#edf8fd;border-top:1px solid var(--line)}.step-media img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain}
+.text-icon{margin:24px auto 0;width:108px;height:108px;border-radius:50%;background:#e9f7fd;display:flex;align-items:center;justify-content:center;color:var(--blue)}.text-icon svg{width:58px;height:58px;stroke:currentColor;fill:none;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* CALLOUTS */
+.risk{margin:36px 0;background:var(--dark);color:#fff;border-radius:26px;padding:34px 36px;display:grid;grid-template-columns:1fr 220px;gap:28px;align-items:center;box-shadow:0 15px 35px rgba(3,25,70,.16);scroll-margin-top:90px}.risk .tag{display:inline-block;background:#10bdeb;color:#042c4d;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:900;letter-spacing:.6px;text-transform:uppercase}.risk h3{font-size:30px;letter-spacing:-.7px;margin:13px 0 10px}.risk p{font-size:17px;line-height:1.7;margin:0;color:#e9f5fb}.risk strong{color:#fff}.risk-visual{height:150px;border-radius:22px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center}.shield{width:90px;height:105px;border-radius:24px 24px 36px 36px;background:#0aaee7;clip-path:polygon(50% 0,92% 16%,84% 67%,50% 100%,16% 67%,8% 16%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:44px;font-weight:900}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0 0 25px}.mini{background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px 30px;scroll-margin-top:90px}.mini h3{margin:0;color:var(--dark);font-size:23px}.mini p{margin:12px 0 0;font-size:16.5px;line-height:1.7}.mini .mini-icon{font-size:30px;margin-bottom:13px}
+.final{background:linear-gradient(135deg,#eaf8fd,#fff);border:1px solid var(--line);border-radius:28px;padding:35px;display:grid;grid-template-columns:1fr 320px;gap:35px;align-items:center;scroll-margin-top:90px}.final h3{font-size:32px;color:var(--dark);margin:0 0 11px}.final p{font-size:17px;line-height:1.7;margin:0}.guide{display:block;text-decoration:none;background:#fff;border:1px solid #cfe4ef;border-radius:20px;padding:24px;box-shadow:0 8px 20px rgba(10,65,95,.07)}.guide .guide-title{font-size:21px;font-weight:900;color:var(--dark)}.guide .guide-text{font-size:15px;line-height:1.5;color:var(--muted);margin-top:7px}.guide .guide-btn{display:inline-block;margin-top:16px;background:var(--blue);color:#fff;padding:11px 15px;border-radius:12px;font-weight:850;font-size:14px}
+
+.footer{background:#101010;color:#fff;padding:30px 22px}.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center}.footer small{color:#bfc6cc}.backtop{width:42px;height:42px;border-radius:13px;border:1px solid #394149;background:#181818;color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer;font-size:20px}.backtop.show{display:flex}
+
+@media(max-width:850px){
+ .nav{display:none}.topbar-inner{padding:10px 15px}.brand{font-size:18px}.lang-btn{min-width:124px;height:42px}
+ .mobile-progress{display:none}.hero-inner{grid-template-columns:1fr;padding:52px 17px 50px;gap:28px}.hero h1{font-size:clamp(39px,11vw,58px)}.hero p{font-size:18px}.hero-visual{border-radius:22px;padding:9px}.hero-visual img{border-radius:15px}
+ .layout{display:block;padding:44px 16px 60px}.sidebar{display:none}.intro{margin-bottom:35px}.intro p{font-size:17px}
+ .step{border-radius:21px;margin-bottom:19px}.step-inner{padding:24px 20px 25px}.step-head{gap:12px}.num{width:45px;height:45px;font-size:19px}.step h3{font-size:22px}.step p{font-size:16px;line-height:1.68}.step-media{margin:22px -20px -25px}.step-media img{max-height:none}
+ .risk{grid-template-columns:1fr;margin:28px 0;padding:27px 22px;border-radius:22px}.risk h3{font-size:27px}.risk p{font-size:16px}.risk-visual{height:110px}.shield{width:68px;height:80px;font-size:34px}
+ .two-col{grid-template-columns:1fr;gap:18px}.mini{padding:24px 21px;border-radius:21px}.final{grid-template-columns:1fr;padding:26px 21px;border-radius:22px;gap:22px}.final h3{font-size:27px}.footer-inner{flex-direction:column;align-items:flex-start}
+ .mobile-progress{display:none}
 }
-.header{
-  background:linear-gradient(135deg,#0780cf,#0aaee7);
-  color:#fff;
-  padding:58px 24px 54px;
-  text-align:center;
+@media(max-width:560px){
+ .lang-menu{right:-3px}.lang-btn{min-width:118px}.hero-pills{gap:7px}.pill{font-size:12.5px;padding:8px 10px}.text-icon{width:90px;height:90px}.text-icon svg{width:48px;height:48px}
 }
-.header-inner{max-width:980px;margin:auto}
-.eyebrow{
-  font-size:15px;
-  font-weight:800;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:16px;
-}
-h1{
-  margin:0;
-  font-size:clamp(40px,6vw,68px);
-  line-height:1.02;
-  letter-spacing:-2px;
-}
-.header p{
-  max-width:700px;
-  margin:22px auto 0;
-  font-size:21px;
-  line-height:1.55;
-  opacity:.96;
-}
-.container{
-  max-width:1000px;
-  margin:0 auto;
-  padding:58px 22px 80px;
-}
-.intro{
-  text-align:center;
-  max-width:760px;
-  margin:0 auto 46px;
-}
-.intro h2{
-  margin:0 0 14px;
-  color:var(--dark);
-  font-size:34px;
-}
-.intro p{
-  margin:0;
-  font-size:19px;
-  line-height:1.65;
-  color:var(--muted);
-}
-.steps{
-  display:grid;
-  gap:18px;
-}
-.step{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:28px 30px;
-  box-shadow:0 8px 24px rgba(14,64,96,.06);
-  display:grid;
-  grid-template-columns:70px 1fr;
-  gap:22px;
-  align-items:start;
-}
-.number{
-  width:58px;height:58px;
-  border-radius:50%;
-  background:#e4f6fd;
-  color:var(--blue);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-  font-weight:800;
-}
-.step h3{
-  margin:2px 0 8px;
-  color:var(--dark);
-  font-size:25px;
-}
-.step p{
-  margin:0;
-  font-size:17px;
-  line-height:1.65;
-}
-.info-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  margin-top:28px;
-}
-.info{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:28px 30px;
-}
-.info h3{
-  margin:0 0 10px;
-  color:var(--dark);
-  font-size:23px;
-}
-.info p{
-  margin:0;
-  font-size:17px;
-  line-height:1.65;
-}
-.notice{
-  margin-top:28px;
-  background:var(--dark);
-  color:#fff;
-  border-radius:22px;
-  padding:30px;
-}
-.notice h3{margin:0 0 10px;font-size:24px}
-.notice p{margin:0;font-size:17px;line-height:1.65}
-.footer{
-  background:#111;
-  color:#fff;
-  text-align:center;
-  padding:24px 18px;
-  font-size:18px;
-}
-@media(max-width:700px){
-  .header{padding:42px 20px 40px}
-  .header p{font-size:18px}
-  .container{padding:42px 16px 60px}
-  .intro h2{font-size:29px}
-  .intro p{font-size:17px}
-  .step{
-    grid-template-columns:52px 1fr;
-    gap:16px;
-    padding:22px 20px;
-    border-radius:18px;
-  }
-  .number{width:48px;height:48px;font-size:20px}
-  .step h3{font-size:21px}
-  .step p,.info p,.notice p{font-size:16px}
-  .info-grid{grid-template-columns:1fr}
-  .info{padding:23px 20px}
-  .notice{padding:24px 20px}
-}
+
+.step-image{margin-top:24px;border-radius:22px;overflow:hidden;background:#eef9ff}.step-image img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}
+@media(max-width:620px){.step-image{margin-top:18px;border-radius:18px}.step-image img{max-height:none}}
 </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="eyebrow">Fiberinstallasjon</div>
-    <h1>Slik får du fiber hjem</h1>
-    <p>Fra Telenors fibernett i nabolaget – til fiberforbindelse i boligen din.</p>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Fiber <span>&amp; T-We</span></a>
+    <nav class="nav">
+      <a href="#process" data-i18n="navProcess">Prosessen</a>
+      <a href="#risk" data-i18n="navRisk">Trygghet</a>
+      <a href="#guide" data-i18n="navGuide">T-We-guiden</a>
+    </nav>
+    <div class="lang-wrap" id="langWrap">
+      <button class="lang-btn" id="langBtn" type="button"><span><span class="globe">🌐</span> <span id="langLabel">Norsk</span></span><span class="chev">⌄</span></button>
+      <div class="lang-menu" id="langMenu"></div>
+    </div>
   </div>
 </header>
 
-<main class="container">
+<div class="mobile-progress" id="mobileProgress">
+  <div class="mobile-progress-inner">
+    <div class="progress-copy"><div class="progress-top"><span id="mobileLesson">Steg 1 av 10</span><span id="mobilePercent">10%</span></div><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div></div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button>
+  </div>
+</div>
+<div class="mobile-menu" id="mobileMenu"></div>
 
-  <section class="intro">
-    <h2>Hva skjer etter at du bestiller?</h2>
-    <p>
-      Når du har godkjent avtalen, starter prosessen med å føre fiber frem til boligen.
-      En entreprenør vil ta kontakt for å planlegge den videre installasjonen.
-    </p>
-  </section>
-
-  <section class="steps">
-
-    <article class="step">
-      <div class="number">1</div>
-      <div>
-        <h3>Du bestiller fiber</h3>
-        <p>
-          Når du godkjenner og signerer avtalen, kan installasjonsprosessen starte.
-        </p>
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow" data-i18n="heroEyebrow">Fiberinstallasjon</div>
+      <h1 data-i18n="heroTitle">Slik får du fiber helt hjem</h1>
+      <p data-i18n="heroText">Du blir kunde hos oss – vi tar oss av prosessen med å føre fiber fra nettet i nabolaget og frem til boligen.</p>
+      <div class="hero-pills">
+        <span class="pill" data-i18n="pill1">Enkel prosess</span><span class="pill" data-i18n="pill2">Befaring først</span><span class="pill" data-i18n="pill3">Trygt og risikofritt</span>
       </div>
-    </article>
-
-    <article class="step">
-      <div class="number">2</div>
-      <div>
-        <h3>Entreprenøren tar kontakt</h3>
-        <p>
-          Dersom boligen ikke allerede er koblet til Telenors nett, skjer installasjonsprosessen
-          gjennom en av Telenors entreprenører. Entreprenøren tar kontakt med kunden for å avtale
-          videre prosess og tidspunkt.
-        </p>
-      </div>
-    </article>
-
-    <article class="step">
-      <div class="number">3</div>
-      <div>
-        <h3>Befaring og vurdering</h3>
-        <p>
-          Entreprenøren vurderer hvordan fiberkabelen kan føres frem til boligen og om
-          installasjonen lar seg gjennomføre på en praktisk måte.
-        </p>
-      </div>
-    </article>
-
-    <article class="step">
-      <div class="number">4</div>
-      <div>
-        <h3>Fiber føres frem til boligen</h3>
-        <p>
-          Fiberkabelen kan bli gravd ned i bakken eller ført via eksisterende ledningsnett i luften.
-          Kunden kan ikke selv velge om fiberen skal fremføres via luft- eller jordkabel.
-        </p>
-      </div>
-    </article>
-
-    <article class="step">
-      <div class="number">5</div>
-      <div>
-        <h3>Installasjonsdato avtales</h3>
-        <p>
-          Kunden og entreprenøren blir enige om tidspunkt for installasjonen.
-          Ved enkelte forhold kan leveransetiden bli lengre enn normalt, for eksempel ved tele i bakken
-          eller behov for avklaringer rundt felles fremføring.
-        </p>
-      </div>
-    </article>
-
-    <article class="step">
-      <div class="number">6</div>
-      <div>
-        <h3>Installasjonen gjennomføres</h3>
-        <p>
-          Entreprenøren installerer fiberforbindelsen til boligen og leverer og installerer avtalt utstyr.
-        </p>
-      </div>
-    </article>
-
-  </section>
-
-  <section class="info-grid">
-
-    <div class="info">
-      <h3>Fremføring via bakken</h3>
-      <p>
-        De fleste som i dag har kobberlinje i bakken, vil få fiber fremført ved graving.
-        Dersom kabelen blir levert på bakken, er kunden selv ansvarlig for forsvarlig nedgraving.
-        Kabelen bør graves ned så fort som mulig, da kabelen og eventuelle skader som oppstår er kundens ansvar.
-      </p>
     </div>
+    <div class="hero-visual"><img src="wide_clean_flat_vector_illustration_scene_a_minim.png" alt="Fiberbestilling til en bolig"></div>
+  </div>
+</section>
 
-    <div class="info">
-      <h3>Fremføring via luft</h3>
-      <p>
-        De som i dag har kobberlinje over ledningsnett i luften, vil få fiber over luftnettet.
-        Fiberkabelen kan dermed føres frem via eksisterende ledningsnett.
-      </p>
-    </div>
+<main class="layout" id="process">
+  <aside class="sidebar">
+    <div class="side-title" data-i18n="sideTitle">FIBER</div>
+    <div id="sideLinks"></div>
+  </aside>
 
-  </section>
+  <div class="main">
+    <section class="intro">
+      <div class="eyebrow" data-i18n="introEyebrow">Fra nabolaget til huset</div>
+      <h2 data-i18n="introTitle">Dette er prosessen – steg for steg</h2>
+      <p data-i18n="introText">Du trenger ikke kunne noe om graving, kabler eller installasjon. Her ser du hva som skjer etter at du har sagt ja.</p>
+    </section>
 
-  <section class="notice">
-    <h3>Hvis installasjonen blir mer omfattende enn normalt</h3>
-    <p>
-      I enkelte tilfeller kan komplisert infrastruktur eller fremføringsvei gjøre at kostnadene
-      ved å levere til kunden blir for høye. Det kan for eksempel være behov for omfattende graving
-      eller arbeid i asfalt. Dersom det oppstår en slik situasjon, avklares dette med kunden før
-      eventuell ekstra kostnad.
-    </p>
-  </section>
+    <div id="steps"></div>
 
-  <section class="info-grid">
-    <div class="info">
-      <h3>Hvis det ikke er mulig å levere</h3>
-      <p>
-        I spesielle tilfeller kan det være så krevende å føre fiber frem til boligen at leveransen
-        ikke kan gjennomføres uten et ekstra mellombeløp. Kunden får da informasjon om dette før
-        den endelige leveranseavtalen inngås.
-      </p>
-    </div>
+    <section class="risk" id="risk">
+      <div><span class="tag" data-i18n="riskTag">Viktig for deg som kunde</span><h3 data-i18n="riskTitle">Du bestemmer – også etter befaringen</h3><p data-i18n="riskText">Selv om entreprenøren har vært på befaring, trenger du ikke gå videre dersom det viser seg at det kreves ekstra arbeid og kostnader du ikke ønsker. Du kan da trekke deg kostnadsfritt. Det eneste vi ber om, er at du blir kunde hos oss på det gode tilbudet.</p></div>
+      <div class="risk-visual"><div class="shield">✓</div></div>
+    </section>
 
-    <div class="info">
-      <h3>Forsinkelser kan forekomme</h3>
-      <p>
-        Værforhold, tele i bakken eller behov for avklaringer i forbindelse med felles fremføring
-        kan gjøre at leveransetiden blir lengre enn normalt. Entreprenøren holder kunden informert
-        dersom dette skjer.
-      </p>
-    </div>
-  </section>
+    <section class="two-col">
+      <article class="mini" id="extra"><div class="mini-icon">💰</div><h3 data-i18n="extraTitle">Hva hvis det blir dyrere enn normalt?</h3><p data-i18n="extraText">Hvis fremføringen krever uvanlig mye arbeid, for eksempel omfattende graving i asfalt eller komplisert infrastruktur, skal dette avklares med deg. Du skal vite hva som gjelder før du eventuelt velger å gå videre.</p></article>
+      <article class="mini" id="ground"><div class="mini-icon">🛠️</div><h3 data-i18n="groundTitle">Hvis kabelen legges på bakken</h3><p data-i18n="groundText">I enkelte saker kan kabel bli levert på bakken. Da er kunden selv ansvarlig for forsvarlig nedgraving, og kabelen bør graves ned så snart som mulig. Skader på kabelen etter levering er kundens ansvar.</p></article>
+    </section>
 
+    <section class="final" id="guide">
+      <div><div class="eyebrow" data-i18n="finalEyebrow">Neste steg</div><h3 data-i18n="finalTitle">Fiber på plass. Klar for resten.</h3><p data-i18n="finalText">Når installasjonen er ferdig, kan du ta i bruk forbindelsen og få glede av det du har bestilt. Vil du se mer om T-We og underholdningsløsningen, kan du lese den enkle guiden vår.</p></div>
+      <a class="guide" href="https://williamzahl.github.io/introduksjon-t-we/" target="_blank" rel="noopener"><div class="guide-title" data-i18n="guideTitle">Les T-We-guiden</div><div class="guide-text" data-i18n="guideText">Se hvordan T-We fungerer, hvilke valg du har og hva du kan bruke løsningen til.</div><span class="guide-btn" data-i18n="guideButton">Åpne guiden →</span></a>
+    </section>
+  </div>
 </main>
 
-<footer class="footer">
-  Slik får du fiber hjem
-</footer>
+<footer class="footer"><div class="footer-inner"><div><strong>Fiber &amp; T-We</strong><br><small id="updated"></small></div><button class="backtop" id="backtop" aria-label="Til toppen">↑</button></div></footer>
 
+<script>
+const langs={
+ no:{label:'Norsk',flag:'🇳🇴',navProcess:'Prosessen',navRisk:'Trygghet',navGuide:'T-We-guiden',sideTitle:'FIBER',mobileMenu:'Meny',
+ heroEyebrow:'Fiberinstallasjon',heroTitle:'Slik får du fiber helt hjem',heroText:'Du blir kunde hos oss – vi tar oss av prosessen med å føre fiber fra nettet i nabolaget og frem til boligen.',pill1:'Enkel prosess',pill2:'Befaring først',pill3:'Trygt og risikofritt',introEyebrow:'Fra nabolaget til huset',introTitle:'Dette er prosessen – steg for steg',introText:'Du trenger ikke kunne noe om graving, kabler eller installasjon. Her ser du hva som skjer etter at du har sagt ja.',riskTag:'Viktig for deg som kunde',riskTitle:'Du bestemmer – også etter befaringen',riskText:'Selv om entreprenøren har vært på befaring, trenger du ikke gå videre dersom det viser seg at det kreves ekstra arbeid og kostnader du ikke ønsker. Du kan da trekke deg kostnadsfritt. Det eneste vi ber om, er at du blir kunde hos oss på det gode tilbudet.',extraTitle:'Hva hvis det blir dyrere enn normalt?',extraText:'Hvis fremføringen krever uvanlig mye arbeid, for eksempel omfattende graving i asfalt eller komplisert infrastruktur, skal dette avklares med deg. Du skal vite hva som gjelder før du eventuelt velger å gå videre.',groundTitle:'Hvis kabelen legges på bakken',groundText:'I enkelte saker kan kabel bli levert på bakken. Da er kunden selv ansvarlig for forsvarlig nedgraving, og kabelen bør graves ned så snart som mulig. Skader på kabelen etter levering er kundens ansvar.',finalEyebrow:'Neste steg',finalTitle:'Fiber på plass. Klar for resten.',finalText:'Når installasjonen er ferdig, kan du ta i bruk forbindelsen og få glede av det du har bestilt. Vil du se mer om T-We og underholdningsløsningen, kan du lese den enkle guiden vår.',guideTitle:'Les T-We-guiden',guideText:'Se hvordan T-We fungerer, hvilke valg du har og hva du kan bruke løsningen til.',guideButton:'Åpne guiden →',stepWord:'Steg',of:'av',updated:'Sist oppdatert',steps:[
+ ['Du bestiller fiber','Når du svarer JA på SMS-en, bekrefter du at du ønsker å gå videre. Deretter tar en av våre entreprenørselskaper kontakt med deg.','step1.png'],
+ ['Entreprenøren tar kontakt','Dersom boligen ikke allerede er koblet til Telenors nett, går installasjonen gjennom en av entreprenørene. Entreprenøren skal ta kontakt med deg innen 3 virkedager for å avtale videre prosess og tidspunkt for befaring.','step2.png'],
+ ['Befaring og vurdering','Entreprenøren vurderer boligen og området rundt, og ser på hvordan fiberkabelen kan føres frem til huset. Dette er tidspunktet hvor de avklarer hva som faktisk lar seg gjøre.','step3.png'],
+ ['Fiber føres frem til huset','Fiberkabelen kan bli gravd ned i bakken eller ført via eksisterende ledningsnett i luften. Kunden kan ikke selv velge om fiber skal fremføres via luft- eller jordkabel.','step4.png'],
+ ['Installasjonsdato avtales','Når fremføringen er avklart, blir kunden og entreprenøren enige om tidspunkt for installasjonen. Ved tele i bakken, værforhold eller behov for avklaringer rundt felles fremføring kan leveransetiden bli lengre enn normalt.','step5.png'],
+ ['Installasjonen gjennomføres','Entreprenøren gjennomfører installasjonen til boligen og sørger for at avtalt utstyr blir levert og installert. Hvor raskt dette kan gjøres avhenger blant annet av infrastrukturen i området og forholdene på stedet.','step6.png'],
+ ['Eventuelle ekstra kostnader','I enkelte tilfeller kan fremføringsveien være mer krevende enn normalt – for eksempel hvis det må graves gjennom asfalt eller infrastrukturen er komplisert. Da skal dette avklares med kunden før eventuell ekstra kostnad.','step7.png'],
+ ['Fremføring via bakken eller luft','De fleste som har kobberlinje i bakken vil få fiber fremført ved graving, mens de som har kobberlinje over ledningsnett i luften normalt får fiber over luftnettet. Dersom kabelen blir levert på bakken, er kunden selv ansvarlig for forsvarlig nedgraving.','step8.png'],
+ ['Klar til bruk','Når alt er ferdig installert, er forbindelsen klar til bruk. I noen saker kan fremføringen være enkel og kreve lite eller ingen graving på kundens eiendom.','step9.png'],
+ ['Ferdig – velkommen som kunde!','Da er fiberforbindelsen på plass. Du har fått en trygg og oversiktlig prosess, og kan nå ta i bruk tjenestene du har bestilt.','step10.png']
+ ]},
+ en:{label:'English',flag:'🇬🇧',navProcess:'The process',navRisk:'Your safety',navGuide:'T-We guide',sideTitle:'FIBER',mobileMenu:'Menu',heroEyebrow:'Fiber installation',heroTitle:'How fiber gets all the way to your home',heroText:'You become our customer – we take care of the process of bringing fiber from the network in your neighborhood to your home.',pill1:'Simple process',pill2:'Site survey first',pill3:'Safe and low-risk',introEyebrow:'From the neighborhood to your home',introTitle:'The process – step by step',introText:'You do not need to know anything about digging, cables or installation. Here is what happens after you say yes.',riskTag:'Important for you',riskTitle:'You are in control – even after the site survey',riskText:'Even if the contractor has visited for a site survey, you do not have to proceed if it turns out that extra work and costs are required and you do not want them. You can then cancel at no cost. All we ask is that you become our customer on the offer provided.',extraTitle:'What if it costs more than normal?',extraText:'If the route requires unusually extensive work, such as digging through asphalt or dealing with complicated infrastructure, this must be clarified with you. You will know what applies before you choose whether to continue.',groundTitle:'If the cable is delivered on the ground',groundText:'In some cases, the cable may be delivered on the ground. The customer is then responsible for burying it safely, and it should be buried as soon as possible. Any damage to the cable after delivery is the customer’s responsibility.',finalEyebrow:'Next step',finalTitle:'Fiber in place. Ready for what comes next.',finalText:'Once the installation is complete, you can start using your connection and enjoy the service you ordered. If you want to learn more about T-We, you can read our simple guide.',guideTitle:'Read the T-We guide',guideText:'See how T-We works, what choices you have and what you can use it for.',guideButton:'Open the guide →',stepWord:'Step',of:'of',updated:'Last updated',steps:[
+ ['You order fiber','When you reply YES to the SMS, you confirm that you want to proceed. One of our contractor companies will then contact you.','step1.png'],['The contractor contacts you','If your home is not already connected to Telenor’s network, installation is handled by one of the contractors. The contractor will contact you within 3 business days to arrange the next steps and a site survey.','step2.png'],['Site survey and assessment','The contractor assesses the home and surrounding area and looks at how the fiber cable can be brought to the house. This is where they determine what is practically possible.','step3.png'],['Fiber is brought to the house','The fiber cable may be buried underground or routed through existing overhead utility infrastructure. The customer cannot choose between underground and overhead routing.','step4.png'],['Installation date is agreed','Once the route is clarified, you and the contractor agree on an installation date. Frost in the ground, weather or joint-routing clarifications can sometimes make delivery take longer than normal.','step5.png'],['The installation is completed','The contractor completes the connection to the home and delivers and installs the agreed equipment. Timing depends on local infrastructure and conditions at the property.','step6.png'],['Possible extra costs','Sometimes the route can be more demanding than normal – for example if asphalt has to be cut or infrastructure is complicated. This must be clarified with the customer before any extra cost.','step7.png'],['Underground or overhead','Most homes with existing underground copper lines will normally get fiber by digging, while homes with overhead lines will normally get fiber through the existing overhead network. If a cable is delivered on the ground, the customer is responsible for burying it safely.','step8.png'],['Ready to use','Once everything is installed, the connection is ready to use. In some cases the route is simple and requires little or no digging on the customer’s property.','step9.png'],['Finished – welcome as a customer!','The fiber connection is now in place. You have had a clear and straightforward process and can start using the services you ordered.','step10.png'] ]},
+ de:{label:'Deutsch',flag:'🇩🇪',navProcess:'Der Ablauf',navRisk:'Ihre Sicherheit',navGuide:'T-We-Leitfaden',sideTitle:'FIBER',mobileMenu:'Menü',heroEyebrow:'Glasfaser-Installation',heroTitle:'So kommt die Glasfaser bis zu Ihrem Haus',heroText:'Sie werden unser Kunde – wir kümmern uns um den Prozess, die Glasfaser vom Netz in Ihrer Nachbarschaft bis zu Ihrem Haus zu führen.',pill1:'Einfacher Ablauf',pill2:'Besichtigung zuerst',pill3:'Sicher und risikofrei',introEyebrow:'Von der Nachbarschaft bis zum Haus',introTitle:'Der Ablauf – Schritt für Schritt',introText:'Sie müssen nichts über Gräben, Kabel oder Installationen wissen. Hier sehen Sie, was passiert, nachdem Sie zugestimmt haben.',riskTag:'Wichtig für Sie',riskTitle:'Sie entscheiden – auch nach der Besichtigung',riskText:'Auch wenn der Auftragnehmer bereits zur Besichtigung vor Ort war, müssen Sie nicht weitermachen, wenn sich herausstellt, dass zusätzliche Arbeiten und Kosten erforderlich sind, die Sie nicht möchten. Sie können dann kostenlos vom Vorhaben zurücktreten. Alles, was wir von Ihnen erwarten, ist, dass Sie Kunde bei uns werden und das angebotene gute Angebot annehmen.',extraTitle:'Was ist, wenn es teurer wird als üblich?',extraText:'Wenn die Leitungsführung ungewöhnlich aufwendig ist, zum Beispiel weil Asphalt aufgebrochen werden muss oder die Infrastruktur kompliziert ist, wird dies mit Ihnen geklärt. Sie wissen vor einer Entscheidung, welche zusätzlichen Kosten entstehen können.',groundTitle:'Wenn das Kabel auf dem Boden geliefert wird',groundText:'In einigen Fällen kann das Kabel auf dem Boden bereitgestellt werden. Dann ist der Kunde selbst für eine sichere Verlegung im Boden verantwortlich. Das Kabel sollte möglichst schnell vergraben werden; Schäden danach liegen in der Verantwortung des Kunden.',finalEyebrow:'Nächster Schritt',finalTitle:'Glasfaser ist da. Jetzt kann es losgehen.',finalText:'Nach Abschluss der Installation können Sie Ihre Verbindung nutzen. Wenn Sie mehr über T-We und die Unterhaltungslösung erfahren möchten, können Sie unseren einfachen Leitfaden lesen.',guideTitle:'T-We-Leitfaden lesen',guideText:'Erfahren Sie, wie T-We funktioniert, welche Möglichkeiten Sie haben und wofür Sie die Lösung nutzen können.',guideButton:'Leitfaden öffnen →',stepWord:'Schritt',of:'von',updated:'Zuletzt aktualisiert',steps:[
+ ['Sie bestellen Glasfaser','Sobald Sie den Vertrag bestätigen und unterschreiben, kann der Installationsprozess beginnen. Der Standardanschluss ist Teil des Angebots – Sie werden unser Kunde und wir kümmern uns um den weiteren Prozess.','step1.png'],['Der Auftragnehmer meldet sich','Wenn Ihr Haus noch nicht an das Telenor-Netz angeschlossen ist, erfolgt die Installation durch einen unserer Auftragnehmer. Der Auftragnehmer meldet sich innerhalb von 2 Werktagen, um das weitere Vorgehen und einen Termin für die Besichtigung zu vereinbaren.','step2.png'],['Besichtigung und Prüfung','Der Auftragnehmer prüft das Haus und die Umgebung und beurteilt, wie das Glasfaserkabel zum Haus geführt werden kann. Dabei wird geklärt, was praktisch möglich ist.','step3.png'],['Die Glasfaser wird zum Haus geführt','Das Glasfaserkabel kann unterirdisch verlegt oder über vorhandene Leitungen in der Luft geführt werden. Der Kunde kann nicht selbst wählen, ob die Leitung unterirdisch oder überirdisch geführt wird.','step4.png'],['Installationstermin wird vereinbart','Nach der Klärung der Leitungsführung vereinbaren Kunde und Auftragnehmer einen Installationstermin. Frost im Boden, Wetter oder notwendige Abstimmungen bei gemeinsamer Leitungsführung können zu längeren Lieferzeiten führen.','step5.png'],['Die Installation wird durchgeführt','Der Auftragnehmer führt die Verbindung bis zum Haus und liefert und installiert die vereinbarte Ausstattung. Die Dauer hängt unter anderem von der Infrastruktur und den Bedingungen vor Ort ab.','step6.png'],['Mögliche zusätzliche Kosten','In manchen Fällen kann die Leitungsführung aufwendiger sein als üblich – zum Beispiel wenn Asphalt geöffnet werden muss oder die Infrastruktur kompliziert ist. Dies wird vor möglichen Zusatzkosten mit dem Kunden geklärt.','step7.png'],['Unterirdisch oder über die Luft','Häuser mit bestehenden unterirdischen Kupferleitungen erhalten die Glasfaser in der Regel durch Grabarbeiten, während Häuser mit oberirdischen Leitungen die Glasfaser normalerweise über das bestehende Leitungsnetz erhalten. Wird ein Kabel auf dem Boden geliefert, ist der Kunde für das sichere Eingraben verantwortlich.','step8.png'],['Bereit zur Nutzung','Nach Abschluss der Arbeiten ist die Verbindung einsatzbereit. In manchen Fällen ist die Leitungsführung einfach und erfordert auf dem Grundstück nur wenig oder gar keine Grabearbeiten.','step9.png'],['Fertig – willkommen als Kunde!','Die Glasfaserverbindung ist nun eingerichtet. Sie hatten einen klaren und übersichtlichen Ablauf und können die bestellten Dienste nutzen.','step10.png'] ]},
+ es:{label:'Español',flag:'🇪🇸',navProcess:'El proceso',navRisk:'Tu seguridad',navGuide:'Guía T-We',sideTitle:'FIBRA',mobileMenu:'Menú',heroEyebrow:'Instalación de fibra',heroTitle:'Así llega la fibra hasta tu casa',heroText:'Te haces cliente nuestro y nosotros nos encargamos del proceso para llevar la fibra desde la red de tu barrio hasta tu vivienda.',pill1:'Proceso sencillo',pill2:'Visita primero',pill3:'Seguro y sin riesgos',introEyebrow:'Del barrio a tu casa',introTitle:'El proceso – paso a paso',introText:'No necesitas saber nada sobre zanjas, cables o instalaciones. Aquí puedes ver qué ocurre después de aceptar.',riskTag:'Importante para ti',riskTitle:'Tú decides, incluso después de la visita',riskText:'Aunque el contratista ya haya realizado una visita a tu vivienda, no tienes que continuar si resulta que son necesarios trabajos y costes adicionales que no quieres asumir. En ese caso puedes cancelar sin coste. Lo único que te pedimos es que seas cliente nuestro con la buena oferta que te hemos presentado.',extraTitle:'¿Y si cuesta más de lo normal?',extraText:'Si el trazado requiere un trabajo especialmente complicado, por ejemplo cortar asfalto o trabajar con una infraestructura compleja, se hablará contigo antes de cualquier coste adicional.',groundTitle:'Si el cable se entrega sobre el terreno',groundText:'En algunos casos el cable puede entregarse sobre el terreno. El cliente será responsable de enterrarlo correctamente y debería hacerlo lo antes posible. Cualquier daño posterior será responsabilidad del cliente.',finalEyebrow:'Siguiente paso',finalTitle:'Fibra instalada. Todo listo.',finalText:'Cuando termine la instalación podrás utilizar tu conexión. Si quieres saber más sobre T-We y la solución de entretenimiento, puedes leer nuestra guía sencilla.',guideTitle:'Leer la guía de T-We',guideText:'Descubre cómo funciona T-We, qué opciones tienes y para qué puedes utilizar la solución.',guideButton:'Abrir la guía →',stepWord:'Paso',of:'de',updated:'Última actualización',steps:[
+ ['Solicitas la fibra','Cuando respondes SÍ al SMS, confirmas que quieres continuar. A continuación, una de nuestras empresas contratistas se pondrá en contacto contigo.','step1.png'],['El contratista se pone en contacto','Si tu vivienda todavía no está conectada a la red de Telenor, la instalación la realiza uno de nuestros contratistas. El contratista se pondrá en contacto contigo en un plazo de 3 días laborables para acordar los siguientes pasos y una visita.','step2.png'],['Visita y evaluación','El contratista evalúa la vivienda y sus alrededores y estudia cómo llevar el cable de fibra hasta la casa. En esta visita se determina qué es posible realizar de forma práctica.','step3.png'],['La fibra llega hasta la vivienda','El cable puede enterrarse o llevarse mediante la infraestructura aérea existente. El cliente no puede elegir entre una instalación aérea o subterránea.','step4.png'],['Se acuerda la fecha de instalación','Una vez aclarado el trazado, el cliente y el contratista acuerdan una fecha. Las heladas, el tiempo o las aclaraciones sobre trazados compartidos pueden alargar el plazo.','step5.png'],['Se realiza la instalación','El contratista completa la conexión hasta la vivienda y entrega e instala el equipo acordado. El tiempo depende, entre otras cosas, de la infraestructura y las condiciones del lugar.','step6.png'],['Posibles costes adicionales','En algunos casos el trazado puede ser más complicado de lo normal, por ejemplo si hay que cortar asfalto o la infraestructura es compleja. Esto se debe aclarar antes de cualquier coste adicional.','step7.png'],['Por tierra o por aire','La mayoría de las viviendas con líneas de cobre subterráneas recibirán la fibra mediante excavación, mientras que las que tienen líneas aéreas normalmente recibirán la fibra por la red aérea existente. Si el cable se entrega sobre el terreno, el cliente debe enterrarlo correctamente.','step8.png'],['Lista para usar','Cuando todo esté instalado, la conexión estará lista para usar. En algunos casos el trazado es sencillo y requiere poca o ninguna excavación en la propiedad del cliente.','step9.png'],['Terminado – ¡bienvenido como cliente!','La conexión de fibra ya está instalada. Has tenido un proceso claro y sencillo y puedes empezar a utilizar los servicios que has contratado.','step10.png'] ]},
+ pl:{label:'Polski',flag:'🇵🇱',navProcess:'Proces',navRisk:'Twoje bezpieczeństwo',navGuide:'Przewodnik T-We',sideTitle:'ŚWIATŁOWÓD',mobileMenu:'Menu',heroEyebrow:'Instalacja światłowodu',heroTitle:'Tak światłowód trafia do Twojego domu',heroText:'Zostajesz naszym klientem, a my zajmujemy się procesem doprowadzenia światłowodu z sieci w Twojej okolicy do domu.',pill1:'Prosty proces',pill2:'Najpierw wizja lokalna',pill3:'Bezpiecznie i bez ryzyka',introEyebrow:'Od sieci w okolicy do domu',introTitle:'Proces – krok po kroku',introText:'Nie musisz znać się na wykopach, kablach ani instalacji. Tutaj zobaczysz, co dzieje się po zaakceptowaniu oferty.',riskTag:'Ważne dla Ciebie',riskTitle:'To Ty decydujesz – także po wizji lokalnej',riskText:'Nawet jeśli wykonawca był już na wizji lokalnej, nie musisz kontynuować, jeśli okaże się, że potrzebne są dodatkowe prace i koszty, których nie chcesz ponosić. Możesz wtedy zrezygnować bez kosztów. Jedyne, czego oczekujemy, to że zostaniesz naszym klientem w ramach przedstawionej dobrej oferty.',extraTitle:'Co jeśli będzie drożej niż zwykle?',extraText:'Jeśli doprowadzenie światłowodu wymaga nietypowo dużego nakładu pracy, na przykład przebicia się przez asfalt lub prac przy skomplikowanej infrastrukturze, zostanie to z Tobą uzgodnione przed ewentualnym dodatkowym kosztem.',groundTitle:'Jeśli kabel zostanie dostarczony na ziemi',groundText:'W niektórych przypadkach kabel może zostać dostarczony na ziemi. Wtedy klient odpowiada za jego prawidłowe zakopanie. Należy zrobić to możliwie szybko, a ewentualne późniejsze uszkodzenia kabla są odpowiedzialnością klienta.',finalEyebrow:'Następny krok',finalTitle:'Światłowód gotowy. Możesz korzystać.',finalText:'Po zakończeniu instalacji możesz korzystać z połączenia. Jeśli chcesz dowiedzieć się więcej o T-We, możesz przeczytać nasz prosty przewodnik.',guideTitle:'Przeczytaj przewodnik T-We',guideText:'Zobacz, jak działa T-We, jakie masz możliwości i do czego możesz wykorzystać rozwiązanie.',guideButton:'Otwórz przewodnik →',stepWord:'Krok',of:'z',updated:'Ostatnia aktualizacja',steps:[
+ ['Zamawiasz światłowód','Odpowiadając TAK na SMS, potwierdzasz, że chcesz kontynuować. Następnie skontaktuje się z Tobą jedna z naszych firm wykonawczych.','step1.png'],['Wykonawca kontaktuje się z Tobą','Jeśli dom nie jest jeszcze podłączony do sieci Telenor, instalację realizuje jeden z wykonawców. Wykonawca skontaktuje się z Tobą w ciągu 3 dni roboczych, aby ustalić dalsze kroki i termin wizji lokalnej.','step2.png'],['Wizja lokalna i ocena','Wykonawca ocenia dom i jego otoczenie oraz sprawdza, jak można doprowadzić kabel światłowodowy do domu. Wtedy ustalane jest, co jest praktycznie możliwe.','step3.png'],['Światłowód jest doprowadzany do domu','Kabel może zostać zakopany w ziemi lub poprowadzony przez istniejącą infrastrukturę napowietrzną. Klient nie może sam wybrać sposobu poprowadzenia kabla.','step4.png'],['Ustalany jest termin instalacji','Po ustaleniu sposobu doprowadzenia klient i wykonawca uzgadniają termin instalacji. Mróz w ziemi, pogoda lub uzgodnienia dotyczące wspólnego przebiegu mogą wydłużyć czas realizacji.','step5.png'],['Instalacja jest wykonywana','Wykonawca wykonuje podłączenie do domu oraz dostarcza i instaluje uzgodniony sprzęt. Czas zależy między innymi od infrastruktury i warunków na miejscu.','step6.png'],['Możliwe dodatkowe koszty','W niektórych przypadkach trasa może wymagać więcej pracy niż zwykle, np. jeśli trzeba przeciąć asfalt lub infrastruktura jest skomplikowana. Ewentualny dodatkowy koszt musi zostać z Tobą uzgodniony.','step7.png'],['Pod ziemią lub napowietrznie','Większość domów z istniejącą podziemną linią miedzianą otrzyma światłowód poprzez wykop, natomiast domy z linią napowietrzną zwykle poprzez istniejącą sieć napowietrzną. Jeśli kabel zostanie dostarczony na ziemi, klient odpowiada za jego prawidłowe zakopanie.','step8.png'],['Gotowe do użycia','Po zakończeniu instalacji połączenie jest gotowe do użycia. W niektórych przypadkach trasa jest prosta i wymaga niewielu lub żadnych prac ziemnych na posesji klienta.','step9.png'],['Gotowe – witamy jako klienta!','Połączenie światłowodowe jest już gotowe. Proces był przejrzysty i prosty, a teraz możesz korzystać z zamówionych usług.','step10.png'] ]}
+};
+
+let current='no';
+const langWrap=document.getElementById('langWrap'),langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu');
+const stepsEl=document.getElementById('steps'),sideLinks=document.getElementById('sideLinks'),mobileMenu=document.getElementById('mobileMenu');
+const icons={
+ phone:`<svg viewBox="0 0 64 64"><path d="M18 9h9l5 14-7 5c4 8 10 14 18 18l5-7 14 5v9c0 4-3 7-7 7C35 60 4 29 4 9c0-4 3-7 7-7h7z"/></svg>`,
+ search:`<svg viewBox="0 0 64 64"><circle cx="28" cy="28" r="18"/><path d="M42 42l15 15"/><path d="M20 28h16M28 20v16"/></svg>`,
+ calendar:`<svg viewBox="0 0 64 64"><rect x="8" y="12" width="48" height="44" rx="5"/><path d="M18 5v14M46 5v14M8 25h48M19 34h1M31 34h1M43 34h1M19 45h1M31 45h1M43 45h1"/></svg>`
+};
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function applyText(){const l=langs[current];document.documentElement.lang=current==='no'?'no':current;document.title=l.heroTitle;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(l[k]!==undefined)el.textContent=l[k]});document.getElementById('langLabel').textContent=l.label;document.getElementById('mobileMenuText').textContent=l.mobileMenu;}
+function renderLangs(){langMenu.innerHTML=Object.entries(langs).map(([k,l])=>`<button class="lang-option ${k===current?'active':''}" data-lang="${k}"><span>${l.flag}</span>${esc(l.label)}</button>`).join('');}
+function stepMedia(m){if(m && /^step\d+\.png$/.test(m)) return `<div class="step-image"><img src="${m}" alt=""></div>`; if(m==='icon-phone')return ''; if(m==='icon-search')return ''; if(m==='icon-calendar')return ''; return m?`<div class="step-image"><img src="${m}" alt=""></div>`:'';}
+function renderSteps(){const l=langs[current];stepsEl.innerHTML=l.steps.map((s,i)=>`<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>`).join('');sideLinks.innerHTML=l.steps.map((s,i)=>`<a class="side-link" href="#step-${i+1}"><b>${i+1}</b><span>${esc(s[0])}</span></a>`).join('');mobileMenu.innerHTML=l.steps.map((s,i)=>`<a href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('');}
+function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;}
+function setLang(k){current=k;renderLangs();applyText();renderSteps();updateFooter();langWrap.classList.remove('open');mobileMenu.classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});setTimeout(updateProgress,80);}
+langBtn.addEventListener('click',()=>langWrap.classList.toggle('open'));langMenu.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang)});document.addEventListener('click',e=>{if(!langWrap.contains(e.target))langWrap.classList.remove('open')});
+const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});
+const backtop=document.getElementById('backtop');
+const mobileProgress=document.getElementById('mobileProgress');
+function updateProgress(){
+  const cards=[...document.querySelectorAll('.step')];
+  let idx=0;
+  for(let i=0;i<cards.length;i++){ if(window.scrollY+window.innerHeight*0.32 >= cards[i].offsetTop) idx=i; }
+  const pct=Math.round(((idx+1)/cards.length)*100);
+  document.getElementById('mobileLesson').textContent=`${langs[current].stepWord} ${idx+1} ${langs[current].of} ${cards.length}`;
+  document.getElementById('mobilePercent').textContent=pct+'%';
+  document.getElementById('progressFill').style.width=pct+'%';
+  mobileProgress.style.display=window.scrollY>300?'block':'none';
+  backtop.classList.toggle('show',window.scrollY>700);
+}
+window.addEventListener('scroll',updateProgress,{passive:true});
+backtop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+applyText();renderLangs();renderSteps();updateFooter();updateProgress();
+</script>
 </body>
 </html>
