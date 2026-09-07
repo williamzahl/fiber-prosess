@@ -193,6 +193,37 @@ button{font:inherit}
  .hero-nav a{padding:5px 8px;min-width:0}
 }
 @media(max-width:560px){.hero h1{font-size:34px;font-weight:700;max-width:100%;}.hero p{font-size:14px}}
+
+/* LATEST NAV FIXES */
+.top-scroll-nav{display:none;align-items:center;gap:5px;margin-left:auto;margin-right:8px}
+.top-scroll-nav a{display:block;text-decoration:none;color:var(--dark);border:1px solid var(--line);background:#fff;border-radius:9px;padding:5px 8px;font-size:10px;font-weight:800;white-space:nowrap}
+.top-scroll-nav a.active{background:var(--soft);border-color:#b9dff0;color:var(--blue)}
+.lang-btn>span:first-child{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:auto;margin:0;white-space:nowrap}
+.lang-btn .chev{z-index:2}
+.intro .hero-nav{width:100%;justify-content:center;margin:0 0 15px;padding:0;border:0;gap:9px}
+.intro .hero-nav a{border:1px solid #cfe4ef;background:#fff;color:var(--dark);border-radius:10px;padding:7px 14px;min-width:92px;text-align:center;box-shadow:0 5px 14px rgba(14,64,96,.04)}
+.intro .hero-nav a.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+@media(max-width:850px){
+  .topbar-inner{gap:5px}
+  .top-scroll-nav{display:flex;flex:1;justify-content:flex-end;overflow:hidden}
+  .top-scroll-nav a{font-size:9px;padding:4px 5px;min-width:0}
+  .brand{flex:0 0 auto}
+  .lang-btn{flex:0 0 auto}
+  .intro .hero-nav{gap:6px;margin-bottom:13px}
+  .intro .hero-nav a{padding:6px 9px;font-size:11px;min-width:0}
+}
+@media(max-width:560px){
+  .top-scroll-nav{gap:2px;margin-right:2px}
+  .top-scroll-nav a{font-size:8px;padding:4px 4px;border-radius:7px}
+  .brand{font-size:15px}
+  .lang-btn{min-width:104px}
+  .intro .hero-nav{gap:5px}
+  .intro .hero-nav a{font-size:10px;padding:5px 7px;border-radius:8px}
+}
+
+
+@media(max-width:850px){.top-scroll-nav{display:none}.topbar.scrolled .top-scroll-nav{display:flex}}
+
 </style>
 </head>
 <body>
@@ -200,6 +231,11 @@ button{font:inherit}
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#top">Fiber <span>&amp; T-We</span></a>
+    <nav class="top-scroll-nav" id="topScrollNav" aria-label="Seksjonsmeny">
+      <a href="#process" data-section="process" data-i18n="navProcess">Prosessen</a>
+      <a href="#risk" data-section="risk" data-i18n="navRisk">Trygghet</a>
+      <a href="#guide" data-section="guide" data-i18n="navGuide">T-We-guiden</a>
+    </nav>
     <div class="lang-wrap" id="langWrap">
       <button class="lang-btn" id="langBtn" type="button"><span><span class="globe">🌐</span> <span id="langLabel">Norsk</span></span><span class="chev">⌄</span></button>
       <div class="lang-menu" id="langMenu"></div>
@@ -226,11 +262,6 @@ button{font:inherit}
       <h1 data-i18n="heroTitle">Slik får du fiber helt hjem</h1>
       <p data-i18n="heroText">Med vårt gode tilbud får du kostnadsfri befaring og installasjon – og vi tar oss av prosessen hele veien frem til boligen.</p>
     </div>
-    <nav class="hero-nav">
-      <a href="#process" data-i18n="navProcess">Prosessen</a>
-      <a href="#risk" data-i18n="navRisk">Trygghet</a>
-      <a href="#guide" data-i18n="navGuide">T-We-guiden</a>
-    </nav>
   </div>
 </section>
 
@@ -242,6 +273,11 @@ button{font:inherit}
 
   <div class="main">
     <section class="intro">
+      <nav class="hero-nav" aria-label="Seksjonsmeny">
+        <a href="#process" data-i18n="navProcess">Prosessen</a>
+        <a href="#risk" data-i18n="navRisk">Trygghet</a>
+        <a href="#guide" data-i18n="navGuide">T-We-guiden</a>
+      </nav>
       <div class="eyebrow" data-i18n="introEyebrow">Fra nabolaget til huset</div>
       <h2 data-i18n="introTitle">Dette er prosessen – steg for steg</h2>
       <p data-i18n="introText">Du trenger ikke kunne noe om graving, kabler eller installasjon. Her ser du hva som skjer etter at du har sagt ja.</p>
@@ -271,7 +307,7 @@ button{font:inherit}
 <script>
 const langs={
  no:{label:'Norsk',flag:'🇳🇴',navProcess:'Prosessen',navRisk:'Trygghet',navGuide:'T-We-guiden',sideTitle:'Prosessen fra A-Å',mobileMenu:'Meny',
- heroEyebrow:'Fiberinstallasjon',heroTitle:'Slik får du fiber helt hjem',heroText:'Med vårt gode tilbud får du kostnadsfri befaring og installasjon –<br>og vi tar oss av prosessen hele veien frem til boligen.',pill1:'Enkel prosess',pill2:'Befaring først',pill3:'Trygt og risikofritt',introEyebrow:'Fra nabolaget til huset',introTitle:'Dette er prosessen – steg for steg',introText:'Du trenger ikke kunne noe om graving, kabler eller installasjon. Her ser du hva som skjer etter at du har sagt ja.',riskTag:'Viktig for deg som kunde',riskTitle:'Du bestemmer – også etter befaringen',riskText:'Selv om entreprenøren har vært på befaring, trenger du ikke gå videre dersom det viser seg at det kreves ekstra arbeid og kostnader du ikke ønsker. Du kan da trekke deg kostnadsfritt. Det eneste vi ber om, er at du blir kunde hos oss på det gode tilbudet.',extraTitle:'Hva hvis det blir dyrere enn normalt?',extraText:'Hvis fremføringen krever uvanlig mye arbeid, for eksempel omfattende graving i asfalt eller komplisert infrastruktur, skal dette avklares med deg. Du skal vite hva som gjelder før du eventuelt velger å gå videre.',groundTitle:'💡 Tips før befaring',groundText:'Vet du om det ligger kabler, rør eller annen infrastruktur i bakken på tomten? Det kan være lurt å undersøke dette på forhånd og informere entreprenøren under befaringen. Det kan gjøre planleggingen av fremføringen enklere.',finalEyebrow:'Neste steg',finalTitle:'Fiber på plass. Klar for resten.',finalText:'Når installasjonen er ferdig, kan du ta i bruk forbindelsen og få glede av det du har bestilt. Vil du se mer om T-We og underholdningsløsningen, kan du lese den enkle guiden vår.',guideTitle:'Les T-We-guiden',guideText:'Se hvordan T-We fungerer, hvilke valg du har og hva du kan bruke løsningen til.',guideButton:'Åpne guiden →',stepWord:'Steg',of:'av',updated:'Sist oppdatert',steps:[
+ heroEyebrow:'Fiberinstallasjon',heroTitle:'Slik får du fiber helt hjem',heroText:'Med vårt gode tilbud får du kostnadsfri befaring og installasjon<br>– og vi tar oss av prosessen hele veien frem til boligen.',pill1:'Enkel prosess',pill2:'Befaring først',pill3:'Trygt og risikofritt',introEyebrow:'Fra nabolaget til huset',introTitle:'Dette er prosessen – steg for steg',introText:'Du trenger ikke kunne noe om graving, kabler eller installasjon. Her ser du hva som skjer etter at du har sagt ja.',riskTag:'Viktig for deg som kunde',riskTitle:'Du bestemmer – også etter befaringen',riskText:'Selv om entreprenøren har vært på befaring, trenger du ikke gå videre dersom det viser seg at det kreves ekstra arbeid og kostnader du ikke ønsker. Du kan da trekke deg kostnadsfritt. Det eneste vi ber om, er at du blir kunde hos oss på det gode tilbudet.',extraTitle:'Hva hvis det blir dyrere enn normalt?',extraText:'Hvis fremføringen krever uvanlig mye arbeid, for eksempel omfattende graving i asfalt eller komplisert infrastruktur, skal dette avklares med deg. Du skal vite hva som gjelder før du eventuelt velger å gå videre.',groundTitle:'💡 Tips før befaring',groundText:'Vet du om det ligger kabler, rør eller annen infrastruktur i bakken på tomten? Det kan være lurt å undersøke dette på forhånd og informere entreprenøren under befaringen. Det kan gjøre planleggingen av fremføringen enklere.',finalEyebrow:'Neste steg',finalTitle:'Fiber på plass. Klar for resten.',finalText:'Når installasjonen er ferdig, kan du ta i bruk forbindelsen og få glede av det du har bestilt. Vil du se mer om T-We og underholdningsløsningen, kan du lese den enkle guiden vår.',guideTitle:'Les T-We-guiden',guideText:'Se hvordan T-We fungerer, hvilke valg du har og hva du kan bruke løsningen til.',guideButton:'Åpne guiden →',stepWord:'Steg',of:'av',updated:'Sist oppdatert',steps:[
  ['Du bestiller fiber','Når du godkjenner og signerer avtalen, kan installasjonsprosessen starte. Selve standardtilkoblingen er en del av tilbudet – du blir kunde hos oss, så tar vi prosessen videre.','step1.png'],
  ['Entreprenøren tar kontakt','Dersom boligen ikke allerede er koblet til Telenors nett, går installasjonen gjennom en av entreprenørene. Entreprenøren skal ta kontakt med deg innen 3 virkedager for å avtale videre prosess og tidspunkt for befaring.','step2.png'],
  ['Befaring og vurdering','Entreprenøren vurderer boligen og området rundt, og ser på hvordan fiberkabelen kan føres frem til huset. Dette er tidspunktet hvor de avklarer hva som faktisk lar seg gjøre.','step3.png'],
@@ -294,7 +330,7 @@ const langs={
 };
 
 let current='no';
-const langWrap=document.getElementById('langWrap'),langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu');
+const langWrap=document.getElementById('langWrap'),langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu'),topScrollNav=document.getElementById('topScrollNav');
 const stepsEl=document.getElementById('steps'),sideLinks=document.getElementById('sideLinks'),mobileMenu=document.getElementById('mobileMenu');
 const icons={
  phone:`<svg viewBox="0 0 64 64"><path d="M18 9h9l5 14-7 5c4 8 10 14 18 18l5-7 14 5v9c0 4-3 7-7 7C35 60 4 29 4 9c0-4 3-7 7-7h7z"/></svg>`,
@@ -322,18 +358,21 @@ function updateProgress(){
   document.getElementById('mobilePercent').textContent=pct+'%';
   document.getElementById('progressFill').style.width=pct+'%';
   mobileProgress.style.display=window.scrollY>300?'block':'none';
+  document.querySelector('.topbar').classList.toggle('scrolled',window.scrollY>300);
   backtop.classList.toggle('show',window.scrollY>700);
   updateActiveNav();
 }
 window.addEventListener('scroll',updateProgress,{passive:true});
 
 const heroNavLinks=[...document.querySelectorAll('.hero-nav a')];
+const topScrollLinks=[...document.querySelectorAll('.top-scroll-nav a')];
 function updateActiveNav(){
-  const targets=[{id:'process',el:heroNavLinks[0]},{id:'risk',el:heroNavLinks[1]},{id:'guide',el:heroNavLinks[2]}];
+  const targets=[{id:'process'},{id:'risk'},{id:'guide'}];
   let active='process';
   const y=window.scrollY+180;
   for(const t of targets){const el=document.getElementById(t.id);if(el && y>=el.offsetTop) active=t.id;}
   heroNavLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active));
+  topScrollLinks.forEach(a=>a.classList.toggle('active',a.dataset.section===active));
   document.querySelectorAll('.mobile-section-link').forEach(a=>a.classList.toggle('active',a.dataset.section===active));document.querySelectorAll('.mobile-quick-nav a').forEach(a=>a.classList.toggle('active',a.dataset.section===active));
   const cards=[...document.querySelectorAll('.step')];
   let idx=0; for(let i=0;i<cards.length;i++){if(window.scrollY+window.innerHeight*.32>=cards[i].offsetTop)idx=i;}
@@ -341,6 +380,8 @@ function updateActiveNav(){
 }
 heroNavLinks.forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,50)));
 document.querySelectorAll('.mobile-quick-nav a').forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,50)));
+topScrollLinks.forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,50)));
+heroNavLinks.forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,50)));
 
 backtop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateActiveNav();
