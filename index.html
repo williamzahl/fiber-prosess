@@ -102,6 +102,35 @@ button{font:inherit}
   .hero-visual img{max-height:136px}
   .hero-nav{padding-top:8px;font-size:12.5px;gap:12px}
 }
+
+/* FINAL UI TUNING */
+.topbar-inner{padding:8px 22px}.topbar{min-height:54px}
+.lang-btn{justify-content:center;position:relative;padding:0 36px 0 18px}.lang-btn>span:first-child{display:flex;align-items:center;justify-content:center;gap:7px}.lang-btn .chev{position:absolute;right:13px}
+.hero-inner{display:block;padding:18px 22px 9px}
+.hero-visual{display:none}
+.hero .eyebrow{margin-bottom:6px;font-size:11px}
+.hero h1{font-size:clamp(34px,4.1vw,50px);line-height:1.01;max-width:760px}
+.hero p{font-size:15.5px;line-height:1.42;margin-top:8px;max-width:760px}
+.hero-pills{justify-content:flex-start;margin-top:10px;gap:7px}
+.pill{padding:6px 10px;font-size:12px}
+.hero-nav{justify-content:center;gap:8px;margin-top:14px;padding-top:9px;font-size:12.5px}
+.hero-nav a{border:1px solid rgba(255,255,255,.42);background:rgba(255,255,255,.08);border-radius:9px;padding:6px 11px;display:block}
+.num{width:24px;height:24px;background:transparent;border-radius:0;font-size:15px;color:#6e8494;font-weight:800}
+.step-head{gap:10px}
+.mobile-progress{padding:6px 10px 7px}.mobile-progress-inner{gap:7px}.progress-top{font-size:11.5px}.progress-line{height:2px;margin-top:4px}.mobile-menu-btn{height:32px;padding:0 10px;border-radius:10px;font-size:12px;gap:5px}.hamb{font-size:15px}
+.mobile-top-btn{width:32px;height:32px;border-radius:10px;border:1px solid rgba(255,255,255,.48);background:rgba(255,255,255,.1);color:#fff;font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+@media(max-width:850px){
+ .topbar-inner{padding:8px 14px}.topbar{min-height:50px}.brand{font-size:17px}.lang-btn{height:38px;min-width:116px;font-size:13px}
+ .hero-inner{padding:17px 16px 8px;gap:0}.hero .eyebrow{font-size:10.5px;margin-bottom:6px}.hero h1{font-size:clamp(31px,9.4vw,45px)}.hero p{font-size:15px;margin-top:8px}.hero-pills{margin-top:9px}.pill{font-size:11.5px;padding:6px 9px}
+ .hero-nav{margin-top:11px;padding-top:7px;gap:6px;font-size:11.5px}.hero-nav a{padding:5px 8px;border-radius:8px}
+ .layout{padding-top:36px}.num{width:22px;height:22px;font-size:14px}.step-head{gap:9px}
+}
+@media(max-width:560px){
+ .lang-btn{min-width:110px;padding-left:15px;padding-right:31px}.lang-btn .globe{font-size:16px}.lang-btn .chev{right:10px;font-size:13px}
+ .hero-inner{padding:15px 14px 7px}.hero h1{font-size:34px}.hero p{font-size:14px;line-height:1.38}.hero-nav{margin-top:9px;gap:5px;font-size:10.5px}.hero-nav a{padding:5px 7px}
+ .hero-pills{gap:5px}.pill{font-size:10.5px;padding:5px 7px}
+ .mobile-progress-inner{gap:5px}.progress-top{font-size:11px}.mobile-menu-btn,.mobile-top-btn{height:30px}.mobile-menu-btn{padding:0 8px}.mobile-top-btn{width:30px}
+}
 </style>
 </head>
 <body>
@@ -119,7 +148,7 @@ button{font:inherit}
 <div class="mobile-progress" id="mobileProgress">
   <div class="mobile-progress-inner">
     <div class="progress-copy"><div class="progress-top"><span id="mobileLesson">Steg 1 av 10</span><span id="mobilePercent">10%</span></div><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div></div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button><button class="mobile-top-btn" id="mobileTopBtn" type="button" aria-label="Til toppen">↑</button>
   </div>
 </div>
 <div class="mobile-menu" id="mobileMenu"></div>
@@ -218,7 +247,7 @@ function renderSteps(){const l=langs[current];stepsEl.innerHTML=l.steps.map((s,i
 function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;}
 function setLang(k){current=k;renderLangs();applyText();renderSteps();updateFooter();langWrap.classList.remove('open');mobileMenu.classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});setTimeout(updateProgress,80);}
 langBtn.addEventListener('click',()=>langWrap.classList.toggle('open'));langMenu.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang)});document.addEventListener('click',e=>{if(!langWrap.contains(e.target))langWrap.classList.remove('open')});
-const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});
+const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});const mobileTopBtn=document.getElementById('mobileTopBtn');mobileTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 const backtop=document.getElementById('backtop');
 const mobileProgress=document.getElementById('mobileProgress');
 function updateProgress(){
