@@ -1048,6 +1048,85 @@ button{font:inherit}
   .progress-line{max-width:135px !important;}
 }
 </style>
+
+<style id="mobile-header-final-layout">
+/* Mobile: keep language and Menu as matching buttons in the white header. */
+@media(max-width:850px){
+  .mobile-progress{
+    top:44px !important;
+    height:43px !important;
+    padding:5px 10px 6px !important;
+    border-radius:0 0 10px 10px !important;
+  }
+  .mobile-progress-inner{
+    display:block !important;
+    width:100% !important;
+    height:100% !important;
+  }
+  .progress-copy{
+    width:100% !important;
+    max-width:none !important;
+    padding:0 !important;
+  }
+  .progress-top{font-size:10px !important;line-height:1 !important;}
+  .progress-line{
+    width:100% !important;
+    max-width:none !important;
+    height:3px !important;
+    margin-top:5px !important;
+  }
+  .mobile-menu-btn{
+    position:fixed !important;
+    top:5px !important;
+    right:calc(14px + 124px + 8px) !important;
+    width:124px !important;
+    min-width:124px !important;
+    height:34px !important;
+    padding:0 12px !important;
+    border-radius:15px !important;
+    background:#fff !important;
+    color:var(--dark) !important;
+    border:1px solid #cfe4ef !important;
+    box-shadow:0 4px 14px rgba(11,75,110,.07) !important;
+    justify-content:center !important;
+    gap:7px !important;
+    font-size:13px !important;
+    z-index:1205 !important;
+  }
+  .mobile-menu-btn .hamb{font-size:17px !important;color:var(--blue) !important;}
+  .mobile-menu{
+    top:45px !important;
+    right:14px !important;
+    transform:none !important;
+    width:270px !important;
+    max-width:calc(100vw - 28px) !important;
+  }
+}
+@media(max-width:560px){
+  .mobile-menu-btn{
+    right:calc(14px + 118px + 8px) !important;
+    width:118px !important;
+    min-width:118px !important;
+    height:34px !important;
+    border-radius:15px !important;
+    font-size:13px !important;
+  }
+  .mobile-progress{top:44px !important;height:43px !important;}
+}
+</style>
+
+<style id="latest-user-polish">
+/* Slimmer top bar */
+.topbar-inner{padding-top:5px !important;padding-bottom:5px !important;min-height:44px !important}
+.lang-btn{height:36px !important}
+@media(max-width:850px){.topbar-inner{padding-top:5px !important;padding-bottom:5px !important;min-height:44px !important}.lang-btn{height:34px !important}}
+.side-guide-link{margin-top:2px}
+.side-guide-link b{color:var(--blue)}
+.mobile-guide-link{margin-top:2px}
+.hero-brand-logo,.risk-brand-logo,.final-brand-logo{filter:none !important}
+.footer-logo{filter:brightness(0) invert(1) !important}
+</style>
+
 </head>
 <body>
 
@@ -1262,7 +1341,13 @@ function updateActiveNav(){
   specialTargets.forEach(item=>item.a.classList.toggle('active',tipsSelected));
   specialMobile.forEach(a=>a.classList.toggle('active',tipsSelected));
 
-  if(tipsSelected || inContactArea || idx===-1){
+  // T-We Introduksjon is its own destination. Mark both guide links only while
+  // the guide section is actually in view, and never at the contact area.
+  const guideEl=document.getElementById('guide');
+  const inGuideArea=!!guideEl && !inContactArea && viewportCenter>=guideEl.offsetTop && viewportCenter<=guideEl.offsetTop+guideEl.offsetHeight;
+  document.querySelectorAll('.side-guide-link,.mobile-guide-link').forEach(a=>a.classList.toggle('active',inGuideArea));
+
+  if(tipsSelected || inContactArea || inGuideArea || idx===-1){
     stepSideLinks.forEach(a=>a.classList.remove('active'));
     document.querySelectorAll('.mobile-step-process-link').forEach(a=>a.classList.remove('active'));
   }
@@ -1294,6 +1379,16 @@ document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click',e=
   }
 }));
 
+// T-We Introduksjon is a separate destination: scroll to the actual guide card
+// and let the active state follow that section.
+document.querySelectorAll('a[href="#guide"]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();
+  const target=document.getElementById('guide');
+  mobileMenu.classList.remove('open');
+  if(target) target.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(updateActiveNav,250);
+}));
+
 // Contact is its own destination: clicking it clears every process/tip highlight.
 document.querySelectorAll('a[href="#contact"]').forEach(a=>a.addEventListener('click',()=>{
   selectedContact=true;
@@ -1321,18 +1416,3 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </body>
 </html>
 
-<style id="latest-user-polish">
-/* Slimmer top bar */
-.topbar-inner{padding-top:5px !important;padding-bottom:5px !important;min-height:44px !important}
-.lang-btn{height:36px !important}
-@media(max-width:850px){.topbar-inner{padding-top:5px !important;padding-bottom:5px !important;min-height:44px !important}.lang-btn{height:34px !important}}
-
-/* T-We introduction link under Tips */
-.side-guide-link{margin-top:2px}
-.side-guide-link b{color:var(--blue)}
-.mobile-guide-link{margin-top:2px}
-
-/* Use the normal blue Telenor logo on light cards; keep footer logo white on blue. */
-.hero-brand-logo,.risk-brand-logo,.final-brand-logo{filter:none !important}
-.footer-logo{filter:brightness(0) invert(1) !important}
-</style>
