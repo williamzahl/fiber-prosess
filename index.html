@@ -1127,6 +1127,56 @@ button{font:inherit}
 .footer-logo{filter:brightness(0) invert(1) !important}
 </style>
 
+
+<style id="final-mobile-header-fix">
+/* Mobile final layout: Menu sits beside the language selector, matching its size. */
+@media (max-width:850px){
+  .topbar{z-index:1300 !important;}
+  .topbar-inner{min-height:44px !important;position:relative !important;padding:5px 14px !important;}
+  .mobile-menu-btn{
+    position:fixed !important;
+    top:5px !important;
+    right:calc(14px + 116px + 8px) !important;
+    width:116px !important;
+    min-width:116px !important;
+    height:34px !important;
+    box-sizing:border-box !important;
+    padding:0 12px !important;
+    border-radius:15px !important;
+    border:1px solid #cfe4ef !important;
+    background:#fff !important;
+    color:var(--dark) !important;
+    box-shadow:0 4px 14px rgba(11,75,110,.07) !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:7px !important;
+    font-size:13px !important;
+    z-index:1400 !important;
+  }
+  .mobile-menu-btn .hamb{font-size:17px !important;color:var(--blue) !important;transform:none !important;line-height:1 !important;}
+  .lang-btn{width:116px !important;min-width:116px !important;height:34px !important;box-sizing:border-box !important;}
+  .mobile-progress{
+    top:44px !important;
+    height:43px !important;
+    padding:5px 14px 8px !important;
+    border-radius:0 !important;
+    box-sizing:border-box !important;
+  }
+  .mobile-progress-inner{display:block !important;position:relative !important;width:100% !important;height:100% !important;}
+  .progress-copy{width:100% !important;max-width:none !important;}
+  .progress-top{font-size:11px !important;line-height:1 !important;}
+  .progress-line{position:absolute !important;left:0 !important;right:0 !important;bottom:0 !important;width:100% !important;max-width:none !important;height:3px !important;margin:0 !important;}
+  .mobile-menu{top:45px !important;right:14px !important;transform:none !important;z-index:1450 !important;}
+}
+@media (max-width:560px){
+  .topbar-inner{padding-left:10px !important;padding-right:10px !important;}
+  .mobile-menu-btn{right:calc(10px + 110px + 7px) !important;width:110px !important;min-width:110px !important;height:34px !important;font-size:12px !important;}
+  .lang-btn{width:110px !important;min-width:110px !important;height:34px !important;}
+  .mobile-progress{top:44px !important;height:42px !important;padding-left:10px !important;padding-right:10px !important;}
+}
+</style>
+
 </head>
 <body>
 
@@ -1379,16 +1429,6 @@ document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click',e=
   }
 }));
 
-// T-We Introduksjon is a separate destination: scroll to the actual guide card
-// and let the active state follow that section.
-document.querySelectorAll('a[href="#guide"]').forEach(a=>a.addEventListener('click',e=>{
-  e.preventDefault();
-  const target=document.getElementById('guide');
-  mobileMenu.classList.remove('open');
-  if(target) target.scrollIntoView({behavior:'smooth',block:'center'});
-  setTimeout(updateActiveNav,250);
-}));
-
 // Contact is its own destination: clicking it clears every process/tip highlight.
 document.querySelectorAll('a[href="#contact"]').forEach(a=>a.addEventListener('click',()=>{
   selectedContact=true;
@@ -1411,6 +1451,22 @@ scrollUpBtn.addEventListener('click',()=>{
 scrollDownBtn.addEventListener('click',()=>{
   window.scrollTo({top:document.documentElement.scrollHeight,behavior:'smooth'});
 });
+
+// Final mobile navigation: guide is a real destination and gets its own active state.
+function scrollToGuide(){
+  const target=document.getElementById('guide');
+  if(!target)return;
+  mobileMenu.classList.remove('open');
+  const headerOffset=window.matchMedia('(max-width:850px)').matches ? 105 : 90;
+  const y=Math.max(0,target.getBoundingClientRect().top + window.scrollY - headerOffset);
+  window.scrollTo({top:y,behavior:'smooth'});
+  setTimeout(updateActiveNav,150);
+  setTimeout(updateActiveNav,500);
+}
+document.querySelectorAll('a[href="#guide"]').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();scrollToGuide();});
+});
+
 applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateActiveNav();
 </script>
 </body>
