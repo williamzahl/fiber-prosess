@@ -1622,6 +1622,45 @@ button{font:inherit}
 }
 </style>
 
+
+<style id="mobile-twe-guide-header-fix">
+/* Mobile: one header only. No second progress/menu bar appears while scrolling. */
+@media (max-width: 850px){
+  .topbar{
+    position:relative !important;
+    top:auto !important;
+    z-index:100 !important;
+  }
+  .topbar.scrolled .top-guide-progress,
+  .topbar.scrolled .top-scroll-nav{
+    display:none !important;
+  }
+  .mobile-progress{
+    display:none !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+  }
+  .top-scroll-nav,
+  .topbar.scrolled .top-scroll-nav{
+    display:none !important;
+  }
+  .mobile-menu{
+    top:58px !important;
+    z-index:950 !important;
+  }
+}
+</style>
+
+<style id="final-mobile-menu-color-fix">
+@media (max-width: 850px){
+  .mobile-menu-btn{
+    color:#fff !important;
+    background:rgba(255,255,255,.08) !important;
+    border-color:rgba(255,255,255,.48) !important;
+  }
+  .mobile-menu-btn .hamb{color:#fff !important;}
+}
+</style>
 </head>
 <body>
 
@@ -1640,11 +1679,6 @@ button{font:inherit}
   </div>
 </header>
 
-<div class="mobile-progress" id="mobileProgress">
-  <div class="mobile-progress-inner">
-    <div class="progress-copy"><div class="progress-top"><span id="mobileLesson">Steg 1 av 8</span><span id="mobilePercent">10%</span></div><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div></div>
-  </div>
-</div>
 <div class="mobile-menu" id="mobileMenu"></div>
 
 <div class="side-scroll-controls" aria-label="Bla gjennom siden">
@@ -1764,7 +1798,6 @@ function setLang(k){current=k;renderLangs();applyText();renderSteps();updateFoot
 langBtn.addEventListener('click',()=>langWrap.classList.toggle('open'));langMenu.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang)});document.addEventListener('click',e=>{if(!langWrap.contains(e.target))langWrap.classList.remove('open')});
 const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});
 mobileMenu.addEventListener('click',e=>{const a=e.target.closest('a[href=\"#guide\"]');if(a){e.preventDefault();scrollToGuide();}});
-const mobileProgress=document.getElementById('mobileProgress');
 function updateProgress(){
   const cards=[...document.querySelectorAll('.step')];
   let idx=0;
@@ -1773,16 +1806,12 @@ function updateProgress(){
   const pageEnd=contact ? Math.max(0,contact.offsetTop+contact.offsetHeight-window.innerHeight) : Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
   const maxScroll=Math.max(1,pageEnd);
   const pct=Math.min(100,Math.max(0,Math.round((window.scrollY/maxScroll)*100)));
-  document.getElementById('mobileLesson').textContent=`${langs[current].stepWord} ${idx+1} ${langs[current].of} ${cards.length}`;
-  document.getElementById('mobilePercent').textContent=String(pct).replace('.',',')+'%';
-  document.getElementById('progressFill').style.width=pct+'%';
   const topFill=document.getElementById('topGuideFill');
   const topPercent=document.getElementById('topGuidePercent');
   const topLesson=document.getElementById('topGuideLesson');
   if(topFill) topFill.style.width=pct+'%';
   if(topPercent) topPercent.textContent=String(pct).replace('.',',')+'%';
   if(topLesson) topLesson.textContent=`${langs[current].stepWord} ${idx+1} ${langs[current].of} ${cards.length}`;
-  mobileProgress.style.display=window.scrollY>120?'block':'none';
   document.querySelector('.topbar').classList.toggle('scrolled',window.scrollY>300);
   const up=document.getElementById('scrollUpBtn');
   const down=document.getElementById('scrollDownBtn');
