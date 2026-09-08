@@ -980,6 +980,74 @@ button{font:inherit}
   .step-nav{margin-bottom:40px !important;}
 }
 </style>
+
+<style id="mobile-clean-submenu-fix">
+/* Clean mobile submenu: progress stays visible, only the centered Menu button remains. */
+@media(max-width:850px){
+  .mobile-progress{
+    top:48px !important;
+    height:48px !important;
+    padding:4px 12px 5px !important;
+    border-radius:0 0 10px 10px !important;
+  }
+  .mobile-progress-inner{
+    position:relative !important;
+    width:100% !important;
+    height:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+  }
+  .progress-copy{
+    width:100% !important;
+    max-width:100% !important;
+    padding-right:0 !important;
+  }
+  .progress-top{font-size:10px !important;line-height:1 !important;}
+  .progress-line{height:2px !important;margin-top:5px !important;max-width:155px !important;}
+  .mobile-quick-nav,.mobile-top-btn{display:none !important;}
+  .mobile-menu-btn{
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    height:31px !important;
+    min-width:88px !important;
+    padding:0 10px !important;
+    border-radius:9px !important;
+    font-size:11px !important;
+    gap:5px !important;
+    z-index:2 !important;
+    background:rgba(255,255,255,.12) !important;
+  }
+  .mobile-menu-btn .hamb{font-size:14px !important;}
+  .mobile-menu{
+    top:102px !important;
+    right:50% !important;
+    transform:translateX(50%) !important;
+    width:min(270px,calc(100vw - 30px)) !important;
+    max-height:calc(100vh - 115px) !important;
+    overflow:auto !important;
+    padding:6px !important;
+    border-radius:14px !important;
+  }
+  .mobile-section-title{font-size:9px !important;padding:5px 9px 4px !important;letter-spacing:1px !important;}
+  .mobile-step-link,.mobile-section-link{padding:7px 9px !important;border-radius:8px !important;font-size:11px !important;line-height:1.2 !important;}
+  .mobile-divider{margin:5px 3px !important;}
+  .mobile-contact{padding:8px !important;margin:5px 3px 2px !important;gap:8px !important;}
+  .mobile-contact-icon{width:30px !important;height:30px !important;flex-basis:30px !important;}
+  .mobile-contact-icon svg{width:17px !important;height:17px !important;}
+  .mobile-contact-label{font-size:9px !important;}
+  .mobile-contact a{font-size:11px !important;}
+  .mobile-contact strong{font-size:10px !important;margin-top:3px !important;}
+}
+@media(max-width:560px){
+  .mobile-progress{top:47px !important;height:45px !important;}
+  .mobile-menu-btn{height:29px !important;min-width:82px !important;font-size:10.5px !important;}
+  .mobile-menu{top:96px !important;width:min(255px,calc(100vw - 28px)) !important;}
+  .progress-line{max-width:135px !important;}
+}
+</style>
 </head>
 <body>
 
@@ -1000,12 +1068,7 @@ button{font:inherit}
 <div class="mobile-progress" id="mobileProgress">
   <div class="mobile-progress-inner">
     <div class="progress-copy"><div class="progress-top"><span id="mobileLesson">Steg 1 av 8</span><span id="mobilePercent">10%</span></div><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div></div>
-    <nav class="mobile-quick-nav" aria-label="Hurtigmeny">
-      <a href="#process" data-section="process">Prosessen</a>
-      <a href="#risk" data-section="risk">Trygghet</a>
-      <a href="#guide" data-section="guide">T-We-guiden</a>
-    </nav>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button><button class="mobile-top-btn" id="mobileTopBtn" type="button" aria-label="Til toppen">↑</button>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button>
   </div>
 </div>
 <div class="mobile-menu" id="mobileMenu"></div>
@@ -1125,7 +1188,7 @@ function renderSteps(){
 function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;const d=document.querySelector('.footer-disclaimer');if(d)d.textContent=l.disclaimer||'Dette er en uoffisiell informasjonsside og er ikke en offisiell nettside fra Telenor.';}
 function setLang(k){current=k;renderLangs();applyText();renderSteps();updateFooter();langWrap.classList.remove('open');mobileMenu.classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});setTimeout(updateProgress,80);}
 langBtn.addEventListener('click',()=>langWrap.classList.toggle('open'));langMenu.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang)});document.addEventListener('click',e=>{if(!langWrap.contains(e.target))langWrap.classList.remove('open')});
-const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});const mobileTopBtn=document.getElementById('mobileTopBtn');mobileTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});
 const mobileProgress=document.getElementById('mobileProgress');
 function updateProgress(){
   const cards=[...document.querySelectorAll('.step')];
@@ -1211,7 +1274,6 @@ function updateActiveNav(){
   }
 }
 heroNavLinks.forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,50)));
-document.querySelectorAll('.mobile-quick-nav a').forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,50)));
 heroNavLinks.forEach(a=>a.addEventListener('click',()=>setTimeout(updateActiveNav,80)));
 document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click',e=>{
   const href=a.getAttribute('href')||'';
