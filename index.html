@@ -728,6 +728,13 @@ button{font:inherit}
 </style>
 
 <style id="final-disclaimer-and-icon-centering">
+/* FINAL LOGO COLOR FIX: keep all in-page Telenor logos blue; footer logo stays white. */
+.hero-brand-logo,.risk-brand-logo,.final-brand-logo{
+  filter:brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(1730%) hue-rotate(173deg) brightness(91%) contrast(102%) !important;
+  opacity:1 !important;
+}
+.footer-logo{filter:brightness(0) invert(1) !important;opacity:1 !important;}
+
 /* Final visual alignment: disclaimer is centered across the full footer width. */
 .footer-disclaimer{
   display:block !important;
@@ -1177,6 +1184,360 @@ button{font:inherit}
 }
 </style>
 
+
+<style id="mobile-clean-final">
+@media (max-width:850px){
+  .topbar{position:relative !important; z-index:1300 !important;}
+  .topbar-inner{position:relative !important; display:flex !important; align-items:center !important; min-height:52px !important; padding:8px 12px !important;}
+  .topbar .brand{font-size:20px !important;}
+  .topbar .top-guide-progress{display:none !important;}
+  .lang-wrap{margin-left:auto !important; position:relative !important; z-index:1401 !important;}
+  .lang-btn{width:110px !important; min-width:110px !important; height:36px !important; border-radius:15px !important; display:flex !important; align-items:center !important; justify-content:center !important; gap:7px !important;}
+  .mobile-menu-btn{position:static !important; width:110px !important; min-width:110px !important; height:36px !important; margin-left:7px !important; border-radius:15px !important; padding:0 12px !important; display:flex !important; align-items:center !important; justify-content:center !important; gap:7px !important; font-size:12px !important; box-sizing:border-box !important; order:3 !important;}
+  .topbar-inner > .lang-wrap{order:2 !important;}
+  .mobile-progress{position:fixed !important; top:52px !important; left:0 !important; right:0 !important; width:100% !important; height:38px !important; padding:5px 10px 6px !important; border-radius:0 !important; box-sizing:border-box !important; z-index:1200 !important;}
+  .mobile-progress-inner{width:100% !important; height:100% !important;}
+  .progress-copy{width:100% !important;}
+  .progress-top{display:flex !important; justify-content:space-between !important; align-items:center !important; font-size:10px !important; line-height:1 !important;}
+  .progress-line{position:absolute !important; left:0 !important; right:0 !important; bottom:0 !important; width:100% !important; max-width:none !important; height:3px !important; margin:0 !important;}
+  .mobile-menu{top:96px !important; right:12px !important; width:270px !important; max-width:calc(100vw - 24px) !important;}
+  body{padding-top:0 !important;}
+}
+@media (max-width:560px){
+  .topbar-inner{min-height:50px !important; padding:7px 10px !important;}
+  .topbar .brand{font-size:19px !important;}
+  .lang-btn,.mobile-menu-btn{width:104px !important; min-width:104px !important; height:34px !important; font-size:12px !important;}
+  .mobile-menu-btn{margin-left:6px !important;}
+  .mobile-progress{top:50px !important; height:36px !important;}
+  .mobile-menu{top:92px !important; right:10px !important; width:255px !important; max-width:calc(100vw - 20px) !important;}
+}
+</style>
+
+
+<style id="mobile-actual-layout">
+@media (max-width:850px){
+  .topbar{position:relative !important; z-index:1300 !important;}
+  .topbar-inner{display:flex !important; align-items:center !important; min-height:50px !important; padding:7px 10px !important; gap:0 !important;}
+  .topbar .brand{font-size:19px !important; white-space:nowrap !important;}
+  .topbar .top-guide-progress{display:none !important;}
+  .lang-wrap{margin-left:auto !important; order:2 !important; position:relative !important;}
+  .lang-btn{width:104px !important; min-width:104px !important; height:34px !important; display:flex !important; align-items:center !important; justify-content:center !important; border-radius:15px !important;}
+  .mobile-menu-btn{position:static !important; order:3 !important; width:104px !important; min-width:104px !important; height:34px !important; margin:0 0 0 6px !important; padding:0 10px !important; display:flex !important; align-items:center !important; justify-content:center !important; gap:6px !important; border-radius:15px !important; box-sizing:border-box !important; font-size:12px !important; background:#fff !important; color:var(--dark) !important; border:1px solid #cfe4ef !important; box-shadow:0 4px 14px rgba(11,75,110,.07) !important; z-index:1400 !important;}
+  .mobile-menu-btn .hamb{font-size:16px !important; line-height:1 !important; color:var(--blue) !important;}
+  .mobile-progress{position:fixed !important; top:50px !important; left:0 !important; right:0 !important; width:100% !important; height:36px !important; padding:5px 10px 6px !important; box-sizing:border-box !important; border-radius:0 !important; z-index:1200 !important;}
+  .mobile-progress-inner{display:block !important; width:100% !important; height:100% !important;}
+  .progress-copy{width:100% !important; max-width:none !important;}
+  .progress-top{display:flex !important; justify-content:space-between !important; align-items:center !important; font-size:10px !important; line-height:1 !important;}
+  .progress-line{position:absolute !important; left:0 !important; right:0 !important; bottom:0 !important; width:100% !important; max-width:none !important; height:3px !important; margin:0 !important;}
+  .mobile-menu{top:92px !important; right:10px !important; width:255px !important; max-width:calc(100vw - 20px) !important; z-index:1450 !important;}
+}
+</style>
+
+
+<style id="user-final-mobile-progress-and-spacing">
+/* Remove the desktop section pills that were circled by the user. */
+.intro .hero-nav{display:none !important;}
+
+/* Wider desktop progress bar. */
+.top-guide-progress{max-width:520px !important;flex-basis:520px !important;}
+
+/* More breathing room between process steps on mobile. */
+@media(max-width:850px){
+  .step{margin-bottom:42px !important;}
+  .step-nav{margin-bottom:46px !important;}
+  .step + .step-nav{margin-top:-12px !important;}
+  .top-guide-progress{max-width:none !important;}
+}
+
+/* Contact is a neutral destination: no sidebar item stays highlighted. */
+</style>
+
+
+<style id="final-user-adjustments">
+/* Language selector stays on the far right on desktop, while preserving the mobile layout. */
+@media (min-width:851px){
+  .topbar-inner{display:flex !important;align-items:center !important;}
+  .topbar .lang-wrap{margin-left:auto !important;margin-right:0 !important;flex:0 0 auto !important;}
+  .top-guide-progress{margin-left:auto !important;margin-right:28px !important;}
+}
+
+/* Mobile language/menu controls remain together on the right. */
+@media (max-width:850px){
+  .topbar .lang-wrap{margin-left:auto !important;margin-right:0 !important;}
+  .mobile-menu-btn{flex:0 0 104px !important;}
+}
+</style>
+
+<style id="final-arrow-and-language-tuning">
+/* Clean, compact side arrows */
+.side-scroll-btn{
+  width:34px !important; height:34px !important; border-radius:50% !important;
+  background:rgba(255,255,255,.94) !important; color:#8796a1 !important;
+  border:1px solid #d7e2e8 !important; font-size:0 !important;
+  box-shadow:0 5px 14px rgba(14,64,96,.10) !important;
+}
+.side-scroll-btn svg{width:17px !important;height:17px !important;display:block !important;stroke:currentColor !important;fill:none !important;stroke-width:1.8 !important;stroke-linecap:round !important;stroke-linejoin:round !important;}
+.side-scroll-btn:hover{background:#f7fbfd !important;color:#6f808c !important;}
+/* Give the desktop language selector a little more room to the right. */
+@media(min-width:851px){
+  .topbar-inner{padding-right:4px !important;}
+  .topbar .lang-wrap{margin-right:-18px !important;}
+}
+@media(max-width:850px){
+  .side-scroll-btn{width:30px !important;height:30px !important;}
+  .side-scroll-btn svg{width:15px !important;height:15px !important;stroke-width:1.8 !important;}
+}
+</style>
+
+<style id="latest-nav-button-and-guide-fix">
+/* Smaller, cleaner Previous / Next step buttons. */
+.step-nav-btn{
+  min-width:112px !important;
+  height:36px !important;
+  padding:0 12px !important;
+  border-radius:10px !important;
+  font-size:12px !important;
+  gap:6px !important;
+}
+@media(max-width:850px){
+  .step-nav{gap:8px !important; margin-bottom:30px !important;}
+  .step-nav-btn{
+    min-width:0 !important;
+    flex:0 1 auto !important;
+    height:34px !important;
+    padding:0 11px !important;
+    border-radius:9px !important;
+    font-size:11px !important;
+  }
+}
+@media(max-width:560px){
+  .step-nav{gap:7px !important; margin-bottom:32px !important;}
+  .step-nav-btn{height:32px !important; padding:0 10px !important; font-size:10.5px !important;}
+}
+</style>
+
+<style id="latest-mobile-language-align">
+/* Mobile: make the Norsk selector match the compact Next step button exactly. */
+@media(max-width:850px){
+  .lang-btn{width:112px !important;min-width:112px !important;height:32px !important;box-sizing:border-box !important;}
+  .step-nav-btn.next{width:112px !important;min-width:112px !important;height:32px !important;box-sizing:border-box !important;}
+}
+@media(max-width:560px){
+  .lang-btn{width:112px !important;min-width:112px !important;height:32px !important;}
+  .step-nav-btn.next{width:112px !important;min-width:112px !important;height:32px !important;}
+}
+</style>
+
+<style id="absolute-final-mobile-controls">
+@media (max-width:850px){
+  .topbar-inner{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:0 !important;
+    padding:7px 10px !important;
+    min-height:50px !important;
+  }
+  .topbar .brand{font-size:19px !important;white-space:nowrap !important;}
+  .topbar .lang-wrap{
+    margin-left:auto !important;
+    margin-right:0 !important;
+    order:2 !important;
+    position:relative !important;
+    width:112px !important;
+    flex:0 0 112px !important;
+  }
+  .topbar .lang-btn{
+    width:112px !important;
+    min-width:112px !important;
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
+    box-sizing:border-box !important;
+    margin:0 !important;
+    padding:0 28px 0 8px !important;
+    border-radius:15px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    position:relative !important;
+  }
+  .topbar .lang-btn>span:first-child{
+    position:static !important;
+    width:auto !important;
+    margin:0 !important;
+    transform:none !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:6px !important;
+    white-space:nowrap !important;
+  }
+  .topbar .lang-btn .chev{right:9px !important;top:50% !important;transform:translateY(-50%) !important;}
+  .mobile-menu-btn{
+    position:static !important;
+    order:3 !important;
+    width:112px !important;
+    min-width:112px !important;
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
+    flex:0 0 112px !important;
+    margin:0 0 0 6px !important;
+    padding:0 10px !important;
+    box-sizing:border-box !important;
+    border-radius:15px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:6px !important;
+    background:#fff !important;
+    color:var(--dark) !important;
+    border:1px solid #cfe4ef !important;
+    box-shadow:0 4px 14px rgba(11,75,110,.07) !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+  .mobile-menu-btn .hamb{font-size:16px !important;line-height:1 !important;color:var(--blue) !important;}
+  .mobile-menu-btn span:last-child{color:var(--dark) !important;font-size:12px !important;font-weight:800 !important;}
+}
+@media (max-width:560px){
+  .topbar-inner{padding-left:10px !important;padding-right:10px !important;}
+  .topbar .lang-wrap,.topbar .lang-btn,.mobile-menu-btn{width:104px !important;min-width:104px !important;flex-basis:104px !important;}
+  .topbar .lang-btn,.mobile-menu-btn{height:34px !important;min-height:34px !important;max-height:34px !important;}
+}
+</style>
+
+<style id="exact-language-next-size">
+/* Make the language selector exactly the same width/height as the Next step button. */
+.lang-wrap{width:112px !important;min-width:112px !important;flex:0 0 112px !important;}
+.lang-btn{width:112px !important;min-width:112px !important;height:32px !important;min-height:32px !important;max-height:32px !important;box-sizing:border-box !important;}
+.step-nav-btn.next{width:112px !important;min-width:112px !important;height:32px !important;min-height:32px !important;max-height:32px !important;box-sizing:border-box !important;}
+@media(max-width:560px){
+  .lang-wrap{width:112px !important;min-width:112px !important;flex-basis:112px !important;}
+  .lang-btn,.step-nav-btn.next{width:112px !important;min-width:112px !important;height:32px !important;min-height:32px !important;max-height:32px !important;}
+}
+</style>
+
+<style id="clean-final-language-size-alignment">
+/* Final clean alignment: language selector and Next step button are exactly identical. */
+.lang-wrap{width:112px !important;min-width:112px !important;flex:0 0 112px !important;}
+.lang-btn,.step-nav-btn.next{width:112px !important;min-width:112px !important;max-width:112px !important;height:32px !important;min-height:32px !important;max-height:32px !important;box-sizing:border-box !important;}
+
+@media(min-width:851px){
+  .topbar-inner{max-width:1180px !important;padding-left:22px !important;padding-right:22px !important;display:flex !important;align-items:center !important;}
+  .topbar .top-guide-progress{margin-left:auto !important;margin-right:24px !important;}
+  .topbar .lang-wrap{margin-left:0 !important;margin-right:0 !important;}
+}
+
+@media(max-width:850px){
+  .topbar-inner{position:relative !important;display:flex !important;align-items:center !important;min-height:50px !important;padding:7px 10px !important;}
+  .topbar .brand{font-size:19px !important;white-space:nowrap !important;}
+  .topbar .lang-wrap{position:absolute !important;right:10px !important;top:8px !important;width:112px !important;min-width:112px !important;flex:0 0 112px !important;margin:0 !important;}
+  .topbar .lang-btn{width:112px !important;min-width:112px !important;max-width:112px !important;height:32px !important;min-height:32px !important;max-height:32px !important;padding:0 26px 0 8px !important;}
+  .mobile-menu-btn{position:absolute !important;right:128px !important;top:8px !important;width:112px !important;min-width:112px !important;max-width:112px !important;height:32px !important;min-height:32px !important;max-height:32px !important;margin:0 !important;padding:0 10px !important;box-sizing:border-box !important;display:flex !important;align-items:center !important;justify-content:center !important;gap:6px !important;border-radius:15px !important;}
+  .mobile-progress{top:50px !important;}
+}
+@media(max-width:560px){
+  .topbar-inner{padding-left:10px !important;padding-right:10px !important;}
+  .topbar .lang-wrap{right:10px !important;top:8px !important;}
+  .mobile-menu-btn{right:128px !important;top:8px !important;}
+}
+</style>
+
+<style id="final-language-position-fix">
+@media (min-width:851px){
+  .topbar-inner{width:100% !important;max-width:none !important;padding-left:40px !important;padding-right:40px !important;box-sizing:border-box !important;}
+  .topbar .lang-wrap{margin-left:auto !important;margin-right:0 !important;position:relative !important;left:auto !important;right:auto !important;flex:0 0 112px !important;}
+  .topbar .lang-btn{width:112px !important;min-width:112px !important;max-width:112px !important;}
+}
+@media (max-width:850px){
+  .topbar-inner{width:100% !important;max-width:none !important;box-sizing:border-box !important;}
+  .topbar .lang-wrap{position:absolute !important;right:10px !important;left:auto !important;margin:0 !important;}
+}
+</style>
+<style id="top-blue-refresh">
+/* TOP RESET — blue T-We style, no white header/brand */
+.topbar{
+  background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+  border-bottom:1px solid rgba(255,255,255,.18) !important;
+  box-shadow:0 5px 18px rgba(0,65,105,.10) !important;
+}
+.topbar .brand{display:none !important}
+.topbar-inner{
+  max-width:1180px !important;
+  min-height:50px !important;
+  padding:7px 22px !important;
+}
+.topbar .top-guide-progress{margin-left:auto !important;margin-right:24px !important}
+.topbar .top-guide-top span,
+.topbar .top-guide-title,
+.topbar .top-guide-row span{color:#fff !important}
+.topbar .top-guide-line{background:rgba(255,255,255,.32) !important}
+.topbar .top-guide-fill{background:#fff !important}
+.topbar .lang-btn{
+  background:rgba(255,255,255,.96) !important;
+  border-color:rgba(255,255,255,.75) !important;
+}
+@media(max-width:850px){
+  .topbar-inner{min-height:50px !important;padding:7px 10px !important}
+  .topbar .top-guide-progress{display:none !important}
+  .topbar .lang-wrap{right:10px !important;left:auto !important;top:7px !important}
+  .topbar .mobile-menu-btn{display:flex !important}
+  .mobile-menu{top:58px !important}
+}
+</style>
+
+<style id="desktop-hide-menu-language-slot">
+/* Desktop: remove Menu and place language selector exactly where Menu used to sit. */
+@media (min-width:851px){
+  .topbar .mobile-menu-btn{display:none !important;}
+  .topbar-inner{position:relative !important;}
+  .topbar .lang-wrap{position:absolute !important;right:128px !important;left:auto !important;margin:0 !important;width:112px !important;min-width:112px !important;flex:0 0 112px !important;}
+  .topbar .lang-btn{width:112px !important;min-width:112px !important;}
+}
+</style>
+
+<style id="final-desktop-progress-and-language-position">
+/* FINAL DESKTOP HEADER: centered, wider progress + language selector farther right */
+@media (min-width:851px){
+  .topbar-inner{
+    width:100% !important;
+    max-width:none !important;
+    min-height:50px !important;
+    padding:7px 40px !important;
+    position:relative !important;
+  }
+  .topbar .top-guide-progress{
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    width:560px !important;
+    max-width:560px !important;
+    min-width:560px !important;
+    margin:0 !important;
+  }
+  .topbar .top-guide-line{
+    width:560px !important;
+    max-width:560px !important;
+  }
+  .topbar .lang-wrap{
+    position:absolute !important;
+    right:28px !important;
+    left:auto !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    width:112px !important;
+    min-width:112px !important;
+    margin:0 !important;
+  }
+  .topbar .lang-btn{
+    width:112px !important;
+    min-width:112px !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -1191,20 +1552,20 @@ button{font:inherit}
       <button class="lang-btn" id="langBtn" type="button"><span><span class="globe">🌐</span> <span id="langLabel">Norsk</span></span><span class="chev">⌄</span></button>
       <div class="lang-menu" id="langMenu"></div>
     </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button>
   </div>
 </header>
 
 <div class="mobile-progress" id="mobileProgress">
   <div class="mobile-progress-inner">
     <div class="progress-copy"><div class="progress-top"><span id="mobileLesson">Steg 1 av 8</span><span id="mobilePercent">10%</span></div><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div></div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><span class="hamb">☰</span><span id="mobileMenuText">Meny</span></button>
   </div>
 </div>
 <div class="mobile-menu" id="mobileMenu"></div>
 
 <div class="side-scroll-controls" aria-label="Bla gjennom siden">
-  <button class="side-scroll-btn down" id="scrollDownBtn" type="button" aria-label="Neste steg">↓</button>
-  <button class="side-scroll-btn up" id="scrollUpBtn" type="button" aria-label="Forrige steg">↑</button>
+  <button class="side-scroll-btn down" id="scrollDownBtn" type="button" aria-label="Til bunnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+  <button class="side-scroll-btn up" id="scrollUpBtn" type="button" aria-label="Til toppen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
 </div>
 
 <section class="hero" id="top">
@@ -1318,6 +1679,7 @@ function updateFooter(){const l=langs[current];const month=new Intl.DateTimeForm
 function setLang(k){current=k;renderLangs();applyText();renderSteps();updateFooter();langWrap.classList.remove('open');mobileMenu.classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});setTimeout(updateProgress,80);}
 langBtn.addEventListener('click',()=>langWrap.classList.toggle('open'));langMenu.addEventListener('click',e=>{const b=e.target.closest('[data-lang]');if(b)setLang(b.dataset.lang)});document.addEventListener('click',e=>{if(!langWrap.contains(e.target))langWrap.classList.remove('open')});
 const mobileMenuBtn=document.getElementById('mobileMenuBtn');mobileMenuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));mobileMenu.addEventListener('click',e=>{if(e.target.closest('a'))mobileMenu.classList.remove('open')});
+mobileMenu.addEventListener('click',e=>{const a=e.target.closest('a[href=\"#guide\"]');if(a){e.preventDefault();scrollToGuide();}});
 const mobileProgress=document.getElementById('mobileProgress');
 function updateProgress(){
   const cards=[...document.querySelectorAll('.step')];
@@ -1350,6 +1712,10 @@ const heroNavLinks=[...document.querySelectorAll('.hero-nav a')];
 let selectedSpecial=false;
 let selectedContact=false;
 function updateActiveNav(){
+  if(selectedContact){
+    document.querySelectorAll('.side-link,.mobile-step-process-link,.mobile-special-link,.mobile-guide-link').forEach(x=>x.classList.remove('active'));
+    return;
+  }
   const targets=[{id:'process'},{id:'risk'},{id:'guide'}];
   let active='process';
   const y=window.scrollY+180;
@@ -1456,10 +1822,13 @@ scrollDownBtn.addEventListener('click',()=>{
 function scrollToGuide(){
   const target=document.getElementById('guide');
   if(!target)return;
+  // T-We is its own destination. Clear contact/tip selection first so the guide
+  // can become the only active item, then place the guide in the middle of the viewport.
+  selectedContact=false;
+  selectedSpecial=false;
+  document.querySelectorAll('.side-link,.mobile-step-process-link,.mobile-special-link').forEach(x=>x.classList.remove('active'));
   mobileMenu.classList.remove('open');
-  const headerOffset=window.matchMedia('(max-width:850px)').matches ? 105 : 90;
-  const y=Math.max(0,target.getBoundingClientRect().top + window.scrollY - headerOffset);
-  window.scrollTo({top:y,behavior:'smooth'});
+  target.scrollIntoView({behavior:'smooth',block:'center',inline:'nearest'});
   setTimeout(updateActiveNav,150);
   setTimeout(updateActiveNav,500);
 }
@@ -1471,4 +1840,3 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </script>
 </body>
 </html>
-
