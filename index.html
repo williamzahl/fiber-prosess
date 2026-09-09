@@ -3092,3 +3092,518 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   setTimeout(fitTranslatedControls,300);
 })();
 </script>
+
+<style id="final-hero-language-polish-v38">
+/* Desktop hero: shorter, fading blue, with the supporting copy alongside the headline. */
+@media (min-width:851px){
+  .hero{
+    background:linear-gradient(110deg,#087fca 0%,#0aa7de 52%,#13b5e6 100%) !important;
+  }
+  .hero-inner{
+    max-width:1180px !important;
+    padding:10px 22px 12px !important;
+    min-height:0 !important;
+    display:block !important;
+  }
+  .hero-inner > div{
+    position:relative !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr) !important;
+    grid-template-rows:auto auto !important;
+    column-gap:54px !important;
+    align-items:center !important;
+    min-height:118px !important;
+  }
+  .hero-brand-logo{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    width:66px !important;
+    margin:0 0 3px !important;
+    align-self:start !important;
+  }
+  .hero h1{
+    grid-column:1 !important;
+    grid-row:2 !important;
+    align-self:center !important;
+    font-size:clamp(32px,3.3vw,46px) !important;
+    line-height:1 !important;
+    letter-spacing:-1.9px !important;
+    margin:0 !important;
+    white-space:nowrap !important;
+  }
+  .hero p{
+    grid-column:2 !important;
+    grid-row:2 !important;
+    align-self:center !important;
+    font-size:15px !important;
+    line-height:1.38 !important;
+    max-width:520px !important;
+    margin:0 !important;
+  }
+}
+
+/* Language control: always stays self-contained; width is fitted from the active label. */
+.lang-btn>span:first-child,
+.topbar .lang-btn>span:first-child{
+  left:50% !important;
+  transform:translate(-50%,-52%) !important;
+  width:max-content !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:7px !important;
+  white-space:nowrap !important;
+}
+.lang-wrap .lang-btn,
+.topbar .lang-btn{
+  width:var(--language-button-width,100px) !important;
+  min-width:var(--language-button-width,100px) !important;
+  max-width:calc(100vw - 20px) !important;
+}
+.lang-menu .lang-option{
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  width:100% !important;
+}
+
+/* Keep the desktop sidebar naturally sized to the translated content, without manual resizing controls. */
+@media (min-width:851px){
+  .layout{
+    grid-template-columns:max-content minmax(0,1fr) !important;
+  }
+  .layout > .sidebar,
+  .sidebar{
+    width:max-content !important;
+    min-width:220px !important;
+    max-width:min(430px,calc(100vw - 360px)) !important;
+  }
+  .side-link,
+  .side-contact-link{
+    width:100% !important;
+  }
+}
+
+@media (max-width:850px){
+  .hero-inner > div{
+    display:block !important;
+    min-height:0 !important;
+  }
+  .hero-inner{
+    padding:14px 16px 7px !important;
+  }
+  .hero-brand-logo{
+    width:78px !important;
+    margin-bottom:12px !important;
+  }
+  .hero h1{
+    display:block !important;
+    font-size:clamp(31px,8.8vw,45px) !important;
+    white-space:normal !important;
+  }
+  .hero p{
+    display:block !important;
+    margin-top:7px !important;
+    max-width:650px !important;
+    font-size:15px !important;
+  }
+  .lang-wrap .lang-btn,
+  .topbar .lang-btn{
+    width:var(--language-button-width,118px) !important;
+    min-width:var(--language-button-width,118px) !important;
+  }
+}
+</style>
+
+<script id="language-width-final-v38">
+(function(){
+  function fitLanguageButton(){
+    const btn=document.getElementById('langBtn');
+    const label=document.getElementById('langLabel');
+    if(!btn || !label) return;
+    const probe=document.createElement('span');
+    const cs=getComputedStyle(label);
+    probe.textContent=label.textContent;
+    probe.style.cssText=`position:absolute;visibility:hidden;white-space:nowrap;left:-99999px;top:-99999px;font:${cs.font};font-size:${cs.fontSize};font-weight:${cs.fontWeight};letter-spacing:${cs.letterSpacing};`;
+    document.body.appendChild(probe);
+    const textW=Math.ceil(probe.getBoundingClientRect().width);
+    probe.remove();
+    /* Text + globe + arrow + breathing room. */
+    const w=Math.max(86,Math.min(240,textW+58));
+    document.documentElement.style.setProperty('--language-button-width',w+'px');
+    btn.style.width=w+'px';
+    btn.style.minWidth=w+'px';
+  }
+  window.addEventListener('load',fitLanguageButton);
+  window.addEventListener('resize',fitLanguageButton);
+  document.addEventListener('DOMContentLoaded',fitLanguageButton);
+  const label=document.getElementById('langLabel');
+  if(label) new MutationObserver(fitLanguageButton).observe(label,{childList:true,characterData:true,subtree:true});
+  setTimeout(fitLanguageButton,80);
+  setTimeout(fitLanguageButton,350);
+})();
+</script>
+
+<style id="language-control-clean-final-v39">
+/* Restore the compact language selector: tight icon/text spacing and width that follows the label. */
+.lang-wrap .lang-btn,
+.topbar .lang-btn{
+  box-sizing:border-box !important;
+  padding:0 22px 0 9px !important;
+  border-radius:13px !important;
+  justify-content:center !important;
+}
+.lang-btn>span:first-child,
+.topbar .lang-btn>span:first-child{
+  left:50% !important;
+  transform:translate(-50%,-50%) !important;
+  width:max-content !important;
+  margin:0 !important;
+  gap:4px !important;
+  white-space:nowrap !important;
+  justify-content:center !important;
+}
+.lang-btn .globe,
+.topbar .lang-btn .globe{
+  font-size:15px !important;
+  line-height:1 !important;
+}
+.lang-btn .chev,
+.topbar .lang-btn .chev{
+  right:7px !important;
+  font-size:11px !important;
+}
+
+/* Keep the opened language list centered and compact; this affects only the dropdown menu. */
+.lang-menu{
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:calc(100vw - 24px) !important;
+  padding:6px !important;
+  border-radius:15px !important;
+}
+.lang-menu .lang-option{
+  width:100% !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  padding:10px 13px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  gap:7px !important;
+  white-space:nowrap !important;
+}
+.lang-menu .lang-option > span:first-child{
+  flex:0 0 auto !important;
+  min-width:auto !important;
+  margin:0 !important;
+}
+
+/* Let the selected button fit any translated label, without excessive side space. */
+@media(min-width:851px){
+  .topbar .lang-btn{
+    width:var(--language-button-width,96px) !important;
+    min-width:var(--language-button-width,96px) !important;
+    max-width:240px !important;
+  }
+}
+@media(max-width:850px){
+  .topbar .lang-btn{
+    width:var(--language-button-width,96px) !important;
+    min-width:var(--language-button-width,96px) !important;
+    max-width:calc(100vw - 20px) !important;
+  }
+}
+</style>
+
+<script id="language-control-clean-js-v39">
+(function(){
+  function fitLanguageButtonClean(){
+    const btn=document.getElementById('langBtn');
+    const label=document.getElementById('langLabel');
+    if(!btn || !label) return;
+    const probe=document.createElement('span');
+    const cs=getComputedStyle(label);
+    probe.textContent=label.textContent;
+    probe.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;left:-99999px;top:-99999px;';
+    probe.style.fontFamily=cs.fontFamily;
+    probe.style.fontSize=cs.fontSize;
+    probe.style.fontWeight=cs.fontWeight;
+    probe.style.letterSpacing=cs.letterSpacing;
+    document.body.appendChild(probe);
+    const textW=Math.ceil(probe.getBoundingClientRect().width);
+    probe.remove();
+    /* Globe + small gap + label + compact side room + arrow. */
+    const w=Math.max(82,Math.min(240,textW+46));
+    document.documentElement.style.setProperty('--language-button-width',w+'px');
+    btn.style.width=w+'px';
+    btn.style.minWidth=w+'px';
+  }
+  window.addEventListener('load',fitLanguageButtonClean);
+  window.addEventListener('resize',fitLanguageButtonClean);
+  const label=document.getElementById('langLabel');
+  if(label) new MutationObserver(fitLanguageButtonClean).observe(label,{childList:true,characterData:true,subtree:true});
+  setTimeout(fitLanguageButtonClean,50);
+  setTimeout(fitLanguageButtonClean,250);
+})();
+</script>
+
+<style id="language-selector-hard-reset-v40">
+/* HARD RESET: rebuild only the language selector/button from scratch. */
+#langWrap.lang-wrap,
+.topbar #langWrap.lang-wrap{
+  position:relative !important;
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:calc(100vw - 20px) !important;
+  flex:0 0 auto !important;
+  margin:0 !important;
+}
+#langBtn.lang-btn,
+.topbar #langBtn.lang-btn{
+  position:relative !important;
+  box-sizing:border-box !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:calc(100vw - 20px) !important;
+  height:32px !important;
+  min-height:32px !important;
+  max-height:32px !important;
+  padding:0 9px !important;
+  margin:0 !important;
+  border:1px solid rgba(255,255,255,.95) !important;
+  border-radius:12px !important;
+  background:#fff !important;
+  color:var(--dark) !important;
+  box-shadow:0 2px 7px rgba(0,45,85,.08) !important;
+  overflow:visible !important;
+}
+#langBtn.lang-btn > span:first-child,
+.topbar #langBtn.lang-btn > span:first-child{
+  position:static !important;
+  left:auto !important;
+  top:auto !important;
+  transform:none !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:auto !important;
+  min-width:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  gap:5px !important;
+  white-space:nowrap !important;
+  line-height:1 !important;
+}
+#langBtn .globe,
+.topbar #langBtn .globe{
+  display:inline-block !important;
+  position:static !important;
+  font-size:15px !important;
+  line-height:1 !important;
+  width:auto !important;
+  margin:0 !important;
+  transform:none !important;
+}
+#langBtn #langLabel,
+.topbar #langBtn #langLabel{
+  display:inline-block !important;
+  position:static !important;
+  width:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+}
+#langBtn .chev,
+.topbar #langBtn .chev{
+  position:static !important;
+  right:auto !important;
+  top:auto !important;
+  transform:none !important;
+  display:inline-block !important;
+  width:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:11px !important;
+  line-height:1 !important;
+}
+
+/* Open menu: centered under the button, with no unnecessary empty space. */
+#langMenu.lang-menu,
+.topbar #langMenu.lang-menu{
+  position:absolute !important;
+  top:40px !important;
+  left:50% !important;
+  right:auto !important;
+  transform:translateX(-50%) !important;
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:calc(100vw - 20px) !important;
+  padding:5px !important;
+  margin:0 !important;
+  border:1px solid var(--line) !important;
+  border-radius:14px !important;
+  background:#fff !important;
+  box-shadow:0 12px 28px rgba(10,54,80,.14) !important;
+}
+#langMenu .lang-option,
+.topbar #langMenu .lang-option{
+  box-sizing:border-box !important;
+  width:max-content !important;
+  min-width:100% !important;
+  max-width:100% !important;
+  min-height:34px !important;
+  padding:7px 10px !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:9px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  font-size:13px !important;
+  line-height:1 !important;
+}
+#langMenu .lang-option > span:first-child,
+.topbar #langMenu .lang-option > span:first-child{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:22px !important;
+  min-width:22px !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+@media(max-width:850px){
+  #langBtn.lang-btn,
+  .topbar #langBtn.lang-btn{
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
+    border-radius:13px !important;
+    padding:0 9px !important;
+  }
+  #langMenu.lang-menu,
+  .topbar #langMenu.lang-menu{
+    top:41px !important;
+  }
+}
+</style>
+
+<script id="language-selector-hard-reset-js-v40">
+(function(){
+  function fitLanguageSelectorHard(){
+    const wrap=document.getElementById('langWrap');
+    const btn=document.getElementById('langBtn');
+    const label=document.getElementById('langLabel');
+    const menu=document.getElementById('langMenu');
+    if(!wrap || !btn || !label) return;
+
+    const probe=document.createElement('span');
+    const cs=getComputedStyle(label);
+    probe.textContent=label.textContent || '';
+    probe.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;left:-99999px;top:-99999px;margin:0;padding:0;';
+    probe.style.fontFamily=cs.fontFamily;
+    probe.style.fontSize=cs.fontSize;
+    probe.style.fontWeight=cs.fontWeight;
+    probe.style.letterSpacing=cs.letterSpacing;
+    document.body.appendChild(probe);
+    const textW=Math.ceil(probe.getBoundingClientRect().width);
+    probe.remove();
+
+    /* Icon + text + arrow + only a small amount of side breathing room. */
+    const buttonW=Math.max(88,Math.min(220,textW+42));
+    wrap.style.width=buttonW+'px';
+    wrap.style.minWidth=buttonW+'px';
+    wrap.style.flexBasis=buttonW+'px';
+    btn.style.width=buttonW+'px';
+    btn.style.minWidth=buttonW+'px';
+    btn.style.maxWidth=buttonW+'px';
+
+    /* Fit the open menu to its longest visible option. */
+    if(menu){
+      const opts=[...menu.querySelectorAll('.lang-option')];
+      if(opts.length){
+        let longest=0;
+        opts.forEach(o=>{
+          const p=o.cloneNode(true);
+          p.style.cssText='position:absolute;visibility:hidden;display:flex;width:max-content;min-width:0;left:-99999px;top:-99999px;white-space:nowrap;padding:7px 10px;gap:6px;';
+          document.body.appendChild(p);
+          longest=Math.max(longest,Math.ceil(p.getBoundingClientRect().width));
+          p.remove();
+        });
+        const menuW=Math.min(320,Math.max(118,longest+10));
+        menu.style.width=menuW+'px';
+        menu.style.minWidth=menuW+'px';
+      }
+    }
+  }
+  window.addEventListener('load',fitLanguageSelectorHard);
+  window.addEventListener('resize',fitLanguageSelectorHard);
+  document.addEventListener('DOMContentLoaded',fitLanguageSelectorHard);
+  const label=document.getElementById('langLabel');
+  if(label) new MutationObserver(fitLanguageSelectorHard).observe(label,{childList:true,characterData:true,subtree:true});
+  const menu=document.getElementById('langMenu');
+  if(menu) new MutationObserver(fitLanguageSelectorHard).observe(menu,{childList:true,subtree:true});
+  setTimeout(fitLanguageSelectorHard,50);
+  setTimeout(fitLanguageSelectorHard,300);
+})();
+</script>
+
+<style id="lang-selector-right-position-final-20260909">
+/* Put the language selector back on the right, with a comfortable edge gap. */
+@media (min-width:621px){
+  .topbar #langWrap.lang-wrap,
+  #langWrap.lang-wrap{
+    left:auto !important;
+    right:42px !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+}
+@media (max-width:620px){
+  .topbar #langWrap.lang-wrap,
+  #langWrap.lang-wrap{
+    left:auto !important;
+    right:14px !important;
+  }
+}
+</style>
+
+<style id="language-selector-final-right-fix-v41">
+/* Final position: keep the language selector on the RIGHT side of the blue topbar. */
+@media (min-width:621px){
+  .topbar .topbar-inner{position:relative !important;}
+  .topbar #langWrap.lang-wrap{
+    position:absolute !important;
+    left:auto !important;
+    right:24px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    margin:0 !important;
+    z-index:1500 !important;
+  }
+}
+@media (max-width:620px){
+  .topbar .topbar-inner{position:relative !important;}
+  .topbar #langWrap.lang-wrap{
+    position:absolute !important;
+    left:auto !important;
+    right:12px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    margin:0 !important;
+    z-index:1500 !important;
+  }
+}
+</style>
