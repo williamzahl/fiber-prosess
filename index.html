@@ -2462,6 +2462,49 @@ button{font:inherit}
 }
 </style>
 
+<style id="final-compact-mini-and-refresh-fix">
+@media (max-width:850px){
+  /* Compact the single mini-header. */
+  .topbar.mobile-scrolled{height:78px !important;min-height:78px !important;}
+  .topbar.mobile-scrolled .topbar-inner{height:78px !important;min-height:78px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{top:6px !important;width:104px !important;min-width:104px !important;height:32px !important;min-height:32px !important;border-radius:12px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{font-size:15px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn .hamb{width:17px !important;height:12px !important;flex-basis:17px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn .hamb:before{width:17px !important;height:2px !important;box-shadow:0 5px 0 #111,0 10px 0 #111 !important;}
+  .topbar.mobile-scrolled .mobile-progress{height:40px !important;min-height:40px !important;padding:5px 12px 7px !important;}
+  .topbar.mobile-scrolled .progress-top{font-size:11px !important;margin-bottom:5px !important;}
+  .topbar.mobile-scrolled .progress-line{height:3px !important;}
+
+  /* Smaller open menu, positioned directly below the compact header. */
+  .mobile-menu{width:min(260px,calc(100vw - 30px)) !important;max-width:calc(100vw - 30px) !important;padding:7px !important;}
+  .topbar:not(.mobile-scrolled) + .mobile-menu{top:52px !important;}
+  .topbar.mobile-scrolled + .mobile-menu{top:84px !important;}
+  .mobile-menu a{padding:10px 10px !important;font-size:13px !important;}
+
+  /* Never let the normal topbar reserve vertical space on mobile. */
+  .topbar:not(.mobile-scrolled){position:absolute !important;top:0 !important;height:0 !important;min-height:0 !important;}
+}
+
+/* Prevent browser scroll anchoring from restoring a previous vertical position. */
+html,body{overflow-anchor:none !important;}
+</style>
+<script id="hard-refresh-top-fix-20260909">
+(function(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  function forceTop(){
+    if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+    var tb=document.querySelector('.topbar');
+    if(tb && window.innerWidth<=850) tb.classList.remove('mobile-scrolled','scrolled');
+  }
+  forceTop();
+  document.addEventListener('DOMContentLoaded',forceTop,{once:true});
+  window.addEventListener('pageshow',function(){ setTimeout(forceTop,0); setTimeout(forceTop,80); setTimeout(forceTop,250); });
+})();
+</script>
+
 </head>
 <body>
 
