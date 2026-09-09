@@ -2179,12 +2179,156 @@ button{font:inherit}
   .hero p{margin-top:14px !important;}
 }
 </style>
+
+<style id="clean-final-mobile-fix-20260909">
+@media (max-width:850px){
+  /* The original cyan logo must stay visible on blue; the compact topbar brand is intentionally white for contrast. */
+  .topbar:not(.mobile-scrolled) .brand img{
+    filter:brightness(0) invert(1) !important;
+    opacity:1 !important;
+  }
+  .topbar:not(.mobile-scrolled) .brand span{
+    color:#fff !important;
+    font-weight:700 !important;
+  }
+
+  /* Keep only the real mini header. The old duplicate shell has been removed. */
+  .topbar.mobile-scrolled{
+    position:fixed !important;
+    inset:0 0 auto 0 !important;
+    height:112px !important;
+    min-height:112px !important;
+    width:100% !important;
+    display:block !important;
+    overflow:hidden !important;
+    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    border:0 !important;
+    box-shadow:0 7px 20px rgba(0,65,105,.18) !important;
+    z-index:20000 !important;
+    animation:cleanMiniDrop .34s cubic-bezier(.22,.72,.24,1) both !important;
+  }
+  .topbar.mobile-scrolled .topbar-inner{
+    width:100% !important;
+    height:112px !important;
+    min-height:112px !important;
+    padding:0 !important;
+    margin:0 !important;
+    display:block !important;
+    background:transparent !important;
+  }
+  .topbar.mobile-scrolled .brand,
+  .topbar.mobile-scrolled .lang-wrap,
+  .topbar.mobile-scrolled .top-guide-progress{display:none !important;}
+
+  .topbar.mobile-scrolled .mobile-menu-btn{
+    display:flex !important;
+    position:absolute !important;
+    left:50% !important;
+    top:9px !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:124px !important;
+    min-width:124px !important;
+    max-width:124px !important;
+    height:40px !important;
+    min-height:40px !important;
+    padding:0 !important;
+    margin:0 !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+    background:#fff !important;
+    color:#0b1d46 !important;
+    border:0 !important;
+    border-radius:16px !important;
+    box-shadow:0 2px 8px rgba(0,45,85,.14) !important;
+    z-index:20003 !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn .hamb{
+    display:block !important;
+    width:18px !important;height:14px !important;
+    margin:0 !important;padding:0 !important;
+    font-size:0 !important;
+    transform:translateX(-2px) !important;
+    background:linear-gradient(#111,#111) 0 0/18px 2px no-repeat,
+               linear-gradient(#111,#111) 0 6px/18px 2px no-repeat,
+               linear-gradient(#111,#111) 0 12px/18px 2px no-repeat !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{
+    color:#0b1d46 !important;
+    font-size:14px !important;
+    font-weight:800 !important;
+  }
+
+  /* Menu + progress are one continuous blue surface because progress is inside .topbar. */
+  .topbar.mobile-scrolled .mobile-progress{
+    display:block !important;
+    position:absolute !important;
+    left:0 !important;right:0 !important;bottom:0 !important;top:auto !important;
+    width:100% !important;height:58px !important;min-height:58px !important;
+    padding:9px 12px 11px !important;
+    margin:0 !important;
+    background:transparent !important;
+    border:0 !important;border-radius:0 !important;box-shadow:none !important;
+    z-index:20002 !important;
+  }
+  .topbar.mobile-scrolled .mobile-progress-inner{width:100% !important;height:100% !important;padding:0 !important;display:flex !important;align-items:center !important;}
+  .topbar.mobile-scrolled .progress-copy{width:100% !important;}
+  .topbar.mobile-scrolled .progress-top{display:flex !important;justify-content:space-between !important;align-items:center !important;width:100% !important;margin:0 0 7px !important;color:#fff !important;font-size:11px !important;line-height:1 !important;font-weight:850 !important;}
+  .topbar.mobile-scrolled .progress-line{display:block !important;width:100% !important;height:6px !important;margin:0 !important;background:rgba(255,255,255,.30) !important;border-radius:999px !important;overflow:hidden !important;}
+  .topbar.mobile-scrolled .progress-fill{display:block !important;height:100% !important;background:#fff !important;border-radius:999px !important;}
+
+  /* The dropdown is centered and sits below the actual mini header. */
+  .mobile-menu{
+    position:fixed !important;
+    left:50% !important;right:auto !important;
+    top:78px !important;
+    transform:translateX(-50%) !important;
+    width:min(300px,calc(100vw - 24px)) !important;
+    max-width:calc(100vw - 24px) !important;
+    max-height:calc(100vh - 90px) !important;
+    overflow-y:auto !important;
+    z-index:21000 !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-menu,
+  .topbar.mobile-scrolled + .mobile-menu{top:120px !important;}
+
+  /* Mobile menu contact: title -> phone -> William, with deliberate natural spacing. */
+  .mobile-contact{
+    display:flex !important;flex-direction:column !important;align-items:center !important;
+    text-align:center !important;gap:14px !important;padding:15px 10px 14px !important;margin:8px 3px 1px !important;
+  }
+  .mobile-contact-label{margin:0 0 4px !important;text-align:center !important;}
+  .mobile-contact-row{width:100% !important;display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:7px !important;}
+  .mobile-contact-row-text{display:flex !important;flex-direction:column !important;align-items:center !important;gap:5px !important;text-align:center !important;}
+  .mobile-contact-row-text strong{display:block !important;margin:0 !important;font-size:13px !important;font-weight:600 !important;color:var(--dark) !important;}
+  .mobile-contact-row-text a{display:block !important;margin:0 !important;text-align:center !important;}
+
+  /* Risk item remains directly under the first Tips item. */
+  .mobile-risk-link{display:block !important;}
+
+  /* Phone glyph: a tiny diagonal shift up-left, without moving its blue circle. */
+  .bottom-contact-icon .phone-svg{transform:translate(-2px,-2px) !important;}
+}
+@media(max-width:560px){
+  .topbar.mobile-scrolled,.topbar.mobile-scrolled .topbar-inner{height:112px !important;min-height:112px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{top:9px !important;width:124px !important;min-width:124px !important;height:40px !important;min-height:40px !important;}
+  .topbar.mobile-scrolled .mobile-progress{height:58px !important;min-height:58px !important;padding:9px 12px 11px !important;}
+  .mobile-menu{top:72px !important;width:min(292px,calc(100vw - 24px)) !important;max-width:calc(100vw - 24px) !important;}
+  .topbar.mobile-scrolled ~ .mobile-menu,.topbar.mobile-scrolled + .mobile-menu{top:120px !important;}
+  .mobile-contact{gap:15px !important;padding-top:16px !important;}
+  .mobile-contact-label{margin-bottom:5px !important;}
+  .mobile-contact-row-text strong{font-size:13px !important;}
+}
+@keyframes cleanMiniDrop{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+</style>
+
 </head>
 <body>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#top"><img src="telenor-logo.png" alt="Telenor"><span>Fiber Installasjon</span></a>
+    <a class="brand" href="./"><img src="telenor-logo.png" alt="Telenor"><span>Fiber Installasjon</span></a>
     <div class="top-guide-progress" aria-label="Fremdrift">
       <div class="top-guide-row">
         <span class="top-guide-lesson" id="topGuideLesson">Steg 1 av 8</span>
@@ -2316,7 +2460,7 @@ function renderSteps(){
     return `<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>${nav}`;
   }).join('');
   sideLinks.innerHTML=l.steps.map((s,i)=>`<a class="side-link side-step-link" href="#step-${i+1}"><b>${i+1}</b><span>${esc(s[0])}</span></a>`).join('');
-  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link" href="#extra">💰 ${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link mobile-risk-link" href="#risk">⚠️ ${esc(l.riskTag)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-label">${esc(l.contactTitle)}</div><div class="mobile-contact-row"><div class="mobile-contact-icon">${icons.phone}</div><div class="mobile-contact-row-text"><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong></div></div><div class="mobile-contact-row"><div class="mobile-contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></div><div class="mobile-contact-row-text"><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div></div>`;
+  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link mobile-risk-link" href="#risk">⚠️ ${esc(l.riskTag)}</a><a class="mobile-step-link mobile-special-link" href="#extra">💰 ${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-label">${esc(l.contactTitle)}</div><div class="mobile-contact-row"><div class="mobile-contact-icon">${icons.phone}</div><div class="mobile-contact-row-text"><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong></div></div><div class="mobile-contact-row"><div class="mobile-contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></div><div class="mobile-contact-row-text"><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div></div>`;
   stepsEl.querySelectorAll('.step-nav-btn').forEach(a=>a.addEventListener('click',()=>setTimeout(updateProgress,120)));
 }
 function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;const d=document.querySelector('.footer-disclaimer');if(d)d.textContent=l.disclaimer||'Dette er en uoffisiell informasjonsside og er ikke en offisiell nettside fra Telenor.';}
@@ -2635,128 +2779,6 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </style>
 
 
-<style id="mobile-mini-rebuild">
-@media (max-width:850px){
-  /* The mobile sticky header is one physical element: menu + progress. */
-  .topbar.scrolled .top-scroll-nav,
-  .topbar.scrolled .top-guide-progress,
-  .topbar.scrolled .mobile-progress,
-  .topbar.scrolled .mobile-menu-btn + * { display:none !important; }
-
-  .mobile-mini-shell{
-    position:fixed !important;
-    top:0 !important; left:0 !important; right:0 !important;
-    z-index:9999 !important;
-    transform:translateY(-110%) !important;
-    opacity:0 !important;
-    pointer-events:none !important;
-    background:linear-gradient(135deg,#0877c9 0%,#00a7df 100%) !important;
-    color:#fff !important;
-    padding:10px 14px 13px !important;
-    box-sizing:border-box !important;
-    border-radius:0 0 18px 18px !important;
-    box-shadow:0 8px 22px rgba(0,65,110,.18) !important;
-    transition:transform .34s cubic-bezier(.22,.8,.25,1),opacity .22s ease !important;
-  }
-  .mobile-mini-shell.is-visible{
-    transform:translateY(0) !important;
-    opacity:1 !important;
-    pointer-events:auto !important;
-  }
-  .mobile-mini-menu{
-    height:34px !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    gap:7px !important;
-    font-size:13px !important;
-    font-weight:700 !important;
-    color:#111 !important;
-    background:#fff !important;
-    border:0 !important;
-    border-radius:11px !important;
-    margin:0 auto 10px !important;
-    width:104px !important;
-    box-sizing:border-box !important;
-  }
-  .mobile-mini-menu .hamb{
-    width:15px !important;height:12px !important;
-    display:inline-flex !important;flex-direction:column !important;
-    justify-content:space-between !important;
-  }
-  .mobile-mini-menu .hamb i{
-    display:block !important;width:15px !important;height:2px !important;
-    background:#111 !important;border-radius:2px !important;
-  }
-  .mobile-mini-progress{
-    display:grid !important;
-    grid-template-columns:auto 1fr auto !important;
-    align-items:center !important;
-    gap:10px !important;
-    font-size:11px !important;
-    font-weight:700 !important;
-    color:#fff !important;
-  }
-  .mobile-mini-track{
-    height:5px !important;
-    border-radius:99px !important;
-    background:rgba(255,255,255,.32) !important;
-    overflow:hidden !important;
-  }
-  .mobile-mini-fill{
-    height:100% !important;
-    width:0 !important;
-    border-radius:99px !important;
-    background:#fff !important;
-    transition:width .2s ease !important;
-  }
-}
-@media (min-width:851px){.mobile-mini-shell{display:none !important}}
-</style>
-<div class="mobile-mini-shell" id="mobileMiniShell" aria-label="Mobil navigasjon">
-  <button class="mobile-mini-menu" id="mobileMiniMenu" type="button" aria-label="Åpne meny">
-    <span class="hamb" aria-hidden="true"><i></i><i></i><i></i></span><span>Meny</span>
-  </button>
-  <div class="mobile-mini-progress">
-    <span id="mobileMiniStep">Steg 1 av 8</span>
-    <div class="mobile-mini-track"><div class="mobile-mini-fill" id="mobileMiniFill"></div></div>
-    <span id="mobileMiniPct">12 %</span>
-  </div>
-</div>
-<script id="mobile-mini-rebuild-js">
-(function(){
-  const shell=document.getElementById('mobileMiniShell');
-  const menu=document.getElementById('mobileMiniMenu');
-  const step=document.getElementById('mobileMiniStep');
-  const pct=document.getElementById('mobileMiniPct');
-  const fill=document.getElementById('mobileMiniFill');
-  if(!shell) return;
-  const steps=[...document.querySelectorAll('.step[id]')];
-  function update(){
-    const y=window.scrollY||document.documentElement.scrollTop;
-    shell.classList.toggle('is-visible', y>180);
-    if(!steps.length) return;
-    let active=0, best=1e9;
-    steps.forEach((el,i)=>{
-      const d=Math.abs(el.getBoundingClientRect().top-150);
-      if(d<best){best=d;active=i;}
-    });
-    const n=active+1, percent=Math.round(n/steps.length*100);
-    step.textContent='Steg '+n+' av '+steps.length;
-    pct.textContent=percent+' %';
-    fill.style.width=percent+'%';
-  }
-  menu.addEventListener('click',function(){
-    const original=document.querySelector('.mobile-menu-btn');
-    if(original) original.click();
-  });
-  window.addEventListener('scroll',update,{passive:true});
-  window.addEventListener('resize',update);
-  update();
-})();
-</script>
-
-
 <style id="user-mobile-menu-contact-polish-20260909">
 @media (max-width:850px){
   .mobile-menu{top:78px !important;left:50% !important;right:auto !important;transform:translateX(-50%) !important;width:min(300px,calc(100vw - 28px)) !important;max-width:calc(100vw - 28px) !important;z-index:21000 !important;}
@@ -2779,6 +2801,68 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   .bottom-contact-icon .phone-svg{transform:translate(-2px,-2px) !important;}
 }
 </style>
+
+<style id="final-user-polish-20260909">
+@media (max-width:850px){
+  /* Open menu: higher and centered. The panel sits just below the controls. */
+  .mobile-menu{
+    top:52px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:min(300px,calc(100vw - 24px)) !important;
+    max-width:calc(100vw - 24px) !important;
+  }
+  .topbar.mobile-scrolled + .mobile-menu,
+  .topbar.mobile-scrolled ~ .mobile-menu{
+    top:108px !important;
+  }
+  @media (max-height:700px){
+    .topbar.mobile-scrolled + .mobile-menu,
+    .topbar.mobile-scrolled ~ .mobile-menu{top:104px !important;}
+  }
+
+  /* Keep the requested Tips order: Important first, then extra costs. */
+  .mobile-risk-link{order:1 !important;}
+  .mobile-menu .mobile-risk-link + .mobile-special-link{order:2 !important;}
+
+  /* Seller name: clean, natural spacing under the heading/phone area. */
+  .bottom-contact-info{
+    display:flex !important;
+    flex-direction:column !important;
+  }
+  .bottom-contact-title{margin:0 0 9px !important;}
+  .bottom-contact-name{
+    margin:0 0 10px !important;
+    font-size:13px !important;
+    line-height:1.35 !important;
+    font-weight:600 !important;
+  }
+
+  /* Keep the phone glyph subtly up-left inside its existing blue circle. */
+  .bottom-contact-icon .phone-svg{transform:translate(-2px,-2px) !important;}
+}
+@media (max-width:560px){
+  .mobile-menu{top:50px !important;}
+  .topbar.mobile-scrolled + .mobile-menu,
+  .topbar.mobile-scrolled ~ .mobile-menu{top:106px !important;}
+  .bottom-contact-title{margin-bottom:9px !important;}
+  .bottom-contact-name{font-size:12.5px !important;margin-bottom:10px !important;}
+}
+</style>
+<script id="brand-refresh-final-20260909">
+(function(){
+  const brand=document.querySelector('.brand');
+  const logo=brand ? brand.querySelector('img') : null;
+  if(!logo) return;
+  logo.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.reload();
+  });
+})();
+</script>
+
 </body>
 
 <style id="mobile-final-polish-2026">
@@ -3994,5 +4078,38 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   filter: none !important;
   opacity: 1 !important;
   mix-blend-mode: normal !important;
+}
+</style>
+
+<style id="mobile-menu-final-position-and-contact-20260909">
+@media (max-width:850px){
+  /* Open mobile menu: bring the white menu panel higher, while keeping it centered. */
+  .mobile-menu{
+    top:58px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:min(300px,calc(100vw - 28px)) !important;
+    max-width:calc(100vw - 28px) !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-menu{top:96px !important;}
+  .topbar.mobile-scrolled + .mobile-menu{top:96px !important;}
+
+  /* Put the seller's name immediately below the contact heading with natural spacing. */
+  .bottom-contact-info{display:flex !important;flex-direction:column !important;}
+  .bottom-contact-title{margin:0 0 10px !important;}
+  .bottom-contact-name{order:2 !important;margin:0 0 11px !important;font-size:13px !important;line-height:1.3 !important;font-weight:600 !important;}
+  .bottom-contact-phone{order:3 !important;margin:0 !important;}
+
+  /* Same clean order inside the opened mobile menu. */
+  .mobile-contact-label{margin:0 0 10px !important;}
+  .mobile-contact-row-text{gap:5px !important;}
+  .mobile-contact-row-text strong{margin:0 !important;font-size:13px !important;font-weight:600 !important;}
+}
+@media (max-width:560px){
+  .mobile-menu{top:56px !important;width:min(292px,calc(100vw - 24px)) !important;max-width:calc(100vw - 24px) !important;}
+  .topbar.mobile-scrolled ~ .mobile-menu,.topbar.mobile-scrolled + .mobile-menu{top:94px !important;}
+  .bottom-contact-title{margin-bottom:10px !important;}
+  .bottom-contact-name{font-size:12.5px !important;margin-bottom:10px !important;}
 }
 </style>
