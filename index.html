@@ -2439,6 +2439,84 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   margin-bottom:7px !important;
 }
 </style>
+
+<style id="mobile-top-final-v47">
+/* FINAL MOBILE POLISH: move the controls and hero content upward without touching desktop. */
+@media (max-width:850px){
+  .topbar .lang-wrap,
+  .topbar #langWrap.lang-wrap{
+    top:18px !important;
+    right:12px !important;
+    left:auto !important;
+    width:38px !important;
+    min-width:38px !important;
+    max-width:38px !important;
+  }
+  .topbar .lang-btn,
+  .topbar #langBtn.lang-btn{
+    width:38px !important;
+    min-width:38px !important;
+    max-width:38px !important;
+    height:32px !important;
+    min-height:32px !important;
+    max-height:32px !important;
+    padding:0 !important;
+    margin:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    border-radius:10px !important;
+  }
+  .topbar-inner > .mobile-menu-btn{
+    top:18px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:104px !important;
+    min-width:104px !important;
+    max-width:104px !important;
+    height:32px !important;
+    min-height:32px !important;
+    max-height:32px !important;
+  }
+  /* Keep the open language list centered directly beneath the globe. */
+  .topbar .lang-menu,
+  .topbar #langMenu.lang-menu{
+    top:39px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:calc(100vw - 20px) !important;
+    box-sizing:border-box !important;
+  }
+  .hero-inner{
+    padding-top:38px !important;
+    padding-bottom:8px !important;
+  }
+  .hero-brand-logo{
+    width:38px !important;
+    margin-bottom:6px !important;
+  }
+  .hero h1{
+    font-size:27px !important;
+    line-height:1.04 !important;
+  }
+  .hero p{
+    font-size:11.5px !important;
+    line-height:1.32 !important;
+    margin-top:6px !important;
+  }
+}
+@media (max-width:560px){
+  .topbar .lang-wrap,
+  .topbar #langWrap.lang-wrap{top:18px !important;right:12px !important;}
+  .topbar-inner > .mobile-menu-btn{top:18px !important;}
+  .hero-inner{padding-top:38px !important;padding-bottom:8px !important;}
+}
+</style>
+
 </body>
 </html>
 
