@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>
+  // Prevent mobile browsers from restoring the previous scroll position on reload.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  try { window.scrollTo(0,0); } catch(e) {}
+</script>
 <title>Fiber hjem – slik fungerer installasjonen</title>
 <script>
 (function(){
@@ -2492,25 +2497,75 @@ html,body{overflow-anchor:none !important;}
 (function(){
   if('scrollRestoration' in history) history.scrollRestoration='manual';
   function forceTop(){
-    if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
-    window.scrollTo(0,0);
-    document.documentElement.scrollTop=0;
-    document.body.scrollTop=0;
-    var tb=document.querySelector('.topbar');
-    if(tb && window.innerWidth<=850) tb.classList.remove('mobile-scrolled','scrolled');
+    try{
+      if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
+      window.scrollTo({top:0,left:0,behavior:'auto'});
+      document.documentElement.scrollTop=0;
+      document.body.scrollTop=0;
+      var tb=document.querySelector('.topbar');
+      if(tb && window.innerWidth<=850) tb.classList.remove('mobile-scrolled','scrolled');
+    }catch(e){}
   }
   forceTop();
   document.addEventListener('DOMContentLoaded',forceTop,{once:true});
-  window.addEventListener('pageshow',function(){ setTimeout(forceTop,0); setTimeout(forceTop,80); setTimeout(forceTop,250); });
+  window.addEventListener('pageshow',function(){
+    forceTop();
+    var n=0;
+    function pin(){
+      forceTop();
+      if(++n<45) requestAnimationFrame(pin);
+    }
+    requestAnimationFrame(pin);
+  });
+})();
+</script>
+
+
+<style id="refresh-loader-fix-20260909">
+/* Hide the page for a moment while mobile refresh is forced back to the top. */
+html.page-loading, html.page-loading body{overflow:hidden !important;}
+html.page-loading body > *:not(#refreshLoader){visibility:hidden !important;}
+#refreshLoader{position:fixed;inset:0;background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%);z-index:999999;display:flex;align-items:center;justify-content:center;visibility:visible !important;}
+#refreshLoader .loader-spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:refreshSpin .75s linear infinite;}
+@keyframes refreshSpin{to{transform:rotate(360deg)}}
+</style>
+<script id="refresh-loader-fix-script">
+(function(){
+  document.documentElement.classList.add('page-loading');
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  function topNow(){
+    try{
+      if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
+      window.scrollTo({top:0,left:0,behavior:'auto'});
+      document.documentElement.scrollTop=0;
+      document.body.scrollTop=0;
+    }catch(e){}
+  }
+  topNow();
+  window.addEventListener('load',function(){
+    topNow();
+    var n=0;
+    function pin(){
+      topNow();
+      if(++n<45) requestAnimationFrame(pin);
+    }
+    requestAnimationFrame(pin);
+    setTimeout(function(){
+      topNow();
+      document.documentElement.classList.remove('page-loading');
+      var l=document.getElementById('refreshLoader'); if(l) l.remove();
+    },750);
+  },{once:true});
 })();
 </script>
 
 </head>
 <body>
+<div id="refreshLoader" aria-hidden="true"><div class="loader-spinner"></div></div>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="./"><img src="telenor-logo.png" alt="Telenor"><span>Fiber Installasjon</span></a>
+    <a class="brand" href="#top" aria-label="Oppdater siden"><img src="telenor-logo.png" alt="Telenor"><span>Fiber Installasjon</span></a>
     <div class="top-guide-progress" aria-label="Fremdrift">
       <div class="top-guide-row">
         <span class="top-guide-lesson" id="topGuideLesson">Steg 1 av 8</span>
