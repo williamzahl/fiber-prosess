@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Fiber hjem – slik fungerer installasjonen</title>
+<script>
+(function(){
+  // Always start at the top when the page is freshly loaded/refreshed.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function resetTop(){
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('load', function(){ setTimeout(resetTop, 0); setTimeout(resetTop, 120); });
+  window.addEventListener('pageshow', function(e){ if(e.persisted) resetTop(); });
+})();
+</script>
 <meta name="description" content="En enkel og oversiktlig forklaring på hvordan fiber føres fra Telenors nett i nabolaget og inn til boligen.">
 <link rel="icon" type="image/png" href="telenor-logo.png?v=26">
 <link rel="apple-touch-icon" href="telenor-logo.png?v=26">
@@ -2858,6 +2870,10 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   logo.addEventListener('click', function(e){
     e.preventDefault();
     e.stopPropagation();
+    // Clear any anchor/hash before reloading so the browser cannot restore a scrolled section.
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
     window.location.reload();
   });
 })();
