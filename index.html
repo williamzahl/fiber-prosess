@@ -2898,3 +2898,246 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   .footer-logo{width:38px !important;height:30px !important;left:8px !important;}
 }
 </style>
+
+<style id="mobile-single-blue-progress-final">
+@media (max-width:850px){
+  /* One continuous blue header: identical gradient on both rows, with blue below the progress line. */
+  .topbar.mobile-scrolled,
+  .topbar.mobile-scrolled .topbar-inner,
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    background-color:#0780cf !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+  .topbar.mobile-scrolled{
+    height:58px !important;
+    min-height:58px !important;
+  }
+  .topbar.mobile-scrolled .topbar-inner{
+    height:58px !important;
+    min-height:58px !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn{
+    top:10px !important;
+    height:36px !important;
+    min-height:36px !important;
+    max-height:36px !important;
+    width:120px !important;
+    min-width:120px !important;
+    max-width:120px !important;
+    border-radius:16px !important;
+  }
+  .mobile-progress{
+    top:58px !important;
+    height:48px !important;
+    min-height:48px !important;
+    padding:7px 13px 10px !important;
+    box-sizing:border-box !important;
+    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    background-color:#0780cf !important;
+    border:0 !important;
+    box-shadow:none !important;
+  }
+  .mobile-progress-inner{height:100% !important;}
+  .progress-top{margin-bottom:5px !important;font-size:10px !important;}
+  .progress-line{
+    height:5px !important;
+    background:rgba(255,255,255,.30) !important;
+    border-radius:999px !important;
+  }
+  .progress-fill{height:100% !important;background:#fff !important;border-radius:999px !important;}
+}
+@media(max-width:560px){
+  .topbar.mobile-scrolled{height:58px !important;min-height:58px !important;}
+  .topbar.mobile-scrolled .topbar-inner{height:58px !important;min-height:58px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{top:10px !important;width:116px !important;min-width:116px !important;max-width:116px !important;height:36px !important;min-height:36px !important;}
+  .mobile-progress{top:58px !important;height:48px !important;min-height:48px !important;padding:7px 12px 10px !important;}
+  .progress-top{font-size:10px !important;margin-bottom:5px !important;}
+  .progress-line{height:5px !important;}
+}
+</style>
+
+<style id="mobile-mini-header-real-fix">
+@media (max-width:850px){
+  /* The mobile header is invisible over the hero until the user actually scrolls. */
+  .topbar{
+    position:absolute !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:0 !important;
+    min-height:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    z-index:6000 !important;
+  }
+  .topbar-inner{
+    height:0 !important;
+    min-height:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    width:100% !important;
+    max-width:none !important;
+  }
+
+  /* Initial hero controls remain where they are, but do not create a top bar. */
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
+    position:absolute !important;
+    top:14px !important;
+    right:57px !important;
+    width:96px !important;
+    height:30px !important;
+    min-height:30px !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-wrap{
+    position:absolute !important;
+    top:14px !important;
+    right:9px !important;
+  }
+
+  /* REAL MINI HEADER: one 58px blue row with Menu only. */
+  .topbar.mobile-scrolled{
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:58px !important;
+    min-height:58px !important;
+    transform:translateY(-100%) !important;
+    animation:mobileMiniDrop .38s cubic-bezier(.22,.7,.25,1) forwards !important;
+    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    background-size:100% 106px !important;
+    background-position:0 0 !important;
+    background-repeat:no-repeat !important;
+    border:0 !important;
+    box-shadow:none !important;
+    backdrop-filter:none !important;
+    overflow:visible !important;
+  }
+  .topbar.mobile-scrolled .topbar-inner{
+    height:58px !important;
+    min-height:58px !important;
+    padding:0 !important;
+    background:transparent !important;
+  }
+  .topbar.mobile-scrolled .brand,
+  .topbar.mobile-scrolled .lang-wrap,
+  .topbar.mobile-scrolled .top-guide-progress{
+    display:none !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn{
+    display:flex !important;
+    position:absolute !important;
+    left:50% !important;
+    right:auto !important;
+    top:9px !important;
+    transform:translateX(-50%) !important;
+    width:126px !important;
+    min-width:126px !important;
+    max-width:126px !important;
+    height:40px !important;
+    min-height:40px !important;
+    max-height:40px !important;
+    padding:0 !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:9px !important;
+    border:0 !important;
+    border-radius:17px !important;
+    background:#fff !important;
+    color:var(--dark) !important;
+    box-shadow:0 2px 8px rgba(0,45,85,.12) !important;
+  }
+
+  @keyframes mobileMiniDrop{
+    from{transform:translateY(-100%);opacity:.2}
+    to{transform:translateY(0);opacity:1}
+  }
+
+  /* Progress is the second half of the SAME visual header, not another rectangle. */
+  .mobile-progress{
+    position:fixed !important;
+    top:58px !important;
+    left:0 !important;
+    right:0 !important;
+    height:48px !important;
+    min-height:48px !important;
+    margin:0 !important;
+    padding:7px 14px 10px !important;
+    box-sizing:border-box !important;
+    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    background-size:100% 106px !important;
+    background-position:0 -58px !important;
+    background-repeat:no-repeat !important;
+    border:0 !important;
+    box-shadow:none !important;
+    z-index:5999 !important;
+    display:none !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    display:block !important;
+    animation:mobileProgressDrop .38s cubic-bezier(.22,.7,.25,1) .03s forwards !important;
+  }
+  @keyframes mobileProgressDrop{
+    from{transform:translateY(-10px);opacity:.2}
+    to{transform:translateY(0);opacity:1}
+  }
+  .mobile-progress-inner{
+    height:100% !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+  }
+  .progress-copy{width:100% !important;}
+  .progress-top{
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+    margin:0 0 5px !important;
+    color:#fff !important;
+    font-size:10px !important;
+    font-weight:800 !important;
+    line-height:1 !important;
+  }
+  .progress-line{
+    width:100% !important;
+    height:5px !important;
+    margin:0 !important;
+    background:rgba(255,255,255,.32) !important;
+    border-radius:999px !important;
+    overflow:hidden !important;
+  }
+  .progress-fill{height:100% !important;background:#fff !important;border-radius:999px !important;}
+
+  /* Clean hamburger: three identical strokes, centered as one icon. */
+  .topbar .mobile-menu-btn .hamb{
+    display:block !important;
+    position:relative !important;
+    width:18px !important;
+    height:14px !important;
+    flex:0 0 18px !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:0 !important;
+    line-height:0 !important;
+    transform:none !important;
+    background:linear-gradient(var(--blue),var(--blue)) 0 0/18px 2px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) 0 6px/18px 2px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) 0 12px/18px 2px no-repeat !important;
+  }
+  .topbar .mobile-menu-btn span:last-child{
+    margin:0 !important;
+    line-height:1 !important;
+    font-size:14px !important;
+    font-weight:800 !important;
+  }
+}
+@media(max-width:560px){
+  .topbar.mobile-scrolled .mobile-menu-btn{width:122px !important;min-width:122px !important;height:39px !important;min-height:39px !important;top:9px !important;}
+  .mobile-progress{top:58px !important;height:48px !important;min-height:48px !important;padding:7px 12px 10px !important;background-size:100% 106px !important;background-position:0 -58px !important;}
+  .progress-top{font-size:9.5px !important;margin-bottom:5px !important;}
+}
+</style>
