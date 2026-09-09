@@ -2225,10 +2225,27 @@ function updateProgress(){
   let idx=0;
   for(let i=0;i<cards.length;i++){ if(window.scrollY+window.innerHeight*0.32 >= cards[i].offsetTop) idx=i; }
   const contact=document.getElementById('contact');
+  const guide=document.getElementById('guide');
   const pageEnd=contact ? Math.max(0,contact.offsetTop+contact.offsetHeight-window.innerHeight) : Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
   const maxScroll=Math.max(1,pageEnd);
   const pct=Math.min(100,Math.max(0,Math.round((window.scrollY/maxScroll)*100)));
-  document.getElementById('mobileLesson').textContent=`${langs[current].stepWord} ${idx+1} ${langs[current].of} ${cards.length}`;
+
+  // The progress label follows the content destination: steps 1–8 while
+  // reading the process, then "Informasjon" after the last step, and
+  // finally "Kontakt" when the contact section is reached.
+  const viewportCenter=window.scrollY+window.innerHeight/2;
+  const inContact=!!contact && viewportCenter>=contact.offsetTop && viewportCenter<=contact.offsetTop+contact.offsetHeight;
+  const lastStep=cards[cards.length-1];
+  const pastLastStep=!!lastStep && viewportCenter>lastStep.offsetTop+lastStep.offsetHeight;
+  const inGuide=!!guide && viewportCenter>=guide.offsetTop && viewportCenter<=guide.offsetTop+guide.offsetHeight;
+  let progressLabel=`${langs[current].stepWord} ${Math.min(idx+1,cards.length)} ${langs[current].of} ${cards.length}`;
+  if(inContact){
+    progressLabel=(current==='no'?'Kontakt':current==='en'?'Contact':current==='de'?'Kontakt':current==='es'?'Contacto':current==='pl'?'Kontakt':'Kontakt');
+  }else if(pastLastStep || inGuide){
+    progressLabel=(current==='no'?'Informasjon':current==='en'?'Information':current==='de'?'Information':current==='es'?'Información':current==='pl'?'Informacje':'Information');
+  }
+
+  document.getElementById('mobileLesson').textContent=progressLabel;
   document.getElementById('mobilePercent').textContent=String(pct).replace('.',',')+'%';
   document.getElementById('progressFill').style.width=pct+'%';
   const topFill=document.getElementById('topGuideFill');
@@ -2236,7 +2253,7 @@ function updateProgress(){
   const topLesson=document.getElementById('topGuideLesson');
   if(topFill) topFill.style.width=pct+'%';
   if(topPercent) topPercent.textContent=String(pct).replace('.',',')+'%';
-  if(topLesson) topLesson.textContent=`${langs[current].stepWord} ${idx+1} ${langs[current].of} ${cards.length}`;
+  if(topLesson) topLesson.textContent=progressLabel;
   mobileProgress.style.display=window.scrollY>120?'block':'none';
   document.querySelector('.topbar').classList.toggle('scrolled',window.scrollY>300);
   const up=document.getElementById('scrollUpBtn');
@@ -2379,3 +2396,84 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </script>
 </body>
 </html>
+
+
+<style id="final-blue-topbar-v31">
+/* Final PC header: remove the white strip completely. Keep lesson + progress + language on blue. */
+@media (min-width:851px){
+  .topbar{
+    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    border-bottom:1px solid rgba(255,255,255,.18) !important;
+    box-shadow:0 4px 14px rgba(0,65,105,.10) !important;
+    color:#fff !important;
+  }
+  .topbar-inner{
+    min-height:48px !important;
+    height:48px !important;
+    padding:5px 28px !important;
+  }
+  /* Always show the lesson/progress in the top bar, not only after scrolling. */
+  .topbar .top-guide-progress{
+    display:block !important;
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    width:520px !important;
+    min-width:520px !important;
+    max-width:520px !important;
+    margin:0 !important;
+  }
+  .topbar .top-guide-top{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    margin:0 0 3px !important;
+    color:#fff !important;
+    font-size:10px !important;
+    font-weight:700 !important;
+  }
+  .topbar .top-guide-top #topGuideLesson{
+    display:block !important;
+    color:#fff !important;
+    font-weight:700 !important;
+  }
+  .topbar .top-guide-top #topGuidePercent{
+    color:#fff !important;
+    font-size:10px !important;
+    font-weight:500 !important;
+    min-width:0 !important;
+  }
+  .topbar .top-guide-line{
+    width:100% !important;
+    height:4px !important;
+    background:rgba(255,255,255,.30) !important;
+  }
+  .topbar .top-guide-fill{background:#fff !important;}
+
+  /* Language selector sits directly in the blue header. */
+  .topbar .lang-wrap{
+    right:28px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+    width:104px !important;
+    min-width:104px !important;
+    margin:0 !important;
+  }
+  .topbar .lang-btn{
+    width:104px !important;
+    min-width:104px !important;
+    height:31px !important;
+    min-height:31px !important;
+    border-radius:10px !important;
+    background:#fff !important;
+    color:var(--dark) !important;
+    border:1px solid rgba(255,255,255,.95) !important;
+    box-shadow:none !important;
+    font-size:11.5px !important;
+    font-weight:750 !important;
+  }
+  .topbar .lang-btn .globe{font-size:14px !important;}
+  .topbar .lang-btn .chev{font-size:12px !important;right:7px !important;}
+}
+</style>
