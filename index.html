@@ -2464,3 +2464,83 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </script>
 </body>
 </html>
+
+
+<style id="mobile-sticky-final-v2">
+@media (max-width:850px){
+  /* When scrolling: keep only a compact Menu control in the mini header. */
+  .topbar.mobile-scrolled{
+    height:44px !important;
+    min-height:44px !important;
+    padding:0 !important;
+    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
+    z-index:5000 !important;
+  }
+  .topbar.mobile-scrolled .topbar-inner{
+    height:44px !important;
+    min-height:44px !important;
+    padding:0 !important;
+    display:block !important;
+    position:relative !important;
+  }
+  .topbar.mobile-scrolled .brand,
+  .topbar.mobile-scrolled .lang-wrap,
+  .topbar.mobile-scrolled .top-guide-progress{
+    display:none !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn{
+    display:flex !important;
+    position:absolute !important;
+    left:50% !important;
+    right:auto !important;
+    top:6px !important;
+    transform:translateX(-50%) !important;
+    width:104px !important;
+    min-width:104px !important;
+    max-width:104px !important;
+    height:32px !important;
+    min-height:32px !important;
+    max-height:32px !important;
+    border-radius:14px !important;
+    background:#fff !important;
+    color:var(--dark) !important;
+    border:0 !important;
+    box-shadow:0 2px 8px rgba(0,45,85,.10) !important;
+    z-index:5002 !important;
+  }
+
+  /* Progress bar becomes the second, compact row below the Menu button. */
+  .mobile-progress{
+    position:fixed !important;
+    top:44px !important;
+    left:0 !important;
+    right:0 !important;
+    height:30px !important;
+    margin:0 !important;
+    padding:0 14px !important;
+    box-sizing:border-box !important;
+    display:none !important;
+    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
+    z-index:4999 !important;
+    box-shadow:0 4px 10px rgba(0,70,110,.12) !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-progress{display:block !important;}
+  .mobile-progress-inner{height:30px !important;display:flex !important;align-items:center !important;padding:0 !important;}
+  .progress-copy{width:100% !important;}
+  .progress-top{display:flex !important;align-items:center !important;justify-content:space-between !important;margin:0 0 3px !important;color:#fff !important;font-size:9px !important;font-weight:800 !important;line-height:1 !important;}
+  .progress-line{height:4px !important;margin:0 !important;background:rgba(255,255,255,.28) !important;border-radius:99px !important;overflow:hidden !important;}
+  .progress-fill{height:100% !important;background:#fff !important;border-radius:99px !important;}
+
+  /* On the initial hero: move Menu higher, keep Norsk at top-right. */
+  .topbar:not(.mobile-scrolled) .lang-wrap{top:7px !important;right:10px !important;}
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:42px !important;right:10px !important;}
+}
+@media (max-width:560px){
+  .topbar.mobile-scrolled .mobile-menu-btn{width:100px !important;min-width:100px !important;height:30px !important;min-height:30px !important;max-height:30px !important;top:7px !important;}
+  .mobile-progress{height:28px !important;top:44px !important;padding:0 12px !important;}
+  .mobile-progress-inner{height:28px !important;}
+  .progress-top{font-size:8.5px !important;margin-bottom:2px !important;}
+  .progress-line{height:3px !important;}
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:39px !important;}
+}
+</style>
