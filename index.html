@@ -1972,6 +1972,36 @@ button{font:inherit}
   .topbar .mobile-menu-btn{display:none !important}
 }
 </style>
+
+<style id="mobile-reference-final-clean">
+/* Mobile reference layout: one compact blue hero, controls stacked at upper-right. */
+@media (max-width:850px){
+  .topbar{position:absolute !important;inset:0 0 auto 0 !important;height:0 !important;min-height:0 !important;padding:0 !important;margin:0 !important;background:transparent !important;border:0 !important;box-shadow:none !important;z-index:3000 !important;pointer-events:none !important;}
+  .topbar-inner{height:0 !important;min-height:0 !important;padding:0 !important;margin:0 !important;display:block !important;position:relative !important;}
+  .topbar .brand,.topbar .top-guide-progress{display:none !important;}
+  .topbar .lang-wrap{position:absolute !important;right:14px !important;top:12px !important;width:104px !important;min-width:104px !important;margin:0 !important;z-index:3002 !important;pointer-events:auto !important;}
+  .topbar .lang-btn,.topbar-inner > .mobile-menu-btn{box-sizing:border-box !important;width:104px !important;min-width:104px !important;max-width:104px !important;height:34px !important;min-height:34px !important;max-height:34px !important;border-radius:14px !important;background:#fff !important;color:var(--dark) !important;border:0 !important;box-shadow:0 2px 8px rgba(0,45,85,.08) !important;}
+  .topbar .lang-btn{padding:0 20px 0 7px !important;}
+  .topbar .lang-btn>span:first-child{display:flex !important;align-items:center !important;justify-content:center !important;gap:5px !important;width:100% !important;margin:0 !important;white-space:nowrap !important;}
+  .topbar .lang-btn .globe{font-size:14px !important;}
+  .topbar .lang-btn #langLabel{font-size:11px !important;font-weight:800 !important;}
+  .topbar .lang-btn .chev{right:7px !important;font-size:13px !important;}
+  .topbar-inner > .mobile-menu-btn{position:absolute !important;right:14px !important;top:56px !important;margin:0 !important;padding:0 !important;display:flex !important;align-items:center !important;justify-content:center !important;gap:5px !important;z-index:3002 !important;pointer-events:auto !important;}
+  .topbar .mobile-menu-btn .hamb{font-size:14px !important;color:var(--blue) !important;}
+  .topbar .mobile-menu-btn span:last-child{font-size:11px !important;font-weight:800 !important;color:var(--dark) !important;}
+
+  .hero{position:relative !important;}
+  .hero-inner{display:block !important;padding:18px 16px 13px !important;min-height:228px !important;box-sizing:border-box !important;}
+  .hero-brand-logo{width:44px !important;height:auto !important;margin:0 0 48px 0 !important;}
+  .hero h1{font-size:29px !important;line-height:1.04 !important;letter-spacing:-1.05px !important;white-space:normal !important;margin:0 !important;max-width:100% !important;}
+  .hero p{font-size:12.5px !important;line-height:1.38 !important;margin:9px 0 0 !important;max-width:100% !important;}
+  .intro{margin-bottom:35px !important;}
+  .intro h2{font-size:29px !important;line-height:1.08 !important;letter-spacing:-1.1px !important;}
+  .intro h2 br{display:block !important;}
+  .intro p{font-size:13px !important;line-height:1.45 !important;}
+}
+</style>
+
 </head>
 <body>
 
@@ -2278,7 +2308,7 @@ function scrollToStep(index){
   const target=Math.max(0,Math.min(cards.length-1,index));
   const header=document.querySelector('.topbar');
   const headerH=header ? header.getBoundingClientRect().height : 0;
-  const extra=window.innerWidth<=850 ? 10 : 14;
+  const extra=window.innerWidth<=850 ? 8 : 14;
   const y=Math.max(0, cards[target].getBoundingClientRect().top + window.scrollY - headerH - extra);
   window.scrollTo({top:y,behavior:'smooth'});
   setTimeout(updateProgress,120);
@@ -2313,3 +2343,4 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </script>
 </body>
 </html>
+
