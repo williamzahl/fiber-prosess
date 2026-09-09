@@ -3,24 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<script>
-  // Prevent mobile browsers from restoring the previous scroll position on reload.
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  try { window.scrollTo(0,0); } catch(e) {}
-</script>
 <title>Fiber hjem – slik fungerer installasjonen</title>
-<script>
-(function(){
-  // Always start at the top when the page is freshly loaded/refreshed.
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  function resetTop(){
-    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-    window.scrollTo(0, 0);
-  }
-  window.addEventListener('load', function(){ setTimeout(resetTop, 0); setTimeout(resetTop, 120); });
-  window.addEventListener('pageshow', function(e){ if(e.persisted) resetTop(); });
-})();
-</script>
 <meta name="description" content="En enkel og oversiktlig forklaring på hvordan fiber føres fra Telenors nett i nabolaget og inn til boligen.">
 <link rel="icon" type="image/png" href="telenor-logo.png?v=26">
 <link rel="apple-touch-icon" href="telenor-logo.png?v=26">
@@ -1466,37 +1449,6 @@ button{font:inherit}
   .topbar .lang-wrap{position:absolute !important;right:10px !important;left:auto !important;margin:0 !important;}
 }
 </style>
-<style id="top-blue-refresh">
-/* TOP RESET — blue T-We style, no white header/brand */
-.topbar{
-  background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-  border-bottom:1px solid rgba(255,255,255,.18) !important;
-  box-shadow:0 5px 18px rgba(0,65,105,.10) !important;
-}
-.topbar .brand{display:none !important}
-.topbar-inner{
-  max-width:1180px !important;
-  min-height:50px !important;
-  padding:7px 22px !important;
-}
-.topbar .top-guide-progress{margin-left:auto !important;margin-right:24px !important}
-.topbar .top-guide-top span,
-.topbar .top-guide-title,
-.topbar .top-guide-row span{color:#fff !important}
-.topbar .top-guide-line{background:rgba(255,255,255,.32) !important}
-.topbar .top-guide-fill{background:#fff !important}
-.topbar .lang-btn{
-  background:rgba(255,255,255,.96) !important;
-  border-color:rgba(255,255,255,.75) !important;
-}
-@media(max-width:850px){
-  .topbar-inner{min-height:50px !important;padding:7px 10px !important}
-  .topbar .top-guide-progress{display:none !important}
-  .topbar .lang-wrap{right:10px !important;left:auto !important;top:7px !important}
-  .topbar .mobile-menu-btn{display:flex !important}
-  .mobile-menu{top:58px !important}
-}
-</style>
 
 <style id="desktop-hide-menu-language-slot">
 /* Desktop: remove Menu and place language selector exactly where Menu used to sit. */
@@ -2467,101 +2419,29 @@ button{font:inherit}
 }
 </style>
 
-<style id="final-compact-mini-and-refresh-fix">
-@media (max-width:850px){
-  /* Compact the single mini-header. */
-  .topbar.mobile-scrolled{height:78px !important;min-height:78px !important;}
-  .topbar.mobile-scrolled .topbar-inner{height:78px !important;min-height:78px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{top:6px !important;width:104px !important;min-width:104px !important;height:32px !important;min-height:32px !important;border-radius:12px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{font-size:15px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn .hamb{width:17px !important;height:12px !important;flex-basis:17px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn .hamb:before{width:17px !important;height:2px !important;box-shadow:0 5px 0 #111,0 10px 0 #111 !important;}
-  .topbar.mobile-scrolled .mobile-progress{height:40px !important;min-height:40px !important;padding:5px 12px 7px !important;}
-  .topbar.mobile-scrolled .progress-top{font-size:11px !important;margin-bottom:5px !important;}
-  .topbar.mobile-scrolled .progress-line{height:3px !important;}
 
-  /* Smaller open menu, positioned directly below the compact header. */
-  .mobile-menu{width:min(260px,calc(100vw - 30px)) !important;max-width:calc(100vw - 30px) !important;padding:7px !important;}
-  .topbar:not(.mobile-scrolled) + .mobile-menu{top:52px !important;}
-  .topbar.mobile-scrolled + .mobile-menu{top:84px !important;}
-  .mobile-menu a{padding:10px 10px !important;font-size:13px !important;}
-
-  /* Never let the normal topbar reserve vertical space on mobile. */
-  .topbar:not(.mobile-scrolled){position:absolute !important;top:0 !important;height:0 !important;min-height:0 !important;}
-}
-
-/* Prevent browser scroll anchoring from restoring a previous vertical position. */
-html,body{overflow-anchor:none !important;}
+<style id="simple-refresh-fix">
+html,body{overflow-anchor:none;}
 </style>
-<script id="hard-refresh-top-fix-20260909">
+<script id="simple-refresh-fix-script">
 (function(){
   if('scrollRestoration' in history) history.scrollRestoration='manual';
-  function forceTop(){
-    try{
-      if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
-      window.scrollTo({top:0,left:0,behavior:'auto'});
-      document.documentElement.scrollTop=0;
-      document.body.scrollTop=0;
-      var tb=document.querySelector('.topbar');
-      if(tb && window.innerWidth<=850) tb.classList.remove('mobile-scrolled','scrolled');
-    }catch(e){}
-  }
-  forceTop();
-  document.addEventListener('DOMContentLoaded',forceTop,{once:true});
   window.addEventListener('pageshow',function(){
-    forceTop();
-    var n=0;
-    function pin(){
-      forceTop();
-      if(++n<45) requestAnimationFrame(pin);
-    }
-    requestAnimationFrame(pin);
+    if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
+    if(window.scrollY>0) setTimeout(function(){ window.scrollTo(0,0); },0);
   });
 })();
 </script>
-
-
-<style id="refresh-loader-fix-20260909">
-/* Hide the page for a moment while mobile refresh is forced back to the top. */
-html.page-loading, html.page-loading body{overflow:hidden !important;}
-html.page-loading body > *:not(#refreshLoader){visibility:hidden !important;}
-#refreshLoader{position:fixed;inset:0;background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%);z-index:999999;display:flex;align-items:center;justify-content:center;visibility:visible !important;}
-#refreshLoader .loader-spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:refreshSpin .75s linear infinite;}
-@keyframes refreshSpin{to{transform:rotate(360deg)}}
+<style id="menu-size-final">
+@media(max-width:850px){
+  .topbar.mobile-scrolled .mobile-menu-btn{font-size:12px !important;height:32px !important;padding:0 10px !important;gap:6px !important;}
+  .topbar.mobile-scrolled .hamb{font-size:15px !important;}
+  .mobile-menu a{font-size:13px !important;font-weight:650 !important;padding:10px 10px !important;}
+}
 </style>
-<script id="refresh-loader-fix-script">
-(function(){
-  document.documentElement.classList.add('page-loading');
-  if('scrollRestoration' in history) history.scrollRestoration='manual';
-  function topNow(){
-    try{
-      if(location.hash){ history.replaceState(null,'',location.pathname+location.search); }
-      window.scrollTo({top:0,left:0,behavior:'auto'});
-      document.documentElement.scrollTop=0;
-      document.body.scrollTop=0;
-    }catch(e){}
-  }
-  topNow();
-  window.addEventListener('load',function(){
-    topNow();
-    var n=0;
-    function pin(){
-      topNow();
-      if(++n<45) requestAnimationFrame(pin);
-    }
-    requestAnimationFrame(pin);
-    setTimeout(function(){
-      topNow();
-      document.documentElement.classList.remove('page-loading');
-      var l=document.getElementById('refreshLoader'); if(l) l.remove();
-    },750);
-  },{once:true});
-})();
-</script>
-
 </head>
 <body>
-<div id="refreshLoader" aria-hidden="true"><div class="loader-spinner"></div></div>
+</div>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -3087,23 +2967,19 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   .bottom-contact-name{font-size:12.5px !important;margin-bottom:10px !important;}
 }
 </style>
-<script id="brand-refresh-final-20260909">
+
+
+<script id="logo-refresh">
 (function(){
-  const brand=document.querySelector('.brand');
-  const logo=brand ? brand.querySelector('img') : null;
+  var logo=document.querySelector('.topbar .brand');
   if(!logo) return;
-  logo.addEventListener('click', function(e){
+  logo.addEventListener('click',function(e){
     e.preventDefault();
-    e.stopPropagation();
-    // Clear any anchor/hash before reloading so the browser cannot restore a scrolled section.
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
+    history.replaceState(null,'',window.location.pathname+window.location.search);
     window.location.reload();
   });
 })();
 </script>
-
 </body>
 
 </html>
