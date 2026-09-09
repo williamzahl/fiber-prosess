@@ -2462,7 +2462,150 @@ document.querySelectorAll('a[href="#guide"]').forEach(a=>{
 
 applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateActiveNav();
 </script>
+
+<script id="mobile-menu-outside-close-final">
+(function(){
+  const menu=document.getElementById('mobileMenu');
+  const btn=document.getElementById('mobileMenuBtn');
+  if(!menu||!btn)return;
+  document.addEventListener('click',function(e){
+    if(menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)){
+      menu.classList.remove('open');
+    }
+  },true);
+})();
+</script>
+
 </body>
+
+<style id="mobile-final-polish-2026">
+@media (max-width:850px){
+  /* Initial hero controls: globe only, aligned horizontally with Menu. */
+  .topbar:not(.mobile-scrolled) .lang-wrap{
+    top:39px !important;
+    right:10px !important;
+    width:42px !important;
+    min-width:42px !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn{
+    width:42px !important;
+    min-width:42px !important;
+    max-width:42px !important;
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
+    padding:0 !important;
+    border-radius:14px !important;
+    justify-content:center !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{
+    width:auto !important;
+    margin:0 !important;
+    display:flex !important;
+    justify-content:center !important;
+    transform:none !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn #langLabel,
+  .topbar:not(.mobile-scrolled) .lang-btn .chev{display:none !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn .globe{font-size:19px !important;}
+
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
+    top:39px !important;
+    right:60px !important;
+    width:104px !important;
+    min-width:104px !important;
+    height:34px !important;
+    min-height:34px !important;
+    max-height:34px !important;
+  }
+
+  /* Mini header slides down into view rather than appearing abruptly. */
+  .topbar.mobile-scrolled{
+    height:52px !important;
+    min-height:52px !important;
+    transform:translateY(0) !important;
+    animation:miniHeaderDrop .28s ease-out both !important;
+  }
+  @keyframes miniHeaderDrop{
+    from{transform:translateY(-100%);opacity:.35}
+    to{transform:translateY(0);opacity:1}
+  }
+  .topbar.mobile-scrolled .topbar-inner{
+    height:52px !important;
+    min-height:52px !important;
+  }
+  .topbar.mobile-scrolled .brand,
+  .topbar.mobile-scrolled .lang-wrap,
+  .topbar.mobile-scrolled .top-guide-progress{display:none !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{
+    display:flex !important;
+    left:50% !important;
+    right:auto !important;
+    top:7px !important;
+    transform:translateX(-50%) !important;
+    width:120px !important;
+    min-width:120px !important;
+    max-width:120px !important;
+    height:38px !important;
+    min-height:38px !important;
+    max-height:38px !important;
+    border-radius:15px !important;
+  }
+
+  /* Larger mini progress area and thicker progress line. */
+  .mobile-progress{
+    top:52px !important;
+    height:40px !important;
+    padding:0 16px !important;
+    opacity:1 !important;
+    transform:translateY(0) !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    display:block !important;
+    animation:miniProgressDrop .32s ease-out both !important;
+  }
+  @keyframes miniProgressDrop{
+    from{transform:translateY(-12px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+  }
+  .mobile-progress-inner{height:40px !important;}
+  .progress-top{font-size:9.5px !important;margin-bottom:4px !important;}
+  .progress-line{height:5px !important;border-radius:99px !important;}
+
+  /* Mobile menu opens centered below the mini controls. */
+  .mobile-menu{top:106px !important;}
+  .topbar.mobile-scrolled ~ .mobile-menu{top:98px !important;}
+
+  /* Smaller phone logos on content cards. Hero logo remains compact. */
+  .risk-brand-logo,.final-brand-logo{width:38px !important;height:auto !important;}
+  .hero-brand-logo{width:40px !important;height:auto !important;}
+
+  /* Force Telenor blue on logos used on light backgrounds. */
+  .risk-brand-logo,.final-brand-logo{
+    filter:brightness(0) saturate(100%) invert(40%) sepia(96%) saturate(1548%) hue-rotate(167deg) brightness(93%) contrast(101%) !important;
+  }
+
+  /* Swap scroll arrows: Up on left, Down on right. */
+  .side-scroll-btn.up{left:4px !important;right:auto !important;}
+  .side-scroll-btn.down{right:4px !important;left:auto !important;}
+}
+@media(max-width:560px){
+  .topbar:not(.mobile-scrolled) .lang-wrap{top:39px !important;right:10px !important;width:40px !important;min-width:40px !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn{width:40px !important;min-width:40px !important;height:32px !important;min-height:32px !important;}
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:39px !important;right:56px !important;width:100px !important;min-width:100px !important;height:32px !important;min-height:32px !important;}
+  .topbar.mobile-scrolled{height:52px !important;min-height:52px !important;}
+  .topbar.mobile-scrolled .topbar-inner{height:52px !important;min-height:52px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{width:116px !important;min-width:116px !important;height:37px !important;min-height:37px !important;top:7px !important;}
+  .mobile-progress{top:52px !important;height:38px !important;padding:0 13px !important;}
+  .mobile-progress-inner{height:38px !important;}
+  .progress-top{font-size:9px !important;margin-bottom:3px !important;}
+  .progress-line{height:5px !important;}
+  .topbar.mobile-scrolled ~ .mobile-menu{top:96px !important;}
+  .risk-brand-logo,.final-brand-logo{width:34px !important;}
+  .hero-brand-logo{width:38px !important;}
+}
+</style>
+
 </html>
 
 
