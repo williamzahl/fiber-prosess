@@ -2606,6 +2606,88 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 }
 </style>
 
+
+<style id="final-mobile-logo-and-header-fix">
+/* Final mobile polish */
+@media (max-width:850px){
+  /* Keep the sticky header and progress area as one continuous fading blue block. */
+  .topbar.mobile-scrolled,
+  .topbar.mobile-scrolled .topbar-inner,
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    border-top:0 !important;
+    box-shadow:none !important;
+  }
+  .mobile-progress .progress-line{
+    height:5px !important;
+    background:rgba(255,255,255,.28) !important;
+    border-radius:999px !important;
+  }
+  .mobile-progress .progress-fill{
+    background:#fff !important;
+    height:100% !important;
+    border-radius:999px !important;
+  }
+
+  /* Center the Menu contents precisely. */
+  .topbar .mobile-menu-btn{
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    gap:8px !important;
+  }
+  .topbar .mobile-menu-btn .hamb{
+    flex:0 0 17px !important;
+    width:17px !important;
+    height:13px !important;
+    transform:translateX(-1px) !important;
+    background:linear-gradient(var(--blue),var(--blue)) top/17px 2px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) center/17px 2px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) bottom/17px 2px no-repeat !important;
+  }
+  .topbar .mobile-menu-btn span:last-child{
+    margin:0 !important;
+    line-height:1 !important;
+  }
+
+  /* Globe-only language button: center the globe both ways. */
+  .topbar:not(.mobile-scrolled) .lang-btn{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{
+    position:static !important;
+    width:auto !important;
+    height:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    transform:none !important;
+    margin:0 !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn .globe{
+    display:block !important;
+    font-size:18px !important;
+    line-height:1 !important;
+    margin:0 !important;
+  }
+
+  /* Compact original Telenor mark on the phone. No recolouring of the supplied asset. */
+  .hero-brand-logo{width:34px !important;height:auto !important;filter:none !important;}
+  .risk-brand-logo,.final-brand-logo{width:30px !important;height:auto !important;filter:none !important;}
+  .footer-logo{width:38px !important;height:30px !important;left:8px !important;filter:none !important;}
+}
+@media(max-width:560px){
+  .hero-brand-logo{width:32px !important;}
+  .risk-brand-logo,.final-brand-logo{width:28px !important;}
+  .footer-logo{width:36px !important;height:28px !important;left:7px !important;}
+}
+</style>
+
 </html>
 
 
@@ -2685,5 +2767,134 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   .progress-top{font-size:8.5px !important;margin-bottom:2px !important;}
   .progress-line{height:3px !important;}
   .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:39px !important;}
+}
+</style>
+
+<style id="mobile-ui-final-2026-09-09">
+@media (max-width:850px){
+  /* Keep the same fading blue background across the whole sticky mobile header. */
+  .topbar.mobile-scrolled,
+  .topbar.mobile-scrolled .topbar-inner,
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    box-shadow:none !important;
+    border:0 !important;
+  }
+
+  /* Initial mobile controls: globe-only language button and Menu at the same height. */
+  .topbar:not(.mobile-scrolled) .lang-wrap{
+    top:18px !important;
+    right:10px !important;
+    width:40px !important;
+    min-width:40px !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn{
+    width:40px !important;
+    min-width:40px !important;
+    max-width:40px !important;
+    height:32px !important;
+    min-height:32px !important;
+    max-height:32px !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{
+    width:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    margin:0 !important;
+    transform:none !important;
+  }
+  .topbar:not(.mobile-scrolled) .lang-btn .globe{
+    font-size:18px !important;
+    line-height:1 !important;
+    margin:0 !important;
+  }
+
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
+    top:18px !important;
+    right:58px !important;
+    width:100px !important;
+    min-width:100px !important;
+    max-width:100px !important;
+    height:32px !important;
+    min-height:32px !important;
+    max-height:32px !important;
+    padding:0 15px !important;
+    justify-content:flex-start !important;
+    gap:8px !important;
+  }
+
+  /* Clean three-line hamburger, aligned slightly left inside the button. */
+  .topbar .mobile-menu-btn .hamb{
+    position:relative !important;
+    display:inline-block !important;
+    width:18px !important;
+    height:14px !important;
+    flex:0 0 18px !important;
+    margin:0 !important;
+    padding:0 !important;
+    font-size:0 !important;
+    line-height:0 !important;
+    transform:translateX(-2px) !important;
+    background:linear-gradient(var(--blue),var(--blue)) top/18px 2px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) center/18px 2px no-repeat,
+               linear-gradient(var(--blue),var(--blue)) bottom/18px 2px no-repeat !important;
+  }
+  .topbar .mobile-menu-btn span:last-child{
+    font-size:12px !important;
+    line-height:1 !important;
+    margin:0 !important;
+  }
+
+  /* Make the mini header a smooth downward reveal and keep it one continuous blue block. */
+  .topbar.mobile-scrolled{
+    animation:miniHeaderDropFinal .34s cubic-bezier(.22,.7,.25,1) both !important;
+  }
+  @keyframes miniHeaderDropFinal{
+    from{transform:translateY(-100%);opacity:.15}
+    to{transform:translateY(0);opacity:1}
+  }
+  .topbar.mobile-scrolled ~ .mobile-progress{
+    animation:miniProgressDropFinal .34s cubic-bezier(.22,.7,.25,1) .04s both !important;
+  }
+  @keyframes miniProgressDropFinal{
+    from{transform:translateY(-18px);opacity:.1}
+    to{transform:translateY(0);opacity:1}
+  }
+
+  /* Progress row: blue underneath the line, with a slightly thicker bar. */
+  .mobile-progress{
+    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
+  }
+  .progress-line{height:5px !important;background:rgba(255,255,255,.28) !important;}
+
+  /* Smaller Telenor marks on the phone. */
+  .hero-brand-logo{width:34px !important;}
+  .risk-brand-logo,.final-brand-logo{width:32px !important;}
+
+  /* Footer: original logo treatment, smaller and slightly left. */
+  .footer-logo{
+    width:42px !important;
+    height:32px !important;
+    left:10px !important;
+    object-fit:contain !important;
+    filter:brightness(0) invert(1) !important;
+  }
+}
+@media(max-width:560px){
+  .topbar:not(.mobile-scrolled) .lang-wrap{top:14px !important;right:9px !important;}
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:14px !important;right:57px !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn{width:38px !important;min-width:38px !important;height:30px !important;min-height:30px !important;}
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{width:96px !important;min-width:96px !important;height:30px !important;min-height:30px !important;}
+  .topbar .mobile-menu-btn .hamb{width:17px !important;height:13px !important;background-size:17px 2px,17px 2px,17px 2px !important;}
+  .hero-brand-logo{width:32px !important;}
+  .risk-brand-logo,.final-brand-logo{width:30px !important;}
+  .footer-logo{width:38px !important;height:30px !important;left:8px !important;}
 }
 </style>
