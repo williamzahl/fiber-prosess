@@ -1531,12 +1531,182 @@ button{font:inherit}
   }
 }
 </style>
+
+<style id="mobile-header-twe-inspired-fix">
+/* Mobile header: inspired by the compact T-We guide layout.
+   Remove the extra blue progress strip and stack language/menu controls. */
+@media(max-width:850px){
+  .mobile-progress{display:none !important;}
+
+  .topbar{
+    position:relative !important;
+    top:auto !important;
+    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    border-bottom:1px solid rgba(255,255,255,.18) !important;
+    box-shadow:none !important;
+  }
+
+  .topbar-inner{
+    min-height:112px !important;
+    padding:14px 16px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:14px !important;
+    position:relative !important;
+  }
+
+  .topbar .brand{
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    color:#fff !important;
+    font-size:26px !important;
+    font-weight:500 !important;
+    line-height:1.03 !important;
+    letter-spacing:-.8px !important;
+    white-space:normal !important;
+    flex:1 1 auto !important;
+    min-width:0 !important;
+  }
+  .topbar .brand .brand-line{
+    display:block !important;
+    color:#fff !important;
+  }
+  .topbar .brand .brand-intro{
+    font-size:.94em !important;
+  }
+  .topbar .brand span:not(.brand-line){color:#fff !important;}
+
+  .topbar .lang-wrap{
+    position:static !important;
+    width:112px !important;
+    min-width:112px !important;
+    flex:0 0 112px !important;
+    margin:0 !important;
+    order:2 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    gap:7px !important;
+  }
+
+  .topbar .lang-btn{
+    width:112px !important;
+    min-width:112px !important;
+    height:36px !important;
+    min-height:36px !important;
+    max-height:36px !important;
+    padding:0 25px 0 8px !important;
+    border-radius:14px !important;
+    background:rgba(255,255,255,.96) !important;
+    color:var(--dark) !important;
+    border:1px solid rgba(255,255,255,.75) !important;
+    box-shadow:none !important;
+  }
+
+  .topbar .mobile-menu-btn{
+    position:static !important;
+    order:3 !important;
+    width:112px !important;
+    min-width:112px !important;
+    height:36px !important;
+    min-height:36px !important;
+    max-height:36px !important;
+    margin:0 !important;
+    padding:0 10px !important;
+    border-radius:14px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:6px !important;
+    background:rgba(255,255,255,.96) !important;
+    color:var(--dark) !important;
+    border:1px solid rgba(255,255,255,.75) !important;
+    box-shadow:none !important;
+    flex:0 0 112px !important;
+  }
+
+  /* The two controls sit directly on top of each other on the right. */
+  .topbar-inner > .mobile-menu-btn{
+    position:absolute !important;
+    right:16px !important;
+    top:57px !important;
+  }
+  .topbar .lang-wrap{
+    position:absolute !important;
+    right:16px !important;
+    top:14px !important;
+  }
+
+  .topbar .lang-btn>span:first-child{
+    position:static !important;
+    width:auto !important;
+    margin:0 !important;
+    transform:none !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:6px !important;
+    white-space:nowrap !important;
+  }
+
+  .topbar .lang-btn .chev{
+    right:9px !important;
+    top:50% !important;
+    transform:translateY(-50%) !important;
+  }
+
+  .topbar .mobile-menu-btn .hamb{
+    color:var(--blue) !important;
+    font-size:16px !important;
+  }
+
+  .topbar .mobile-menu-btn span:last-child{
+    color:var(--dark) !important;
+    font-size:12px !important;
+    font-weight:800 !important;
+  }
+
+  .intro p{
+    font-size:15px !important;
+    line-height:1.55 !important;
+    max-width:650px !important;
+  }
+
+  .hero-inner{
+    padding:20px 16px 14px !important;
+  }
+  .hero h1{
+    font-size:clamp(31px,8.8vw,45px) !important;
+    line-height:1.04 !important;
+  }
+  .hero p{
+    font-size:14px !important;
+    line-height:1.38 !important;
+    color:#fff !important;
+  }
+}
+
+@media(max-width:560px){
+  .intro p{font-size:14.5px !important;line-height:1.52 !important;}
+  .topbar-inner{min-height:108px !important;padding:12px 14px !important;}
+  .topbar .brand{font-size:24px !important;line-height:1.02 !important;}
+  .topbar .lang-wrap{right:14px !important;top:12px !important;}
+  .topbar-inner > .mobile-menu-btn{right:14px !important;top:53px !important;}
+  .topbar .lang-btn,.topbar .mobile-menu-btn{width:108px !important;min-width:108px !important;height:34px !important;min-height:34px !important;max-height:34px !important;}
+  .topbar .mobile-menu-btn{flex-basis:108px !important;}
+  .hero-inner{padding:18px 14px 12px !important;}
+  .hero h1{font-size:34px !important;}
+  .hero p{font-size:13.5px !important;line-height:1.38 !important;}
+}
+</style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#top">Fiber <span>&amp; T-We</span></a>
+    <a class="brand" href="#top"><span class="brand-line">Fiber</span> <span class="brand-line">&amp; T-We</span> <span class="brand-line brand-intro">Introduksjon</span></a>
     <div class="top-guide-progress" aria-label="Fremdrift">
       <div class="top-guide-top"><span id="topGuideLesson" aria-hidden="true">Steg 1 av 8</span><span id="topGuidePercent">12,5%</span></div>
       <div class="top-guide-row"><div class="top-guide-line"><div class="top-guide-fill" id="topGuideFill"></div></div></div>
