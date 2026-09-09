@@ -2099,6 +2099,30 @@ button{font:inherit}
 }
 </style>
 
+
+<style id="logo-mobile-final-fix">
+/* Final logo cleanup: card logos use Telenor blue instead of the white logo variant. */
+.hero-brand-logo,
+.risk-brand-logo,
+.final-brand-logo{
+  filter: brightness(0) saturate(100%) invert(40%) sepia(96%) saturate(1548%) hue-rotate(167deg) brightness(93%) contrast(101%) !important;
+}
+
+/* Keep only the footer logo white on the blue footer. */
+.footer-logo{filter:brightness(0) invert(1) !important;}
+
+@media (max-width:850px){
+  .hero-brand-logo{width:34px !important;height:auto !important;margin-bottom:30px !important;}
+  .risk-brand-logo{width:38px !important;height:auto !important;margin-bottom:9px !important;}
+  .final-brand-logo{width:40px !important;height:auto !important;margin-bottom:9px !important;}
+}
+
+@media (max-width:560px){
+  .hero-brand-logo{width:32px !important;margin-bottom:30px !important;}
+  .risk-brand-logo{width:34px !important;margin-bottom:8px !important;}
+  .final-brand-logo{width:36px !important;margin-bottom:8px !important;}
+}
+</style>
 </head>
 <body>
 
@@ -2440,4 +2464,3 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </script>
 </body>
 </html>
-
