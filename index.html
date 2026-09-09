@@ -4158,3 +4158,67 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   .hero-inner{padding-top:54px !important;padding-bottom:7px !important;}
 }
 </style>
+
+<style id="mobile-menu-language-clean-v48">
+/* MOBILE CLEANUP: anchor each popup to its own button and allow outside-tap dismissal. */
+@media (max-width:850px){
+  /* Menu popup: centered directly under the Meny button. */
+  .mobile-menu{
+    position:fixed !important;
+    top:58px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:270px !important;
+    max-width:calc(100vw - 24px) !important;
+    box-sizing:border-box !important;
+    z-index:6000 !important;
+  }
+
+  /* Globe popup: centered on the globe button, never off-screen. */
+  .topbar .lang-wrap,
+  .topbar #langWrap.lang-wrap{
+    top:18px !important;
+    right:12px !important;
+    left:auto !important;
+  }
+  .topbar #langMenu.lang-menu,
+  .topbar .lang-menu{
+    position:absolute !important;
+    top:40px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:180px !important;
+    min-width:180px !important;
+    max-width:calc(100vw - 24px) !important;
+    box-sizing:border-box !important;
+    z-index:6010 !important;
+  }
+
+  /* The hero subtitle is intentionally removed on mobile. */
+  .hero p{display:none !important;}
+}
+
+/* Also remove the hero subtitle on desktop, as requested. */
+@media (min-width:851px){
+  .hero p{display:none !important;}
+}
+</style>
+
+<script id="popup-outside-close-clean-v48">
+(function(){
+  const langWrap=document.getElementById('langWrap');
+  const mobileMenu=document.getElementById('mobileMenu');
+  const mobileMenuBtn=document.getElementById('mobileMenuBtn');
+  const langBtn=document.getElementById('langBtn');
+  if(!langWrap || !mobileMenu || !mobileMenuBtn || !langBtn) return;
+
+  document.addEventListener('click',function(e){
+    const inLanguage=langWrap.contains(e.target);
+    const inMobileMenu=mobileMenu.contains(e.target) || mobileMenuBtn.contains(e.target);
+    if(!inLanguage) langWrap.classList.remove('open');
+    if(!inMobileMenu) mobileMenu.classList.remove('open');
+  },true);
+})();
+</script>
