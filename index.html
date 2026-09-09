@@ -3749,3 +3749,101 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   }
 })();
 </script>
+
+<style id="mobile-language-final-alignment-v45">
+/* MOBILE ONLY: show only the globe, and align it vertically with the Meny button. */
+@media(max-width:850px){
+  .topbar .lang-wrap,
+  .topbar #langWrap.lang-wrap{
+    position:absolute !important;
+    top:48px !important;
+    right:12px !important;
+    left:auto !important;
+    width:38px !important;
+    min-width:38px !important;
+    max-width:38px !important;
+    height:30px !important;
+    margin:0 !important;
+    transform:none !important;
+    z-index:3003 !important;
+  }
+  .topbar #langBtn.lang-btn{
+    width:38px !important;
+    min-width:38px !important;
+    max-width:38px !important;
+    height:30px !important;
+    min-height:30px !important;
+    max-height:30px !important;
+    padding:0 !important;
+    margin:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    box-sizing:border-box !important;
+    border-radius:10px !important;
+  }
+  .topbar #langBtn.lang-btn > span:first-child{
+    width:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:0 !important;
+    margin:0 !important;
+  }
+  .topbar #langBtn .globe{
+    display:block !important;
+    margin:0 !important;
+    font-size:16px !important;
+    line-height:1 !important;
+  }
+  .topbar #langBtn #langLabel,
+  .topbar #langBtn .chev{
+    display:none !important;
+  }
+  /* Same vertical level as the Meny button. */
+  .topbar-inner > .mobile-menu-btn{
+    top:48px !important;
+    right:58px !important;
+  }
+}
+@media(max-width:560px){
+  .topbar .lang-wrap,
+  .topbar #langWrap.lang-wrap{
+    top:48px !important;
+    right:12px !important;
+    width:38px !important;
+    min-width:38px !important;
+  }
+  .topbar-inner > .mobile-menu-btn{
+    top:48px !important;
+    right:58px !important;
+  }
+}
+
+/* DESKTOP: restore the normal language selector with its language name and arrow. */
+@media(min-width:851px){
+  .topbar #langBtn #langLabel,
+  .topbar #langBtn .chev{
+    display:inline !important;
+  }
+  .topbar #langBtn.lang-btn{
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:240px !important;
+    height:30px !important;
+    min-height:30px !important;
+    max-height:30px !important;
+    padding:0 30px 0 12px !important;
+    gap:5px !important;
+  }
+  .topbar #langBtn.lang-btn > span:first-child{
+    width:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:5px !important;
+  }
+  .topbar #langBtn .globe{font-size:13px !important;}
+  .topbar #langBtn .chev{right:7px !important;}
+}
+</style>
