@@ -2973,3 +2973,122 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   setTimeout(syncContactActive,100);
 })();
 </script>
+
+<style id="auto-language-sidebar-sizing-v37">
+/* Language selector: size naturally from the longest translated label and keep everything centered. */
+.lang-menu{
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:min(360px,calc(100vw - 24px)) !important;
+}
+.lang-menu .lang-option{
+  width:100% !important;
+  min-width:0 !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  padding:11px 16px !important;
+  gap:9px !important;
+}
+.lang-menu .lang-option > span:first-child{
+  flex:0 0 auto !important;
+}
+
+/* The selected-language button follows its translated label instead of using one fixed width. */
+.lang-wrap .lang-btn{
+  width:max-content !important;
+  min-width:0 !important;
+  max-width:240px !important;
+  padding-left:12px !important;
+  padding-right:30px !important;
+}
+
+/* Desktop sidebar: the box and grid column grow/shrink naturally with translated text. */
+@media(min-width:851px){
+  .layout{
+    grid-template-columns:max-content minmax(0,1fr) !important;
+  }
+  .layout > .sidebar,
+  .sidebar{
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:min(430px,calc(100vw - 360px)) !important;
+  }
+  .sidebar .side-link{
+    width:100% !important;
+  }
+}
+
+/* Mobile language menu also adapts to the current/longest language without looking oversized. */
+@media(max-width:850px){
+  .lang-menu{
+    max-width:calc(100vw - 20px) !important;
+  }
+  .mobile-menu{
+    width:max-content !important;
+    max-width:calc(100vw - 28px) !important;
+  }
+}
+</style>
+
+<script id="auto-language-sidebar-sizing-js-v37">
+(function(){
+  function fitTranslatedControls(){
+    const langWrap=document.getElementById('langWrap');
+    const langBtn=document.getElementById('langBtn');
+    const langMenu=document.getElementById('langMenu');
+    const sidebar=document.querySelector('.layout > .sidebar, .sidebar');
+    if(!langWrap || !langBtn) return;
+
+    /* Keep the selector just wide enough for the current language, icon and arrow. */
+    const label=document.getElementById('langLabel');
+    if(label){
+      const clone=label.cloneNode(true);
+      clone.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;width:auto;font:inherit;';
+      document.body.appendChild(clone);
+      const w=Math.ceil(clone.getBoundingClientRect().width);
+      clone.remove();
+      const btnW=Math.max(86,Math.min(240,w+56));
+      langBtn.style.width=btnW+'px';
+      langBtn.style.minWidth=btnW+'px';
+    }
+
+    /* Let the language dropdown use the longest option currently rendered. */
+    if(langMenu){
+      const opts=[...langMenu.querySelectorAll('.lang-option')];
+      if(opts.length){
+        let longest=0;
+        opts.forEach(o=>{
+          const clone=o.cloneNode(true);
+          clone.style.cssText='position:absolute;visibility:hidden;width:max-content;min-width:0;white-space:nowrap;left:-99999px;top:-99999px;';
+          document.body.appendChild(clone);
+          longest=Math.max(longest,Math.ceil(clone.getBoundingClientRect().width));
+          clone.remove();
+        });
+        const menuW=Math.min(360,Math.max(118,longest+2));
+        langMenu.style.width=menuW+'px';
+        langMenu.style.minWidth=menuW+'px';
+      }
+    }
+
+    /* Make the desktop sidebar's grid column follow its actual translated content. */
+    if(sidebar && window.innerWidth>=851){
+      sidebar.style.width='max-content';
+      const w=Math.min(430,Math.max(210,Math.ceil(sidebar.scrollWidth)));
+      sidebar.style.width=w+'px';
+      const layout=sidebar.closest('.layout');
+      if(layout) layout.style.gridTemplateColumns=w+'px minmax(0,1fr)';
+    }
+  }
+
+  const langMenu=document.getElementById('langMenu');
+  const sideLinks=document.getElementById('sideLinks');
+  const observerConfig={childList:true,subtree:true};
+  if(langMenu) new MutationObserver(()=>requestAnimationFrame(fitTranslatedControls)).observe(langMenu,observerConfig);
+  if(sideLinks) new MutationObserver(()=>requestAnimationFrame(fitTranslatedControls)).observe(sideLinks,observerConfig);
+  window.addEventListener('resize',fitTranslatedControls);
+  window.addEventListener('load',fitTranslatedControls);
+  setTimeout(fitTranslatedControls,80);
+  setTimeout(fitTranslatedControls,300);
+})();
+</script>
