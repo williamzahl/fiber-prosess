@@ -2002,6 +2002,103 @@ button{font:inherit}
 }
 </style>
 
+
+<style id="william-mobile-final-polish">
+/* Mobile: compact controls over the hero, then a small sticky mini-bar while scrolling. */
+@media (max-width:850px){
+  .topbar{
+    position:absolute !important;
+    top:0 !important; left:0 !important; right:0 !important;
+    height:0 !important; min-height:0 !important;
+    padding:0 !important; margin:0 !important;
+    background:transparent !important;
+    border:0 !important; box-shadow:none !important;
+    z-index:4000 !important;
+    pointer-events:none !important;
+  }
+  .topbar-inner{height:0 !important; min-height:0 !important; padding:0 !important; margin:0 !important; display:block !important; position:relative !important;}
+  .topbar .brand,.topbar .top-guide-progress{display:none !important;}
+
+  /* Initial hero controls: same width, stacked, high on the right. */
+  .topbar .lang-wrap{
+    position:absolute !important; right:12px !important; top:8px !important;
+    width:110px !important; min-width:110px !important; margin:0 !important;
+    z-index:4002 !important; pointer-events:auto !important;
+  }
+  .topbar .lang-btn,
+  .topbar-inner > .mobile-menu-btn{
+    width:110px !important; min-width:110px !important; max-width:110px !important;
+    height:34px !important; min-height:34px !important; max-height:34px !important;
+    box-sizing:border-box !important; border-radius:15px !important;
+    background:#fff !important; color:var(--dark) !important;
+    border:1px solid #cfe4ef !important;
+    box-shadow:0 4px 14px rgba(11,75,110,.08) !important;
+  }
+  .topbar .lang-btn{padding:0 22px 0 7px !important;}
+  .topbar .lang-btn>span:first-child{position:static !important; transform:none !important; width:100% !important; margin:0 !important; display:flex !important; align-items:center !important; justify-content:center !important; gap:5px !important; white-space:nowrap !important;}
+  .topbar .lang-btn .globe{font-size:15px !important;}
+  .topbar .lang-btn #langLabel{font-size:12px !important; font-weight:800 !important;}
+  .topbar .lang-btn .chev{right:7px !important; top:50% !important; transform:translateY(-50%) !important;}
+
+  .topbar-inner > .mobile-menu-btn{
+    position:absolute !important; right:12px !important; top:48px !important;
+    margin:0 !important; padding:0 8px !important;
+    display:flex !important; align-items:center !important; justify-content:center !important;
+    gap:6px !important; z-index:4002 !important; pointer-events:auto !important;
+    font-size:12px !important;
+  }
+  .topbar .mobile-menu-btn .hamb{font-size:16px !important; color:var(--blue) !important; transform:none !important;}
+  .topbar .mobile-menu-btn span:last-child{font-size:12px !important; font-weight:800 !important; color:var(--dark) !important;}
+
+  /* Sticky mini header after swiping down: Norsk + Meny are always available. */
+  .topbar.mobile-scrolled{
+    position:fixed !important; top:0 !important; left:0 !important; right:0 !important;
+    height:45px !important; min-height:45px !important;
+    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
+    box-shadow:0 5px 16px rgba(0,70,110,.16) !important;
+    pointer-events:auto !important;
+  }
+  .topbar.mobile-scrolled .topbar-inner{height:45px !important; min-height:45px !important; display:block !important; pointer-events:auto !important;}
+  .topbar.mobile-scrolled .lang-wrap{top:5px !important; right:12px !important; width:104px !important; min-width:104px !important;}
+  .topbar.mobile-scrolled .lang-btn,
+  .topbar.mobile-scrolled .mobile-menu-btn{width:104px !important; min-width:104px !important; height:35px !important; min-height:35px !important; max-height:35px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{right:123px !important; top:5px !important;}
+
+  /* Open mobile menu: centered directly below the sticky/hero controls. */
+  .mobile-menu{
+    position:fixed !important;
+    left:50% !important; right:auto !important;
+    top:104px !important;
+    transform:translateX(-50%) !important;
+    width:min(300px,calc(100vw - 28px)) !important;
+    max-width:calc(100vw - 28px) !important;
+    z-index:4100 !important;
+  }
+  .topbar.mobile-scrolled ~ .mobile-menu{top:58px !important;}
+
+  /* Keep the hero logo compact. */
+  .hero-brand-logo{width:44px !important; margin-bottom:38px !important;}
+
+  /* Smaller intro copy on phones. */
+  .intro p{font-size:12.5px !important; line-height:1.42 !important;}
+
+  /* All logos on light cards stay blue; only the footer remains white on blue. */
+  .risk-brand-logo,.final-brand-logo{filter:none !important;}
+}
+@media (max-width:560px){
+  .topbar .lang-wrap{right:10px !important; top:7px !important;}
+  .topbar .lang-btn,.topbar-inner > .mobile-menu-btn{width:104px !important; min-width:104px !important; height:33px !important; min-height:33px !important; max-height:33px !important;}
+  .topbar-inner > .mobile-menu-btn{right:10px !important; top:46px !important;}
+  .topbar.mobile-scrolled{height:43px !important; min-height:43px !important;}
+  .topbar.mobile-scrolled .topbar-inner{height:43px !important; min-height:43px !important;}
+  .topbar.mobile-scrolled .lang-wrap{right:10px !important; top:5px !important; width:100px !important; min-width:100px !important;}
+  .topbar.mobile-scrolled .lang-btn,.topbar.mobile-scrolled .mobile-menu-btn{width:100px !important; min-width:100px !important; height:33px !important; min-height:33px !important;}
+  .topbar.mobile-scrolled .mobile-menu-btn{right:118px !important; top:5px !important;}
+  .mobile-menu{top:98px !important; width:min(292px,calc(100vw - 24px)) !important; max-width:calc(100vw - 24px) !important;}
+  .topbar.mobile-scrolled ~ .mobile-menu{top:56px !important;}
+}
+</style>
+
 </head>
 <body>
 
@@ -2139,7 +2236,7 @@ function renderSteps(){
     return `<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>${nav}`;
   }).join('');
   sideLinks.innerHTML=l.steps.map((s,i)=>`<a class="side-link side-step-link" href="#step-${i+1}"><b>${i+1}</b><span>${esc(s[0])}</span></a>`).join('');
-  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link" href="#extra">${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-icon">${icons.phone}</div><div><div class="mobile-contact-label">${esc(l.contactTitle)}</div><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div>`;
+  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link" href="#extra">💰 ${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-icon">${icons.phone}</div><div><div class="mobile-contact-label">${esc(l.contactTitle)}</div><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div>`;
   stepsEl.querySelectorAll('.step-nav-btn').forEach(a=>a.addEventListener('click',()=>setTimeout(updateProgress,120)));
 }
 function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;const d=document.querySelector('.footer-disclaimer');if(d)d.textContent=l.disclaimer||'Dette er en uoffisiell informasjonsside og er ikke en offisiell nettside fra Telenor.';}
@@ -2166,7 +2263,7 @@ function updateProgress(){
   if(topPercent) topPercent.textContent=String(pct).replace('.',',')+'%';
   if(topLesson) topLesson.textContent=`${langs[current].stepWord} ${idx+1} ${langs[current].of} ${cards.length}`;
   mobileProgress.style.display=window.scrollY>120?'block':'none';
-  document.querySelector('.topbar').classList.toggle('scrolled',window.scrollY>300);
+  document.querySelector('.topbar').classList.toggle('scrolled',window.scrollY>300); document.querySelector('.topbar').classList.toggle('mobile-scrolled',window.innerWidth<=850 && window.scrollY>120);
   const up=document.getElementById('scrollUpBtn');
   const down=document.getElementById('scrollDownBtn');
   if(up) up.classList.toggle('show',pct>20);
@@ -2343,3 +2440,4 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </script>
 </body>
 </html>
+
