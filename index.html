@@ -2128,10 +2128,11 @@ button{font:inherit}
       <a class="side-link side-special-link" href="#ground"><b>🛠️</b><span data-i18n="groundTitle">Tips før befaring</span></a>
       <a class="side-link side-guide-link" href="#guide"><b>💡</b><span data-i18n="tweIntro">T-We Introduksjon</span></a>
     </div>
-    <div class="side-contact">
-      <a class="side-contact-icon" href="#contact" aria-label="Kontakt selger"><svg class="phone-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"/></svg></a>
-      <div><div class="side-contact-label" data-i18n="contactTitle">Kontakt</div><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong></div>
-    </div>
+    <div class="side-divider side-divider-after-tips"></div>
+    <a class="side-link side-contact-link" href="#contact" aria-label="Kontakt selger">
+      <span class="side-contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M7.2 3.8 5.6 5.1c-.8.7-.9 1.8-.5 2.8 1.9 4.8 5.2 8.1 10 10 1 .4 2.1.3 2.8-.5l1.3-1.6c.6-.7.5-1.7-.2-2.2l-2.4-1.7c-.6-.4-1.4-.3-1.9.2l-1 1c-1.8-.9-3.1-2.2-4-4l1-1c.5-.5.6-1.3.2-1.9L9.4 4c-.5-.7-1.5-.8-2.2-.2Z"/></svg></span>
+      <span data-i18n="contactTitle">Kontakt selger</span>
+    </a>
   </aside>
 
   <div class="main">
@@ -2211,7 +2212,7 @@ function renderSteps(){
     return `<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>${nav}`;
   }).join('');
   sideLinks.innerHTML=l.steps.map((s,i)=>`<a class="side-link side-step-link" href="#step-${i+1}"><b>${i+1}</b><span>${esc(s[0])}</span></a>`).join('');
-  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link" href="#extra">${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-icon">${icons.phone}</div><div><div class="mobile-contact-label">${esc(l.contactTitle)}</div><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div>`;
+  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link" href="#extra">${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><a class="mobile-step-link mobile-contact-link" href="#contact"><span class="mobile-contact-icon">${icons.phone}</span><span>${esc(l.contactTitle)}</span></a>`;
   stepsEl.querySelectorAll('.step-nav-btn').forEach(a=>a.addEventListener('click',()=>setTimeout(updateProgress,120)));
 }
 function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;const d=document.querySelector('.footer-disclaimer');if(d)d.textContent=l.disclaimer||'Dette er en uoffisiell informasjonsside og er ikke en offisiell nettside fra Telenor.';}
@@ -2394,6 +2395,50 @@ document.querySelectorAll('a[href="#guide"]').forEach(a=>{
 
 applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateActiveNav();
 </script>
+
+<style id="sidebar-sticky-and-contact-align-v34">
+/* Sidebar: scrolls with the page first, then stays pinned in place. */
+@media (min-width:851px){
+  .layout > .sidebar,
+  .sidebar{
+    position:sticky !important;
+    top:52px !important;
+    align-self:start !important;
+    height:max-content !important;
+    max-height:none !important;
+    overflow:visible !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+    scrollbar-width:none !important;
+    width:auto !important;
+    min-width:0 !important;
+  }
+}
+
+/* Contact row lines up exactly with the other Tips rows. */
+.side-contact-link{
+  gap:7px !important;
+  padding:7px 7px !important;
+  font-size:11.5px !important;
+  line-height:1.16 !important;
+}
+.side-contact-link .side-contact-icon{
+  width:17px !important;
+  height:17px !important;
+  min-width:17px !important;
+  flex:0 0 17px !important;
+}
+.side-contact-link .side-contact-icon svg{
+  width:17px !important;
+  height:17px !important;
+}
+
+/* Matching divider between Tips and Contact. */
+.side-divider-after-tips{
+  margin-top:8px !important;
+  margin-bottom:7px !important;
+}
+</style>
 </body>
 </html>
 
@@ -2668,3 +2713,263 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   }
 }
 </style>
+
+<style id="user-final-pc-scale-20260909-v3">
+/* PC refinement: make the large hero shorter, restore a comfortable mini topbar,
+   and make the process sidebar smaller while letting it travel with the page. */
+@media (min-width:851px){
+  /* Small sticky/progress top bar: not tiny, but still compact. */
+  .topbar{
+    height:46px !important;
+    min-height:46px !important;
+  }
+  .topbar-inner{
+    height:46px !important;
+    min-height:46px !important;
+    padding:4px 24px !important;
+  }
+  .topbar .top-guide-progress{
+    width:500px !important;
+    min-width:500px !important;
+    max-width:500px !important;
+  }
+  .topbar .top-guide-top{
+    margin-bottom:3px !important;
+    font-size:10px !important;
+    line-height:1 !important;
+  }
+  .topbar .top-guide-top #topGuideLesson{
+    font-size:10px !important;
+    font-weight:650 !important;
+  }
+  .topbar .top-guide-top #topGuidePercent{
+    font-size:10px !important;
+    font-weight:450 !important;
+  }
+  .topbar .top-guide-line{
+    height:4px !important;
+  }
+  .topbar .lang-wrap{
+    right:24px !important;
+  }
+  .topbar .lang-btn{
+    width:100px !important;
+    min-width:100px !important;
+    height:30px !important;
+    min-height:30px !important;
+    max-height:30px !important;
+    font-size:11.5px !important;
+  }
+
+  /* The large blue hero is the main header: reduce its height without making it cramped. */
+  .hero-inner{
+    max-width:1180px !important;
+    min-height:0 !important;
+    padding:17px 22px 18px !important;
+    gap:24px !important;
+  }
+  .hero-brand-logo{
+    width:52px !important;
+    margin-bottom:7px !important;
+  }
+  .hero h1{
+    font-size:clamp(31px,3vw,41px) !important;
+    letter-spacing:-1.45px !important;
+    line-height:1.05 !important;
+  }
+  .hero p{
+    font-size:14px !important;
+    line-height:1.38 !important;
+    margin-top:7px !important;
+  }
+
+  /* Smaller sidebar. It stays part of the normal page flow, so it is dragged
+     down immediately when the page is scrolled rather than floating separately. */
+  .layout{
+    grid-template-columns:250px minmax(0,1fr) !important;
+    gap:30px !important;
+  }
+  .layout > .sidebar,
+  .sidebar{
+    position:relative !important;
+    top:auto !important;
+    width:auto !important;
+    min-width:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+    padding:16px 11px 17px !important;
+    border-radius:16px !important;
+    scrollbar-width:none !important;
+  }
+  .side-title{
+    font-size:9.5px !important;
+    letter-spacing:.9px !important;
+    margin:0 0 8px !important;
+    padding:0 6px !important;
+  }
+  .side-link{
+    gap:7px !important;
+    padding:7px 7px !important;
+    border-radius:8px !important;
+    font-size:11.5px !important;
+    line-height:1.16 !important;
+  }
+  .side-link b{
+    width:17px !important;
+    flex:0 0 17px !important;
+  }
+}
+</style>
+
+<style id="sidebar-contact-clean-final">
+/* Clean contact item: same visual language and text size as the Tips links. */
+.side-contact-link{
+  margin:0 !important;
+  padding:8px 8px !important;
+  min-height:0 !important;
+  align-items:center !important;
+  gap:9px !important;
+  border:1px solid transparent !important;
+  border-radius:10px !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+  color:#52697c !important;
+  text-decoration:none !important;
+}
+.side-contact-link:hover{background:var(--soft) !important;color:var(--blue) !important;}
+.side-contact-link > span:last-child{
+  color:inherit !important;
+  white-space:nowrap !important;
+}
+.side-contact-link .side-contact-icon{
+  width:20px !important;
+  height:20px !important;
+  min-width:20px !important;
+  flex:0 0 20px !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  color:var(--blue) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+.side-contact-link .side-contact-icon svg{
+  width:19px !important;
+  height:19px !important;
+  flex:0 0 19px !important;
+  stroke:currentColor !important;
+  fill:none !important;
+  stroke-width:1.8 !important;
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+}
+.mobile-contact-link{
+  display:flex !important;
+  align-items:center !important;
+  gap:9px !important;
+  font-size:12px !important;
+  font-weight:750 !important;
+}
+.mobile-contact-link .mobile-contact-icon{
+  width:20px !important;height:20px !important;min-width:20px !important;
+  flex:0 0 20px !important;border-radius:0 !important;
+  background:transparent !important;color:var(--blue) !important;
+}
+.mobile-contact-link .mobile-contact-icon svg{
+  width:19px !important;height:19px !important;
+  stroke-width:1.8 !important;
+}
+</style>
+
+<style id="user-sidebar-final-stick-contact-align-v35">
+/* Final sidebar behavior: keep the sidebar pinned while the page scrolls. */
+@media (min-width:851px){
+  .layout > .sidebar,
+  .sidebar{
+    position:sticky !important;
+    top:52px !important;
+    align-self:start !important;
+    height:max-content !important;
+    max-height:none !important;
+    overflow:visible !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+    scrollbar-width:none !important;
+  }
+  .layout > .sidebar::-webkit-scrollbar,
+  .sidebar::-webkit-scrollbar{
+    display:none !important;
+    width:0 !important;
+    height:0 !important;
+  }
+}
+
+/* Contact starts on the exact same text column as every other sidebar item. */
+.side-contact-link{
+  padding:7px 7px !important;
+  gap:7px !important;
+  font-size:11.5px !important;
+  line-height:1.16 !important;
+}
+.side-contact-link .side-contact-icon{
+  width:17px !important;
+  height:17px !important;
+  min-width:17px !important;
+  flex:0 0 17px !important;
+}
+.side-contact-link .side-contact-icon svg{
+  width:17px !important;
+  height:17px !important;
+}
+</style>
+
+<style id="contact-active-and-arrow-final-v36">
+/* Mark Kontakt selger in the sidebar whenever the contact section is in view. */
+.side-contact-link.active{
+  background:var(--soft) !important;
+  color:var(--blue) !important;
+  border:1px solid var(--blue) !important;
+  box-sizing:border-box !important;
+}
+.side-contact-link.active > span:last-child{color:var(--dark) !important;}
+
+/* Smaller circles, pushed farther toward the screen edges. */
+.side-scroll-btn{
+  width:30px !important;
+  height:30px !important;
+  border-radius:50% !important;
+}
+.side-scroll-btn svg{
+  width:15px !important;
+  height:15px !important;
+}
+@media(min-width:851px){
+  .side-scroll-btn.down{left:6px !important;right:auto !important;}
+  .side-scroll-btn.up{right:6px !important;left:auto !important;}
+}
+@media(max-width:850px){
+  .side-scroll-btn{width:28px !important;height:28px !important;}
+  .side-scroll-btn svg{width:14px !important;height:14px !important;}
+}
+</style>
+
+<script id="contact-active-final-v36">
+(function(){
+  function syncContactActive(){
+    const contact=document.getElementById('contact');
+    const links=document.querySelectorAll('.side-contact-link, .mobile-contact-link');
+    if(!contact || !links.length) return;
+    const center=window.scrollY + window.innerHeight/2;
+    const active=center >= contact.offsetTop && center <= contact.offsetTop + contact.offsetHeight;
+    links.forEach(link=>link.classList.toggle('active',active));
+  }
+  window.addEventListener('scroll',syncContactActive,{passive:true});
+  window.addEventListener('resize',syncContactActive);
+  document.addEventListener('DOMContentLoaded',syncContactActive);
+  setTimeout(syncContactActive,100);
+})();
+</script>
