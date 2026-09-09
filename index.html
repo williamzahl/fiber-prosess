@@ -2098,6 +2098,7 @@ button{font:inherit}
 <div class="mobile-progress" id="mobileProgress">
   <div class="mobile-progress-inner">
     <div class="progress-copy"><div class="progress-top"><span id="mobileLesson">Steg 1 av 8</span><span id="mobilePercent">10%</span></div><div class="progress-line"><div class="progress-fill" id="progressFill"></div></div></div>
+    <button class="mobile-mini-menu-btn" id="mobileMiniMenuBtn" type="button" aria-label="Meny"><span class="mini-hamb">☰</span><span id="mobileMiniMenuText">Meny</span></button>
   </div>
 </div>
 <div class="mobile-menu" id="mobileMenu"></div>
@@ -2517,6 +2518,47 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 }
 </style>
 
+
+<style id="user-two-small-polish-only">
+/* Kun de to siste ønskede justeringene – mini-menyens størrelse/oppførsel røres ikke. */
+
+/* Vanlig Meny i den blå heroen: litt mer luft mellom knapp og menyboks.
+   Når mini-progressbaren er synlig beholdes mini-menyens eksisterende plassering. */
+@media (max-width:850px){
+  .topbar:not(.scrolled) ~ .mobile-menu{
+    top:66px !important;
+  }
+  .mobile-progress.is-visible ~ .mobile-menu{
+    top:48px !important;
+  }
+
+  /* "Slik får du fiber helt hjem": litt mindre og litt høyere. */
+  .hero-inner{
+    padding-top:62px !important;
+  }
+  .hero h1{
+    font-size:27px !important;
+    line-height:1.04 !important;
+  }
+}
+
+@media (max-width:560px){
+  .topbar:not(.scrolled) ~ .mobile-menu{
+    top:66px !important;
+  }
+  .mobile-progress.is-visible ~ .mobile-menu{
+    top:48px !important;
+  }
+
+  .hero-inner{
+    padding-top:62px !important;
+  }
+  .hero h1{
+    font-size:26px !important;
+    line-height:1.04 !important;
+  }
+}
+</style>
 </body>
 </html>
 
@@ -4222,3 +4264,381 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   },true);
 })();
 </script>
+
+<style id="mobile-mini-topbar-only-final-v49">
+/* =========================================================
+   MOBILE MINI TOPBAR
+   Only adds the requested mini bar when the page is scrolled.
+   The original header/hero/layout remains untouched.
+   ========================================================= */
+@media (max-width:850px){
+  .mobile-progress{
+    display:none !important;
+    position:fixed !important;
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    width:100% !important;
+    height:44px !important;
+    padding:5px 10px !important;
+    box-sizing:border-box !important;
+    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    border:0 !important;
+    border-radius:0 0 12px 12px !important;
+    box-shadow:0 7px 20px rgba(0,65,105,.20) !important;
+    z-index:7000 !important;
+  }
+
+  .mobile-progress.is-visible{
+    display:block !important;
+  }
+
+  .mobile-progress-inner{
+    width:100% !important;
+    height:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    gap:9px !important;
+  }
+
+  .mobile-progress .progress-copy{
+    flex:1 1 auto !important;
+    min-width:0 !important;
+    width:auto !important;
+    max-width:none !important;
+  }
+
+  .mobile-progress .progress-top{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:8px !important;
+    color:#fff !important;
+    font-size:10.5px !important;
+    line-height:1 !important;
+    margin:0 0 4px !important;
+  }
+
+  .mobile-progress .progress-line{
+    width:100% !important;
+    height:3px !important;
+    margin:0 !important;
+    background:rgba(255,255,255,.34) !important;
+    border-radius:999px !important;
+    overflow:hidden !important;
+  }
+
+  .mobile-progress .progress-fill{
+    height:100% !important;
+    background:#fff !important;
+    border-radius:999px !important;
+  }
+
+  .mobile-mini-menu-btn{
+    flex:0 0 auto !important;
+    width:auto !important;
+    min-width:76px !important;
+    height:30px !important;
+    padding:0 10px !important;
+    margin:0 !important;
+    border:1px solid rgba(255,255,255,.52) !important;
+    border-radius:10px !important;
+    background:rgba(255,255,255,.10) !important;
+    color:#fff !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:5px !important;
+    font-size:10.5px !important;
+    font-weight:800 !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    cursor:pointer !important;
+    box-shadow:none !important;
+  }
+
+  .mobile-mini-menu-btn:active{
+    background:#fff !important;
+    color:#0780cf !important;
+  }
+
+  .mobile-mini-menu-btn .mini-hamb{
+    font-size:14px !important;
+    line-height:1 !important;
+    transform:translateY(-.5px) !important;
+  }
+
+  /* The full side menu opens directly underneath the mini bar. */
+  .mobile-menu{
+    top:50px !important;
+    left:50% !important;
+    right:auto !important;
+    transform:translateX(-50%) !important;
+    width:270px !important;
+    max-width:calc(100vw - 24px) !important;
+    z-index:7010 !important;
+  }
+}
+
+@media (max-width:560px){
+  .mobile-progress{
+    height:42px !important;
+    padding:5px 9px !important;
+  }
+
+  .mobile-progress .progress-top{
+    font-size:10px !important;
+    margin-bottom:3px !important;
+  }
+
+  .mobile-progress .progress-line{
+    height:2.5px !important;
+  }
+
+  .mobile-mini-menu-btn{
+    min-width:72px !important;
+    height:29px !important;
+    padding:0 9px !important;
+    font-size:10px !important;
+    border-radius:9px !important;
+  }
+
+  .mobile-mini-menu-btn .mini-hamb{
+    font-size:13px !important;
+  }
+
+  .mobile-menu{
+    top:48px !important;
+    width:min(270px,calc(100vw - 20px)) !important;
+  }
+}
+</style>
+
+<script id="mobile-mini-topbar-js-v49">
+(function(){
+  const bar=document.getElementById('mobileProgress');
+  const miniBtn=document.getElementById('mobileMiniMenuBtn');
+  const miniText=document.getElementById('mobileMiniMenuText');
+  const menu=document.getElementById('mobileMenu');
+  const normalBtn=document.getElementById('mobileMenuBtn');
+
+  if(!bar || !miniBtn || !menu) return;
+
+  function syncMiniBar(){
+    if(window.innerWidth <= 850 && window.scrollY > 120){
+      bar.classList.add('is-visible');
+    }else{
+      bar.classList.remove('is-visible');
+      menu.classList.remove('open');
+    }
+  }
+
+  miniBtn.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+
+  miniBtn.addEventListener('touchend',function(e){
+    e.stopPropagation();
+  },{passive:true});
+
+  // Keep the mini button translated with the current language.
+  function syncMiniLanguage(){
+    if(miniText && typeof current !== 'undefined' && typeof langs !== 'undefined'){
+      miniText.textContent = langs[current].mobileMenu || 'Meny';
+    }
+  }
+
+  window.addEventListener('scroll',syncMiniBar,{passive:true});
+  window.addEventListener('resize',syncMiniBar);
+  setTimeout(function(){
+    syncMiniBar();
+    syncMiniLanguage();
+  },80);
+
+  // The existing language/menu code handles the normal button.
+  // We only make sure an outside tap closes the mini menu too.
+  document.addEventListener('click',function(e){
+    if(!menu.contains(e.target) && !miniBtn.contains(e.target) && !normalBtn?.contains(e.target)){
+      menu.classList.remove('open');
+    }
+  },true);
+
+  // Re-sync translated button text after language changes.
+  const observer=new MutationObserver(syncMiniLanguage);
+  const label=document.getElementById('mobileMenuText');
+  if(label) observer.observe(label,{childList:true,characterData:true,subtree:true});
+})();
+</script>
+
+
+<style id="mobile-mini-final-fixes-v50">
+/* Final mobile mini-bar corrections */
+@media (max-width:850px){
+  .mobile-progress .progress-copy{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+    width:0 !important;
+    padding-right:2px !important;
+  }
+
+  .mobile-progress .progress-top{
+    font-weight:500 !important;
+  }
+  .mobile-progress .progress-top span{
+    font-weight:500 !important;
+  }
+
+  .mobile-mini-menu-btn{
+    flex:0 0 auto !important;
+    font-weight:550 !important;
+  }
+  .mobile-mini-menu-btn .mini-hamb{
+    font-weight:400 !important;
+  }
+
+  /* Language popup: keep it completely inside the viewport.
+     It is anchored by its right edge to the globe instead of being
+     centered on the globe (which pushed it off-screen). */
+  .topbar #langMenu.lang-menu,
+  .topbar .lang-menu{
+    top:40px !important;
+    left:auto !important;
+    right:0 !important;
+    transform:none !important;
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:calc(100vw - 20px) !important;
+    padding:5px !important;
+  }
+
+  .topbar #langMenu .lang-option,
+  .topbar .lang-menu .lang-option{
+    width:auto !important;
+    min-width:0 !important;
+    padding:9px 11px !important;
+    gap:7px !important;
+    font-size:12px !important;
+    font-weight:550 !important;
+  }
+}
+
+@media (max-width:560px){
+  .mobile-progress{
+    height:42px !important;
+    padding:5px 9px !important;
+  }
+  .mobile-progress .progress-top,
+  .mobile-progress .progress-top span{
+    font-size:10px !important;
+    font-weight:500 !important;
+  }
+  .mobile-mini-menu-btn{
+    min-width:72px !important;
+    font-size:10px !important;
+    font-weight:550 !important;
+  }
+
+  .topbar #langMenu.lang-menu,
+  .topbar .lang-menu{
+    top:40px !important;
+    right:0 !important;
+    left:auto !important;
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:calc(100vw - 20px) !important;
+  }
+}
+
+/* Desktop language dropdown should hug its actual content instead of
+   having an unnecessarily wide fixed box. */
+@media (min-width:851px){
+  .topbar .lang-menu{
+    width:max-content !important;
+    min-width:0 !important;
+    max-width:220px !important;
+    padding:5px !important;
+  }
+  .topbar .lang-menu .lang-option{
+    width:auto !important;
+    min-width:0 !important;
+    padding:9px 12px !important;
+    font-size:11px !important;
+    font-weight:650 !important;
+  }
+}
+</style>
+
+<script id="mobile-mini-progress-bottom-final-v50">
+(function(){
+  function fixMiniProgressAtBottom(){
+    if(window.innerWidth > 850) return;
+
+    const bar=document.getElementById('mobileProgress');
+    const contact=document.getElementById('contact');
+    const cards=[...document.querySelectorAll('.step')];
+    if(!bar) return;
+
+    const maxScroll=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    const nearBottom=window.scrollY >= Math.max(0,maxScroll-18);
+
+    if(nearBottom && contact){
+      const currentLang=(typeof current!=='undefined' && typeof langs!=='undefined') ? langs[current] : null;
+      let label='Kontakt';
+      if(currentLang){
+        if(current==='en') label='Contact';
+        else if(current==='es') label='Contacto';
+        else if(current==='pl') label='Kontakt';
+        else label='Kontakt';
+      }
+      const lesson=document.getElementById('mobileLesson');
+      if(lesson) lesson.textContent=label;
+    }
+
+    /* When leaving the very bottom, the normal updateProgress logic
+       can show Information again. */
+  }
+
+  window.addEventListener('scroll',fixMiniProgressAtBottom,{passive:true});
+  window.addEventListener('resize',fixMiniProgressAtBottom);
+  setTimeout(fixMiniProgressAtBottom,100);
+})();
+</script>
+
+
+<style id="v2-mini-progress-stop-before-menu-v51">
+/* Keep the progress line inside the progress column.
+   It must stop before the separate Meny button. */
+@media (max-width:850px){
+  #mobileProgress .mobile-progress-inner{
+    display:flex !important;
+    align-items:center !important;
+    gap:9px !important;
+  }
+
+  #mobileProgress .progress-copy{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+    width:auto !important;
+    max-width:none !important;
+  }
+
+  #mobileProgress .progress-line{
+    position:static !important;
+    left:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    width:100% !important;
+    max-width:none !important;
+    margin-top:4px !important;
+    box-sizing:border-box !important;
+  }
+
+  #mobileProgress .mobile-mini-menu-btn{
+    position:static !important;
+    flex:0 0 auto !important;
+    z-index:2 !important;
+  }
+}
+</style>
