@@ -2983,3 +2983,40 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 </body>
 
 </html>
+
+<style id="final-polish-20260909">
+/* Use the exact supplied Telenor logo colors everywhere. */
+.topbar .brand img,
+.hero-brand-logo,
+.risk-brand-logo,
+.final-brand-logo,
+.footer-logo{
+  filter:none !important;
+}
+
+/* Desktop header: supplied cyan Telenor logo, not white. */
+@media (min-width:851px){
+  .topbar .brand img{filter:none !important;}
+}
+
+@media (max-width:850px){
+  /* More breathing room between the hero heading and its text. */
+  .hero h1{margin-bottom:0 !important;}
+  .hero p{margin-top:19px !important;}
+
+  /* Smaller + lighter menu typography. */
+  .mobile-menu a{
+    font-size:12px !important;
+    font-weight:550 !important;
+    line-height:1.25 !important;
+  }
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn span:last-child{
+    font-size:14px !important;
+    font-weight:650 !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{
+    font-size:11px !important;
+    font-weight:600 !important;
+  }
+}
+</style>
