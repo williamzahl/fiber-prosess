@@ -2335,6 +2335,133 @@ button{font:inherit}
 @keyframes cleanMiniDrop{from{transform:translateY(-100%)}to{transform:translateY(0)}}
 </style>
 
+
+<style id="mobile-mini-single-authority-20260909">
+@media (max-width:850px){
+  /* ===== ONE AND ONLY ONE mobile mini header ===== */
+  .topbar.mobile-scrolled{
+    position:fixed !important;
+    top:0 !important;left:0 !important;right:0 !important;
+    width:100% !important;height:112px !important;min-height:112px !important;
+    display:block !important;overflow:hidden !important;
+    padding:0 !important;margin:0 !important;
+    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
+    border:0 !important;border-bottom:0 !important;
+    box-shadow:0 7px 20px rgba(0,65,105,.18) !important;
+    z-index:20000 !important;
+    transform:translateY(0) !important;
+    animation:mobileMiniDropOnce .34s cubic-bezier(.22,.72,.24,1) both !important;
+  }
+  .topbar.mobile-scrolled .topbar-inner{
+    position:relative !important;width:100% !important;height:112px !important;min-height:112px !important;
+    margin:0 !important;padding:0 !important;display:block !important;background:transparent !important;
+  }
+  .topbar.mobile-scrolled .brand,
+  .topbar.mobile-scrolled .lang-wrap,
+  .topbar.mobile-scrolled .top-guide-progress{display:none !important;}
+
+  /* Menu button is physically part of the same blue header. */
+  .topbar.mobile-scrolled .mobile-menu-btn{
+    display:flex !important;position:absolute !important;
+    top:9px !important;left:50% !important;right:auto !important;
+    transform:translateX(-50%) !important;
+    width:124px !important;min-width:124px !important;height:40px !important;min-height:40px !important;
+    align-items:center !important;justify-content:center !important;gap:10px !important;
+    padding:0 13px !important;border-radius:14px !important;
+    border:1px solid rgba(255,255,255,.78) !important;
+    background:#fff !important;color:#07183f !important;
+    box-shadow:0 3px 10px rgba(0,50,90,.13) !important;
+    z-index:2 !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn .hamb{
+    width:19px !important;height:14px !important;flex:0 0 19px !important;
+    position:relative !important;font-size:0 !important;background:none !important;color:transparent !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn .hamb:before{
+    content:"" !important;position:absolute !important;left:0 !important;top:0 !important;
+    width:19px !important;height:2.5px !important;background:#111 !important;border-radius:2px !important;
+    box-shadow:0 5.5px 0 #111,0 11px 0 #111 !important;
+  }
+  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{
+    color:#07183f !important;font-weight:850 !important;font-size:18px !important;line-height:1 !important;
+  }
+
+  /* Progress is inside the same topbar: no second rectangle, no separate animation. */
+  .topbar .mobile-progress{display:none !important;}
+  .topbar.mobile-scrolled .mobile-progress{
+    display:block !important;position:absolute !important;
+    left:0 !important;right:0 !important;bottom:0 !important;top:auto !important;
+    width:100% !important;height:58px !important;min-height:58px !important;
+    padding:9px 13px 11px !important;margin:0 !important;
+    background:transparent !important;box-shadow:none !important;border:0 !important;
+    z-index:1 !important;
+  }
+  .topbar.mobile-scrolled .mobile-progress-inner{
+    height:100% !important;width:100% !important;display:flex !important;align-items:flex-end !important;
+    padding:0 !important;margin:0 !important;background:transparent !important;
+  }
+  .topbar.mobile-scrolled .progress-copy{width:100% !important;flex:1 1 auto !important;}
+  .topbar.mobile-scrolled .progress-top{
+    display:flex !important;justify-content:space-between !important;align-items:center !important;
+    color:#fff !important;font-size:13px !important;font-weight:850 !important;
+    line-height:1 !important;margin:0 0 7px !important;
+  }
+  .topbar.mobile-scrolled .progress-line{
+    width:100% !important;height:5px !important;margin:0 !important;
+    background:rgba(255,255,255,.34) !important;border-radius:999px !important;overflow:hidden !important;
+  }
+  .topbar.mobile-scrolled .progress-fill{
+    height:100% !important;background:#fff !important;border-radius:999px !important;
+  }
+
+  /* Initial hero controls stay separate and do not become a second mini header. */
+  .topbar:not(.mobile-scrolled){
+    position:absolute !important;top:0 !important;left:0 !important;right:0 !important;
+    height:0 !important;min-height:0 !important;background:transparent !important;
+    border:0 !important;box-shadow:none !important;backdrop-filter:none !important;
+    z-index:1000 !important;
+  }
+  .topbar:not(.mobile-scrolled) .topbar-inner{height:0 !important;min-height:0 !important;padding:0 !important;}
+  .topbar:not(.mobile-scrolled) .brand{display:block !important;position:absolute !important;left:14px !important;top:38px !important;}
+  .topbar:not(.mobile-scrolled) .brand img{width:34px !important;height:auto !important;filter:none !important;opacity:1 !important;}
+  .topbar:not(.mobile-scrolled) .brand span{display:none !important;}
+  .topbar:not(.mobile-scrolled) .top-guide-progress{display:none !important;}
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
+    display:flex !important;position:absolute !important;top:38px !important;right:57px !important;
+    width:96px !important;min-width:96px !important;height:30px !important;min-height:30px !important;
+    align-items:center !important;justify-content:center !important;gap:8px !important;
+    padding:0 10px !important;background:#fff !important;color:#07183f !important;
+    border:1px solid rgba(255,255,255,.8) !important;border-radius:999px !important;
+    box-shadow:0 3px 10px rgba(0,50,90,.13) !important;
+  }
+  .topbar:not(.mobile-scrolled) .mobile-menu-btn span:last-child{font-size:16px !important;font-weight:850 !important;color:#07183f !important;}
+  .topbar:not(.mobile-scrolled) .lang-wrap{display:block !important;position:absolute !important;top:38px !important;right:9px !important;width:38px !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn{width:38px !important;min-width:38px !important;height:30px !important;min-height:30px !important;padding:0 !important;border-radius:999px !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{display:block !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn .globe{font-size:15px !important;}
+  .topbar:not(.mobile-scrolled) .lang-btn #langLabel,.topbar:not(.mobile-scrolled) .lang-btn .chev{display:none !important;}
+
+  /* Open menu: centered and higher, directly beneath the controls. */
+  .mobile-menu{
+    top:56px !important;left:50% !important;right:auto !important;
+    transform:translateX(-50%) !important;
+    width:min(292px,calc(100vw - 24px)) !important;max-width:calc(100vw - 24px) !important;
+    z-index:21000 !important;
+  }
+  .topbar.mobile-scrolled + .mobile-menu{top:94px !important;}
+
+  /* No seller name in the contact cards. */
+  .mobile-contact-row-text strong,.bottom-contact-name{display:none !important;}
+
+  /* Phone glyph: subtly up and left in the blue circle. */
+  .bottom-contact-icon .phone-svg{transform:translate(-2px,-2px) !important;}
+}
+@keyframes mobileMiniDropOnce{
+  from{transform:translateY(-100%)}
+  to{transform:translateY(0)}
+}
+</style>
+
 </head>
 <body>
 
@@ -2391,7 +2518,7 @@ button{font:inherit}
     </div>
     <div class="side-contact">
       <a class="side-contact-icon" href="#contact" aria-label="Kontakt selger"><svg class="phone-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"/></svg></a>
-      <div><div class="side-contact-label" data-i18n="contactTitle">Kontakt</div><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong></div>
+      <div><div class="side-contact-label" data-i18n="contactTitle">Kontakt</div><a href="tel:+4747666135">+47 476 66 135</a></div>
     </div>
   </aside>
 
@@ -2427,7 +2554,7 @@ button{font:inherit}
     <section class="bottom-contact" id="contact" aria-label="Kontakt selger">
       <div class="bottom-contact-half bottom-contact-phone-half">
         <div class="bottom-contact-icon"><svg class="phone-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.92Z"/></svg></div>
-        <div class="bottom-contact-info"><div class="bottom-contact-title" data-i18n="contactTitle">Kontakt selger</div><div class="bottom-contact-name">William Zahl</div><a class="bottom-contact-phone" href="tel:+4747666135">+47 476 66 135</a></div>
+        <div class="bottom-contact-info"><div class="bottom-contact-title" data-i18n="contactTitle">Kontakt selger</div><a class="bottom-contact-phone" href="tel:+4747666135">+47 476 66 135</a></div>
       </div>
       <div class="bottom-contact-half bottom-contact-mail-half">
         <a class="bottom-contact-mail" href="mailto:william.zahl@electi.no" aria-label="Send e-post til William Zahl" title="william.zahl@electi.no"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
@@ -2472,7 +2599,7 @@ function renderSteps(){
     return `<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>${nav}`;
   }).join('');
   sideLinks.innerHTML=l.steps.map((s,i)=>`<a class="side-link side-step-link" href="#step-${i+1}"><b>${i+1}</b><span>${esc(s[0])}</span></a>`).join('');
-  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link mobile-risk-link" href="#risk">⚠️ ${esc(l.riskTag)}</a><a class="mobile-step-link mobile-special-link" href="#extra">💰 ${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-label">${esc(l.contactTitle)}</div><div class="mobile-contact-row"><div class="mobile-contact-icon">${icons.phone}</div><div class="mobile-contact-row-text"><a href="tel:+4747666135">+47 476 66 135</a><strong>William Zahl</strong></div></div><div class="mobile-contact-row"><div class="mobile-contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></div><div class="mobile-contact-row-text"><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div></div>`;
+  mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link mobile-risk-link" href="#risk">⚠️ ${esc(l.riskTag)}</a><a class="mobile-step-link mobile-special-link" href="#extra">💰 ${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><div class="mobile-contact"><div class="mobile-contact-label">${esc(l.contactTitle)}</div><div class="mobile-contact-row"><div class="mobile-contact-icon">${icons.phone}</div><div class="mobile-contact-row-text"><a href="tel:+4747666135">+47 476 66 135</a></div></div><div class="mobile-contact-row"><div class="mobile-contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></div><div class="mobile-contact-row-text"><a href="mailto:william.zahl@electi.no">william.zahl@electi.no</a></div></div></div>`;
   stepsEl.querySelectorAll('.step-nav-btn').forEach(a=>a.addEventListener('click',()=>setTimeout(updateProgress,120)));
 }
 function updateFooter(){const l=langs[current];const month=new Intl.DateTimeFormat(current==='no'?'nb-NO':current+'-'+current.toUpperCase(),{month:'long'}).format(new Date());document.getElementById('updated').textContent=`${l.updated} ${month} ${new Date().getFullYear()}.`;const d=document.querySelector('.footer-disclaimer');if(d)d.textContent=l.disclaimer||'Dette er en uoffisiell informasjonsside og er ikke en offisiell nettside fra Telenor.';}
@@ -2881,1251 +3008,4 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
 
 </body>
 
-<style id="mobile-final-polish-2026">
-@media (max-width:850px){
-  /* Initial hero controls: globe only, aligned horizontally with Menu. */
-  .topbar:not(.mobile-scrolled) .lang-wrap{
-    top:39px !important;
-    right:10px !important;
-    width:42px !important;
-    min-width:42px !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn{
-    width:42px !important;
-    min-width:42px !important;
-    max-width:42px !important;
-    height:34px !important;
-    min-height:34px !important;
-    max-height:34px !important;
-    padding:0 !important;
-    border-radius:14px !important;
-    justify-content:center !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{
-    width:auto !important;
-    margin:0 !important;
-    display:flex !important;
-    justify-content:center !important;
-    transform:none !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn #langLabel,
-  .topbar:not(.mobile-scrolled) .lang-btn .chev{display:none !important;}
-  .topbar:not(.mobile-scrolled) .lang-btn .globe{font-size:19px !important;}
-
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
-    top:39px !important;
-    right:60px !important;
-    width:104px !important;
-    min-width:104px !important;
-    height:34px !important;
-    min-height:34px !important;
-    max-height:34px !important;
-  }
-
-  /* Mini header slides down into view rather than appearing abruptly. */
-  .topbar.mobile-scrolled{
-    height:52px !important;
-    min-height:52px !important;
-    transform:translateY(0) !important;
-    animation:miniHeaderDrop .28s ease-out both !important;
-  }
-  @keyframes miniHeaderDrop{
-    from{transform:translateY(-100%);opacity:.35}
-    to{transform:translateY(0);opacity:1}
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    height:52px !important;
-    min-height:52px !important;
-  }
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{display:none !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important;
-    left:50% !important;
-    right:auto !important;
-    top:7px !important;
-    transform:translateX(-50%) !important;
-    width:120px !important;
-    min-width:120px !important;
-    max-width:120px !important;
-    height:38px !important;
-    min-height:38px !important;
-    max-height:38px !important;
-    border-radius:15px !important;
-  }
-
-  /* Larger mini progress area and thicker progress line. */
-  .mobile-progress{
-    top:52px !important;
-    height:40px !important;
-    padding:0 16px !important;
-    opacity:1 !important;
-    transform:translateY(0) !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    display:block !important;
-    animation:miniProgressDrop .32s ease-out both !important;
-  }
-  @keyframes miniProgressDrop{
-    from{transform:translateY(-12px);opacity:0}
-    to{transform:translateY(0);opacity:1}
-  }
-  .mobile-progress-inner{height:40px !important;}
-  .progress-top{font-size:9.5px !important;margin-bottom:4px !important;}
-  .progress-line{height:5px !important;border-radius:99px !important;}
-
-  /* Mobile menu opens centered below the mini controls. */
-  .mobile-menu{top:106px !important;}
-  .topbar.mobile-scrolled ~ .mobile-menu{top:98px !important;}
-
-  /* Smaller phone logos on content cards. Hero logo remains compact. */
-  .risk-brand-logo,.final-brand-logo{width:38px !important;height:auto !important;}
-  .hero-brand-logo{width:40px !important;height:auto !important;}
-
-  /* Force Telenor blue on logos used on light backgrounds. */
-  .risk-brand-logo,.final-brand-logo{
-    filter:brightness(0) saturate(100%) invert(40%) sepia(96%) saturate(1548%) hue-rotate(167deg) brightness(93%) contrast(101%) !important;
-  }
-
-  /* Swap scroll arrows: Up on left, Down on right. */
-  .side-scroll-btn.up{left:4px !important;right:auto !important;}
-  .side-scroll-btn.down{right:4px !important;left:auto !important;}
-}
-@media(max-width:560px){
-  .topbar:not(.mobile-scrolled) .lang-wrap{top:39px !important;right:10px !important;width:40px !important;min-width:40px !important;}
-  .topbar:not(.mobile-scrolled) .lang-btn{width:40px !important;min-width:40px !important;height:32px !important;min-height:32px !important;}
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:39px !important;right:56px !important;width:100px !important;min-width:100px !important;height:32px !important;min-height:32px !important;}
-  .topbar.mobile-scrolled{height:52px !important;min-height:52px !important;}
-  .topbar.mobile-scrolled .topbar-inner{height:52px !important;min-height:52px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{width:116px !important;min-width:116px !important;height:37px !important;min-height:37px !important;top:7px !important;}
-  .mobile-progress{top:52px !important;height:38px !important;padding:0 13px !important;}
-  .mobile-progress-inner{height:38px !important;}
-  .progress-top{font-size:9px !important;margin-bottom:3px !important;}
-  .progress-line{height:5px !important;}
-  .topbar.mobile-scrolled ~ .mobile-menu{top:96px !important;}
-  .risk-brand-logo,.final-brand-logo{width:34px !important;}
-  .hero-brand-logo{width:38px !important;}
-}
-</style>
-
-
-<style id="final-mobile-logo-and-header-fix">
-/* Final mobile polish */
-@media (max-width:850px){
-  /* Keep the sticky header and progress area as one continuous fading blue block. */
-  .topbar.mobile-scrolled,
-  .topbar.mobile-scrolled .topbar-inner,
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    border-top:0 !important;
-    box-shadow:none !important;
-  }
-  .mobile-progress .progress-line{
-    height:5px !important;
-    background:rgba(255,255,255,.28) !important;
-    border-radius:999px !important;
-  }
-  .mobile-progress .progress-fill{
-    background:#fff !important;
-    height:100% !important;
-    border-radius:999px !important;
-  }
-
-  /* Center the Menu contents precisely. */
-  .topbar .mobile-menu-btn{
-    align-items:center !important;
-    justify-content:center !important;
-    text-align:center !important;
-    gap:8px !important;
-  }
-  .topbar .mobile-menu-btn .hamb{
-    flex:0 0 17px !important;
-    width:17px !important;
-    height:13px !important;
-    transform:translateX(-1px) !important;
-    background:linear-gradient(var(--blue),var(--blue)) top/17px 2px no-repeat,
-               linear-gradient(var(--blue),var(--blue)) center/17px 2px no-repeat,
-               linear-gradient(var(--blue),var(--blue)) bottom/17px 2px no-repeat !important;
-  }
-  .topbar .mobile-menu-btn span:last-child{
-    margin:0 !important;
-    line-height:1 !important;
-  }
-
-  /* Globe-only language button: center the globe both ways. */
-  .topbar:not(.mobile-scrolled) .lang-btn{
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    padding:0 !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{
-    position:static !important;
-    width:auto !important;
-    height:auto !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    transform:none !important;
-    margin:0 !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn .globe{
-    display:block !important;
-    font-size:18px !important;
-    line-height:1 !important;
-    margin:0 !important;
-  }
-
-  /* Compact original Telenor mark on the phone. No recolouring of the supplied asset. */
-  .hero-brand-logo{width:34px !important;height:auto !important;filter:none !important;}
-  .risk-brand-logo,.final-brand-logo{width:30px !important;height:auto !important;filter:none !important;}
-  .footer-logo{width:38px !important;height:30px !important;left:8px !important;filter:none !important;}
-}
-@media(max-width:560px){
-  .hero-brand-logo{width:32px !important;}
-  .risk-brand-logo,.final-brand-logo{width:28px !important;}
-  .footer-logo{width:36px !important;height:28px !important;left:7px !important;}
-}
-</style>
-
 </html>
-
-
-<style id="mobile-sticky-final-v2">
-@media (max-width:850px){
-  /* When scrolling: keep only a compact Menu control in the mini header. */
-  .topbar.mobile-scrolled{
-    height:44px !important;
-    min-height:44px !important;
-    padding:0 !important;
-    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
-    z-index:5000 !important;
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    height:44px !important;
-    min-height:44px !important;
-    padding:0 !important;
-    display:block !important;
-    position:relative !important;
-  }
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{
-    display:none !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important;
-    position:absolute !important;
-    left:50% !important;
-    right:auto !important;
-    top:6px !important;
-    transform:translateX(-50%) !important;
-    width:104px !important;
-    min-width:104px !important;
-    max-width:104px !important;
-    height:32px !important;
-    min-height:32px !important;
-    max-height:32px !important;
-    border-radius:14px !important;
-    background:#fff !important;
-    color:var(--dark) !important;
-    border:0 !important;
-    box-shadow:0 2px 8px rgba(0,45,85,.10) !important;
-    z-index:5002 !important;
-  }
-
-  /* Progress bar becomes the second, compact row below the Menu button. */
-  .mobile-progress{
-    position:fixed !important;
-    top:44px !important;
-    left:0 !important;
-    right:0 !important;
-    height:30px !important;
-    margin:0 !important;
-    padding:0 14px !important;
-    box-sizing:border-box !important;
-    display:none !important;
-    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
-    z-index:4999 !important;
-    box-shadow:0 4px 10px rgba(0,70,110,.12) !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{display:block !important;}
-  .mobile-progress-inner{height:30px !important;display:flex !important;align-items:center !important;padding:0 !important;}
-  .progress-copy{width:100% !important;}
-  .progress-top{display:flex !important;align-items:center !important;justify-content:space-between !important;margin:0 0 3px !important;color:#fff !important;font-size:9px !important;font-weight:800 !important;line-height:1 !important;}
-  .progress-line{height:4px !important;margin:0 !important;background:rgba(255,255,255,.28) !important;border-radius:99px !important;overflow:hidden !important;}
-  .progress-fill{height:100% !important;background:#fff !important;border-radius:99px !important;}
-
-  /* On the initial hero: move Menu higher, keep Norsk at top-right. */
-  .topbar:not(.mobile-scrolled) .lang-wrap{top:7px !important;right:10px !important;}
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:42px !important;right:10px !important;}
-}
-@media (max-width:560px){
-  .topbar.mobile-scrolled .mobile-menu-btn{width:100px !important;min-width:100px !important;height:30px !important;min-height:30px !important;max-height:30px !important;top:7px !important;}
-  .mobile-progress{height:28px !important;top:44px !important;padding:0 12px !important;}
-  .mobile-progress-inner{height:28px !important;}
-  .progress-top{font-size:8.5px !important;margin-bottom:2px !important;}
-  .progress-line{height:3px !important;}
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:39px !important;}
-}
-</style>
-
-<style id="mobile-ui-final-2026-09-09">
-@media (max-width:850px){
-  /* Keep the same fading blue background across the whole sticky mobile header. */
-  .topbar.mobile-scrolled,
-  .topbar.mobile-scrolled .topbar-inner,
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    box-shadow:none !important;
-    border:0 !important;
-  }
-
-  /* Initial mobile controls: globe-only language button and Menu at the same height. */
-  .topbar:not(.mobile-scrolled) .lang-wrap{
-    top:18px !important;
-    right:10px !important;
-    width:40px !important;
-    min-width:40px !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn{
-    width:40px !important;
-    min-width:40px !important;
-    max-width:40px !important;
-    height:32px !important;
-    min-height:32px !important;
-    max-height:32px !important;
-    padding:0 !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn>span:first-child{
-    width:100% !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    margin:0 !important;
-    transform:none !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-btn .globe{
-    font-size:18px !important;
-    line-height:1 !important;
-    margin:0 !important;
-  }
-
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
-    top:18px !important;
-    right:58px !important;
-    width:100px !important;
-    min-width:100px !important;
-    max-width:100px !important;
-    height:32px !important;
-    min-height:32px !important;
-    max-height:32px !important;
-    padding:0 15px !important;
-    justify-content:flex-start !important;
-    gap:8px !important;
-  }
-
-  /* Clean three-line hamburger, aligned slightly left inside the button. */
-  .topbar .mobile-menu-btn .hamb{
-    position:relative !important;
-    display:inline-block !important;
-    width:18px !important;
-    height:14px !important;
-    flex:0 0 18px !important;
-    margin:0 !important;
-    padding:0 !important;
-    font-size:0 !important;
-    line-height:0 !important;
-    transform:translateX(-2px) !important;
-    background:linear-gradient(var(--blue),var(--blue)) top/18px 2px no-repeat,
-               linear-gradient(var(--blue),var(--blue)) center/18px 2px no-repeat,
-               linear-gradient(var(--blue),var(--blue)) bottom/18px 2px no-repeat !important;
-  }
-  .topbar .mobile-menu-btn span:last-child{
-    font-size:12px !important;
-    line-height:1 !important;
-    margin:0 !important;
-  }
-
-  /* Make the mini header a smooth downward reveal and keep it one continuous blue block. */
-  .topbar.mobile-scrolled{
-    animation:miniHeaderDropFinal .34s cubic-bezier(.22,.7,.25,1) both !important;
-  }
-  @keyframes miniHeaderDropFinal{
-    from{transform:translateY(-100%);opacity:.15}
-    to{transform:translateY(0);opacity:1}
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    animation:miniProgressDropFinal .34s cubic-bezier(.22,.7,.25,1) .04s both !important;
-  }
-  @keyframes miniProgressDropFinal{
-    from{transform:translateY(-18px);opacity:.1}
-    to{transform:translateY(0);opacity:1}
-  }
-
-  /* Progress row: blue underneath the line, with a slightly thicker bar. */
-  .mobile-progress{
-    background:linear-gradient(135deg,#0780cf,#0aaee7) !important;
-  }
-  .progress-line{height:5px !important;background:rgba(255,255,255,.28) !important;}
-
-  /* Smaller Telenor marks on the phone. */
-  .hero-brand-logo{width:34px !important;}
-  .risk-brand-logo,.final-brand-logo{width:32px !important;}
-
-  /* Footer: original logo treatment, smaller and slightly left. */
-  .footer-logo{
-    width:42px !important;
-    height:32px !important;
-    left:10px !important;
-    object-fit:contain !important;
-    filter:brightness(0) invert(1) !important;
-  }
-}
-@media(max-width:560px){
-  .topbar:not(.mobile-scrolled) .lang-wrap{top:14px !important;right:9px !important;}
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{top:14px !important;right:57px !important;}
-  .topbar:not(.mobile-scrolled) .lang-btn{width:38px !important;min-width:38px !important;height:30px !important;min-height:30px !important;}
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{width:96px !important;min-width:96px !important;height:30px !important;min-height:30px !important;}
-  .topbar .mobile-menu-btn .hamb{width:17px !important;height:13px !important;background-size:17px 2px,17px 2px,17px 2px !important;}
-  .hero-brand-logo{width:32px !important;}
-  .risk-brand-logo,.final-brand-logo{width:30px !important;}
-  .footer-logo{width:38px !important;height:30px !important;left:8px !important;}
-}
-</style>
-
-<style id="mobile-single-blue-progress-final">
-@media (max-width:850px){
-  /* One continuous blue header: identical gradient on both rows, with blue below the progress line. */
-  .topbar.mobile-scrolled,
-  .topbar.mobile-scrolled .topbar-inner,
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    background-color:#0780cf !important;
-    border:0 !important;
-    box-shadow:none !important;
-  }
-  .topbar.mobile-scrolled{
-    height:58px !important;
-    min-height:58px !important;
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    height:58px !important;
-    min-height:58px !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    top:10px !important;
-    height:36px !important;
-    min-height:36px !important;
-    max-height:36px !important;
-    width:120px !important;
-    min-width:120px !important;
-    max-width:120px !important;
-    border-radius:16px !important;
-  }
-  .mobile-progress{
-    top:58px !important;
-    height:48px !important;
-    min-height:48px !important;
-    padding:7px 13px 10px !important;
-    box-sizing:border-box !important;
-    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    background-color:#0780cf !important;
-    border:0 !important;
-    box-shadow:none !important;
-  }
-  .mobile-progress-inner{height:100% !important;}
-  .progress-top{margin-bottom:5px !important;font-size:10px !important;}
-  .progress-line{
-    height:5px !important;
-    background:rgba(255,255,255,.30) !important;
-    border-radius:999px !important;
-  }
-  .progress-fill{height:100% !important;background:#fff !important;border-radius:999px !important;}
-}
-@media(max-width:560px){
-  .topbar.mobile-scrolled{height:58px !important;min-height:58px !important;}
-  .topbar.mobile-scrolled .topbar-inner{height:58px !important;min-height:58px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{top:10px !important;width:116px !important;min-width:116px !important;max-width:116px !important;height:36px !important;min-height:36px !important;}
-  .mobile-progress{top:58px !important;height:48px !important;min-height:48px !important;padding:7px 12px 10px !important;}
-  .progress-top{font-size:10px !important;margin-bottom:5px !important;}
-  .progress-line{height:5px !important;}
-}
-</style>
-
-<style id="mobile-mini-header-real-fix">
-@media (max-width:850px){
-  /* The mobile header is invisible over the hero until the user actually scrolls. */
-  .topbar{
-    position:absolute !important;
-    top:0 !important;
-    left:0 !important;
-    right:0 !important;
-    height:0 !important;
-    min-height:0 !important;
-    background:transparent !important;
-    border:0 !important;
-    box-shadow:none !important;
-    backdrop-filter:none !important;
-    z-index:6000 !important;
-  }
-  .topbar-inner{
-    height:0 !important;
-    min-height:0 !important;
-    padding:0 !important;
-    margin:0 !important;
-    width:100% !important;
-    max-width:none !important;
-  }
-
-  /* Initial hero controls remain where they are, but do not create a top bar. */
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
-    position:absolute !important;
-    top:14px !important;
-    right:57px !important;
-    width:96px !important;
-    height:30px !important;
-    min-height:30px !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-wrap{
-    position:absolute !important;
-    top:14px !important;
-    right:9px !important;
-  }
-
-  /* REAL MINI HEADER: one 58px blue row with Menu only. */
-  .topbar.mobile-scrolled{
-    position:fixed !important;
-    top:0 !important;
-    left:0 !important;
-    right:0 !important;
-    height:58px !important;
-    min-height:58px !important;
-    transform:translateY(-100%) !important;
-    animation:mobileMiniDrop .38s cubic-bezier(.22,.7,.25,1) forwards !important;
-    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    background-size:100% 106px !important;
-    background-position:0 0 !important;
-    background-repeat:no-repeat !important;
-    border:0 !important;
-    box-shadow:none !important;
-    backdrop-filter:none !important;
-    overflow:visible !important;
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    height:58px !important;
-    min-height:58px !important;
-    padding:0 !important;
-    background:transparent !important;
-  }
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{
-    display:none !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important;
-    position:absolute !important;
-    left:50% !important;
-    right:auto !important;
-    top:9px !important;
-    transform:translateX(-50%) !important;
-    width:126px !important;
-    min-width:126px !important;
-    max-width:126px !important;
-    height:40px !important;
-    min-height:40px !important;
-    max-height:40px !important;
-    padding:0 !important;
-    justify-content:center !important;
-    align-items:center !important;
-    gap:9px !important;
-    border:0 !important;
-    border-radius:17px !important;
-    background:#fff !important;
-    color:var(--dark) !important;
-    box-shadow:0 2px 8px rgba(0,45,85,.12) !important;
-  }
-
-  @keyframes mobileMiniDrop{
-    from{transform:translateY(-100%);opacity:.2}
-    to{transform:translateY(0);opacity:1}
-  }
-
-  /* Progress is the second half of the SAME visual header, not another rectangle. */
-  .mobile-progress{
-    position:fixed !important;
-    top:58px !important;
-    left:0 !important;
-    right:0 !important;
-    height:48px !important;
-    min-height:48px !important;
-    margin:0 !important;
-    padding:7px 14px 10px !important;
-    box-sizing:border-box !important;
-    background-image:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    background-size:100% 106px !important;
-    background-position:0 -58px !important;
-    background-repeat:no-repeat !important;
-    border:0 !important;
-    box-shadow:none !important;
-    z-index:5999 !important;
-    display:none !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    display:block !important;
-    animation:mobileProgressDrop .38s cubic-bezier(.22,.7,.25,1) .03s forwards !important;
-  }
-  @keyframes mobileProgressDrop{
-    from{transform:translateY(-10px);opacity:.2}
-    to{transform:translateY(0);opacity:1}
-  }
-  .mobile-progress-inner{
-    height:100% !important;
-    padding:0 !important;
-    display:flex !important;
-    align-items:center !important;
-  }
-  .progress-copy{width:100% !important;}
-  .progress-top{
-    display:flex !important;
-    justify-content:space-between !important;
-    align-items:center !important;
-    margin:0 0 5px !important;
-    color:#fff !important;
-    font-size:10px !important;
-    font-weight:800 !important;
-    line-height:1 !important;
-  }
-  .progress-line{
-    width:100% !important;
-    height:5px !important;
-    margin:0 !important;
-    background:rgba(255,255,255,.32) !important;
-    border-radius:999px !important;
-    overflow:hidden !important;
-  }
-  .progress-fill{height:100% !important;background:#fff !important;border-radius:999px !important;}
-
-  /* Clean hamburger: three identical strokes, centered as one icon. */
-  .topbar .mobile-menu-btn .hamb{
-    display:block !important;
-    position:relative !important;
-    width:18px !important;
-    height:14px !important;
-    flex:0 0 18px !important;
-    margin:0 !important;
-    padding:0 !important;
-    font-size:0 !important;
-    line-height:0 !important;
-    transform:none !important;
-    background:linear-gradient(var(--blue),var(--blue)) 0 0/18px 2px no-repeat,
-               linear-gradient(var(--blue),var(--blue)) 0 6px/18px 2px no-repeat,
-               linear-gradient(var(--blue),var(--blue)) 0 12px/18px 2px no-repeat !important;
-  }
-  .topbar .mobile-menu-btn span:last-child{
-    margin:0 !important;
-    line-height:1 !important;
-    font-size:14px !important;
-    font-weight:800 !important;
-  }
-}
-@media(max-width:560px){
-  .topbar.mobile-scrolled .mobile-menu-btn{width:122px !important;min-width:122px !important;height:39px !important;min-height:39px !important;top:9px !important;}
-  .mobile-progress{top:58px !important;height:48px !important;min-height:48px !important;padding:7px 12px 10px !important;background-size:100% 106px !important;background-position:0 -58px !important;}
-  .progress-top{font-size:9.5px !important;margin-bottom:5px !important;}
-}
-</style>
-
-<style id="mobile-mini-menu-final-final">
-@media (max-width:850px){
-  /* The sticky mobile header is one continuous blue block: Menu on top, progress directly below. */
-  .topbar.mobile-scrolled{
-    display:block !important;
-    position:fixed !important;
-    top:0 !important;
-    left:0 !important;
-    right:0 !important;
-    width:100% !important;
-    height:62px !important;
-    min-height:62px !important;
-    margin:0 !important;
-    padding:0 !important;
-    overflow:visible !important;
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    border:0 !important;
-    box-shadow:none !important;
-    z-index:7000 !important;
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    display:block !important;
-    position:relative !important;
-    width:100% !important;
-    height:62px !important;
-    min-height:62px !important;
-    padding:0 !important;
-    margin:0 !important;
-    background:transparent !important;
-  }
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{display:none !important;}
-
-  /* Force the Menu button to actually be visible in the mini header. */
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important;
-    visibility:visible !important;
-    opacity:1 !important;
-    position:absolute !important;
-    left:50% !important;
-    right:auto !important;
-    top:10px !important;
-    transform:translateX(-50%) !important;
-    width:126px !important;
-    min-width:126px !important;
-    max-width:126px !important;
-    height:40px !important;
-    min-height:40px !important;
-    max-height:40px !important;
-    margin:0 !important;
-    padding:0 16px !important;
-    box-sizing:border-box !important;
-    align-items:center !important;
-    justify-content:center !important;
-    gap:9px !important;
-    border:0 !important;
-    border-radius:17px !important;
-    background:#fff !important;
-    color:var(--dark) !important;
-    box-shadow:0 2px 8px rgba(0,45,85,.12) !important;
-    z-index:7002 !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn .hamb{
-    display:block !important;
-    width:18px !important;
-    height:14px !important;
-    flex:0 0 18px !important;
-    margin:0 !important;
-    transform:translateX(-2px) !important;
-  }
-
-  /* Progress is immediately attached to the Menu row, with exactly the same gradient. */
-  .mobile-progress,
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    position:fixed !important;
-    top:62px !important;
-    left:0 !important;
-    right:0 !important;
-    width:100% !important;
-    height:54px !important;
-    min-height:54px !important;
-    margin:0 !important;
-    padding:8px 14px 10px !important;
-    box-sizing:border-box !important;
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    border:0 !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    z-index:6999 !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{display:block !important;}
-  .mobile-progress-inner{height:100% !important;display:flex !important;align-items:center !important;}
-  .progress-copy{width:100% !important;}
-  .progress-top{font-size:11px !important;margin:0 0 6px !important;color:#fff !important;}
-  .progress-line{height:6px !important;width:100% !important;margin:0 !important;background:rgba(255,255,255,.32) !important;border-radius:999px !important;}
-  .progress-fill{height:100% !important;background:#fff !important;border-radius:999px !important;}
-
-  /* Initial hero Menu: slightly lower, with natural breathing room from the top. */
-  .topbar:not(.mobile-scrolled) .mobile-menu-btn{
-    top:38px !important;
-  }
-  .topbar:not(.mobile-scrolled) .lang-wrap{
-    top:38px !important;
-  }
-}
-@media(max-width:560px){
-  .topbar.mobile-scrolled{height:62px !important;min-height:62px !important;}
-  .topbar.mobile-scrolled .topbar-inner{height:62px !important;min-height:62px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{top:10px !important;width:126px !important;min-width:126px !important;height:40px !important;min-height:40px !important;}
-  .mobile-progress{top:62px !important;height:54px !important;min-height:54px !important;padding:8px 13px 10px !important;}
-  .progress-top{font-size:11px !important;margin-bottom:6px !important;}
-  .progress-line{height:6px !important;}
-}
-</style>
-
-<style id="mobile-mini-rebuild-final-2026">
-/* FINAL MOBILE MINI HEADER — rebuilt as one continuous blue surface */
-@media (max-width:850px){
-  .topbar.mobile-scrolled{
-    position:fixed !important;
-    top:0 !important; left:0 !important; right:0 !important;
-    width:100% !important;
-    height:112px !important;
-    min-height:112px !important;
-    margin:0 !important;
-    padding:0 !important;
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    border:0 !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    overflow:visible !important;
-    z-index:9000 !important;
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    position:relative !important;
-    display:block !important;
-    width:100% !important;
-    height:112px !important;
-    min-height:112px !important;
-    padding:0 !important;
-    margin:0 !important;
-    background:transparent !important;
-  }
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{
-    display:none !important;
-    visibility:hidden !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important;
-    visibility:visible !important;
-    opacity:1 !important;
-    position:absolute !important;
-    left:50% !important;
-    right:auto !important;
-    top:10px !important;
-    transform:translateX(-50%) !important;
-    width:126px !important;
-    min-width:126px !important;
-    max-width:126px !important;
-    height:40px !important;
-    min-height:40px !important;
-    max-height:40px !important;
-    margin:0 !important;
-    padding:0 !important;
-    border:0 !important;
-    border-radius:17px !important;
-    background:#fff !important;
-    color:#0b1d46 !important;
-    box-shadow:0 2px 7px rgba(0,45,85,.13) !important;
-    align-items:center !important;
-    justify-content:center !important;
-    gap:9px !important;
-    z-index:9002 !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn .hamb{
-    display:block !important;
-    position:relative !important;
-    width:18px !important;
-    height:14px !important;
-    flex:0 0 18px !important;
-    margin:0 !important;
-    padding:0 !important;
-    font-size:0 !important;
-    line-height:0 !important;
-    transform:none !important;
-    color:#111 !important;
-    background:linear-gradient(#111,#111) 0 0/18px 2px no-repeat,
-               linear-gradient(#111,#111) 0 6px/18px 2px no-repeat,
-               linear-gradient(#111,#111) 0 12px/18px 2px no-repeat !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{
-    color:#0b1d46 !important;
-    font-size:14px !important;
-    font-weight:800 !important;
-    line-height:1 !important;
-    margin:0 !important;
-  }
-  /* Progress is the second half of the exact same blue surface. */
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    display:block !important;
-    position:fixed !important;
-    top:50px !important;
-    left:0 !important;
-    right:0 !important;
-    width:100% !important;
-    height:62px !important;
-    min-height:62px !important;
-    margin:0 !important;
-    padding:12px 14px 13px !important;
-    box-sizing:border-box !important;
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    border:0 !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    z-index:9001 !important;
-    animation:miniHeaderDrop .30s cubic-bezier(.22,.7,.25,1) both !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .mobile-progress-inner{
-    width:100% !important;
-    height:100% !important;
-    display:flex !important;
-    align-items:center !important;
-    padding:0 !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-copy{
-    width:100% !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-top{
-    display:flex !important;
-    justify-content:space-between !important;
-    align-items:center !important;
-    width:100% !important;
-    margin:0 0 7px !important;
-    color:#fff !important;
-    font-size:11px !important;
-    font-weight:850 !important;
-    line-height:1 !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-line{
-    width:100% !important;
-    height:6px !important;
-    margin:0 !important;
-    background:rgba(255,255,255,.30) !important;
-    border-radius:999px !important;
-    overflow:hidden !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-fill{
-    height:100% !important;
-    background:#fff !important;
-    border-radius:999px !important;
-  }
-  @keyframes miniHeaderDrop{
-    from{transform:translateY(-8px);opacity:.45}
-    to{transform:translateY(0);opacity:1}
-  }
-}
-@media (max-width:560px){
-  .topbar.mobile-scrolled{height:112px !important;min-height:112px !important;}
-  .topbar.mobile-scrolled .topbar-inner{height:112px !important;min-height:112px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    top:9px !important;
-    width:124px !important;
-    min-width:124px !important;
-    max-width:124px !important;
-    height:40px !important;
-    min-height:40px !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    top:50px !important;
-    height:62px !important;
-    min-height:62px !important;
-    padding:12px 12px 13px !important;
-  }
-}
-</style>
-
-<style id="mobile-mini-one-piece-final">
-/* One-piece mobile sticky mini header: the header itself is the blue surface.
-   The progress area is transparent and therefore cannot create a second blue rectangle. */
-@media (max-width:850px){
-  .topbar.mobile-scrolled{
-    position:fixed !important;
-    top:0 !important; left:0 !important; right:0 !important;
-    width:100% !important;
-    height:112px !important;
-    min-height:112px !important;
-    padding:0 !important;
-    margin:0 !important;
-    overflow:hidden !important;
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    z-index:10000 !important;
-    animation:miniHeaderSlideDown .34s cubic-bezier(.22,.72,.24,1) both !important;
-  }
-
-  .topbar.mobile-scrolled .topbar-inner{
-    position:relative !important;
-    width:100% !important;
-    height:112px !important;
-    min-height:112px !important;
-    padding:0 !important;
-    margin:0 !important;
-    background:transparent !important;
-  }
-
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{
-    display:none !important;
-  }
-
-  /* Menu is part of the same topbar surface, not a separate mini-header. */
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important;
-    position:absolute !important;
-    left:50% !important;
-    top:13px !important;
-    right:auto !important;
-    transform:translateX(-50%) !important;
-    width:124px !important;
-    min-width:124px !important;
-    max-width:124px !important;
-    height:40px !important;
-    min-height:40px !important;
-    max-height:40px !important;
-    margin:0 !important;
-    padding:0 !important;
-    align-items:center !important;
-    justify-content:center !important;
-    gap:9px !important;
-    border:0 !important;
-    border-radius:17px !important;
-    background:#fff !important;
-    color:#0b1d46 !important;
-    box-shadow:0 2px 8px rgba(0,45,85,.13) !important;
-    z-index:10002 !important;
-  }
-
-  .topbar.mobile-scrolled .mobile-menu-btn .hamb{
-    display:block !important;
-    width:18px !important;
-    height:14px !important;
-    flex:0 0 18px !important;
-    margin:0 !important;
-    padding:0 !important;
-    font-size:0 !important;
-    line-height:0 !important;
-    transform:translateX(-2px) !important;
-    background:linear-gradient(#111,#111) 0 0/18px 2px no-repeat,
-               linear-gradient(#111,#111) 0 6px/18px 2px no-repeat,
-               linear-gradient(#111,#111) 0 12px/18px 2px no-repeat !important;
-  }
-
-  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{
-    color:#0b1d46 !important;
-    font-size:14px !important;
-    font-weight:800 !important;
-    line-height:1 !important;
-    margin:0 !important;
-  }
-
-  /* Progress occupies the lower part of the exact same blue box. */
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    display:block !important;
-    position:fixed !important;
-    top:53px !important;
-    left:0 !important;
-    right:0 !important;
-    width:100% !important;
-    height:59px !important;
-    min-height:59px !important;
-    margin:0 !important;
-    padding:10px 13px 11px !important;
-    box-sizing:border-box !important;
-    background:transparent !important;
-    border:0 !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    z-index:10001 !important;
-    animation:miniHeaderProgressDrop .34s cubic-bezier(.22,.72,.24,1) both !important;
-  }
-
-  .topbar.mobile-scrolled ~ .mobile-progress .mobile-progress-inner{
-    width:100% !important;
-    height:100% !important;
-    display:flex !important;
-    align-items:center !important;
-    padding:0 !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-copy{width:100% !important;}
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-top{
-    display:flex !important;
-    justify-content:space-between !important;
-    align-items:center !important;
-    width:100% !important;
-    margin:0 0 7px !important;
-    color:#fff !important;
-    font-size:11px !important;
-    font-weight:850 !important;
-    line-height:1 !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-line{
-    width:100% !important;
-    height:6px !important;
-    margin:0 !important;
-    background:rgba(255,255,255,.30) !important;
-    border-radius:999px !important;
-    overflow:hidden !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress .progress-fill{
-    height:100% !important;
-    background:#fff !important;
-    border-radius:999px !important;
-  }
-
-  @keyframes miniHeaderSlideDown{
-    from{transform:translateY(-112px)}
-    to{transform:translateY(0)}
-  }
-  @keyframes miniHeaderProgressDrop{
-    from{transform:translateY(-112px);opacity:.7}
-    to{transform:translateY(0);opacity:1}
-  }
-}
-
-@media (max-width:560px){
-  .topbar.mobile-scrolled,
-  .topbar.mobile-scrolled .topbar-inner{
-    height:112px !important;
-    min-height:112px !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    top:14px !important;
-    width:124px !important;
-    min-width:124px !important;
-    max-width:124px !important;
-    height:40px !important;
-    min-height:40px !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-progress{
-    top:54px !important;
-    height:58px !important;
-    min-height:58px !important;
-    padding:10px 12px 11px !important;
-  }
-}
-</style>
-
-<style id="mobile-mini-true-one-piece">
-/* FINAL: the sticky mobile mini header is ONE element. Menu + progress live inside .topbar. */
-@media (max-width:850px){
-  .topbar.mobile-scrolled{
-    position:fixed !important;
-    top:0 !important; left:0 !important; right:0 !important;
-    width:100% !important;
-    height:112px !important; min-height:112px !important;
-    margin:0 !important; padding:0 !important;
-    display:block !important; visibility:visible !important; opacity:1 !important;
-    overflow:hidden !important;
-    background:linear-gradient(135deg,#0780cf 0%,#0aaee7 100%) !important;
-    border:0 !important; border-radius:0 !important; box-shadow:none !important;
-    z-index:20000 !important;
-    animation:mobileMiniDrop .34s cubic-bezier(.22,.72,.24,1) both !important;
-  }
-  .topbar.mobile-scrolled .topbar-inner{
-    position:relative !important; display:block !important;
-    width:100% !important; height:112px !important; min-height:112px !important;
-    padding:0 !important; margin:0 !important; background:transparent !important;
-  }
-  .topbar.mobile-scrolled .brand,
-  .topbar.mobile-scrolled .lang-wrap,
-  .topbar.mobile-scrolled .top-guide-progress{display:none !important;}
-
-  .topbar.mobile-scrolled .mobile-menu-btn{
-    display:flex !important; visibility:visible !important; opacity:1 !important;
-    position:absolute !important; left:50% !important; right:auto !important; top:10px !important;
-    transform:translateX(-50%) !important;
-    width:124px !important; min-width:124px !important; max-width:124px !important;
-    height:40px !important; min-height:40px !important; max-height:40px !important;
-    margin:0 !important; padding:0 !important;
-    align-items:center !important; justify-content:center !important; gap:8px !important;
-    border:0 !important; border-radius:16px !important; background:#fff !important;
-    color:#0b1d46 !important; box-shadow:0 2px 8px rgba(0,45,85,.14) !important;
-    z-index:20003 !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn .hamb{
-    display:block !important; width:18px !important; height:14px !important;
-    flex:0 0 18px !important; margin:0 !important; padding:0 !important;
-    font-size:0 !important; line-height:0 !important; transform:translateX(-2px) !important;
-    background:linear-gradient(#111,#111) 0 0/18px 2px no-repeat,
-               linear-gradient(#111,#111) 0 6px/18px 2px no-repeat,
-               linear-gradient(#111,#111) 0 12px/18px 2px no-repeat !important;
-  }
-  .topbar.mobile-scrolled .mobile-menu-btn span:last-child{
-    color:#0b1d46 !important; font-size:14px !important; font-weight:800 !important;
-    line-height:1 !important; margin:0 !important;
-  }
-
-  /* Progress is physically inside the same topbar: no second element, no second rectangle. */
-  .topbar.mobile-scrolled .mobile-progress{
-    display:block !important; position:absolute !important;
-    left:0 !important; right:0 !important; bottom:0 !important; top:auto !important;
-    width:100% !important; height:58px !important; min-height:58px !important;
-    margin:0 !important; padding:9px 13px 11px !important; box-sizing:border-box !important;
-    background:transparent !important; border:0 !important; border-radius:0 !important;
-    box-shadow:none !important; z-index:20002 !important;
-  }
-  .topbar.mobile-scrolled .mobile-progress-inner{
-    width:100% !important; height:100% !important; display:flex !important;
-    align-items:center !important; padding:0 !important;
-  }
-  .topbar.mobile-scrolled .progress-copy{width:100% !important;}
-  .topbar.mobile-scrolled .progress-top{
-    display:flex !important; justify-content:space-between !important; align-items:center !important;
-    width:100% !important; margin:0 0 7px !important; color:#fff !important;
-    font-size:11px !important; font-weight:850 !important; line-height:1 !important;
-  }
-  .topbar.mobile-scrolled .progress-line{
-    display:block !important; width:100% !important; height:6px !important; margin:0 !important;
-    background:rgba(255,255,255,.30) !important; border-radius:999px !important; overflow:hidden !important;
-  }
-  .topbar.mobile-scrolled .progress-fill{
-    display:block !important; height:100% !important; background:#fff !important; border-radius:999px !important;
-  }
-  @keyframes mobileMiniDrop{
-    from{transform:translateY(-100%);}
-    to{transform:translateY(0);}
-  }
-}
-@media(max-width:560px){
-  .topbar.mobile-scrolled{height:112px !important;min-height:112px !important;}
-  .topbar.mobile-scrolled .topbar-inner{height:112px !important;min-height:112px !important;}
-  .topbar.mobile-scrolled .mobile-menu-btn{top:9px !important;width:124px !important;min-width:124px !important;height:40px !important;min-height:40px !important;}
-  .topbar.mobile-scrolled .mobile-progress{height:58px !important;min-height:58px !important;padding:9px 12px 11px !important;}
-}
-</style>
-
-<style id="telenor-logo-original-fix">
-/* Use the supplied original cyan Telenor logo everywhere — never turn it white with CSS filters. */
-.brand img,
-.hero-brand-logo,
-.risk-brand-logo,
-.final-brand-logo,
-.footer-logo {
-  filter: none !important;
-  opacity: 1 !important;
-  mix-blend-mode: normal !important;
-}
-</style>
-
-<style id="mobile-menu-final-position-and-contact-20260909">
-@media (max-width:850px){
-  /* Open mobile menu: bring the white menu panel higher, while keeping it centered. */
-  .mobile-menu{
-    top:58px !important;
-    left:50% !important;
-    right:auto !important;
-    transform:translateX(-50%) !important;
-    width:min(300px,calc(100vw - 28px)) !important;
-    max-width:calc(100vw - 28px) !important;
-  }
-  .topbar.mobile-scrolled ~ .mobile-menu{top:96px !important;}
-  .topbar.mobile-scrolled + .mobile-menu{top:96px !important;}
-
-  /* Put the seller's name immediately below the contact heading with natural spacing. */
-  .bottom-contact-info{display:flex !important;flex-direction:column !important;}
-  .bottom-contact-title{margin:0 0 10px !important;}
-  .bottom-contact-name{order:2 !important;margin:0 0 11px !important;font-size:13px !important;line-height:1.3 !important;font-weight:600 !important;}
-  .bottom-contact-phone{order:3 !important;margin:0 !important;}
-
-  /* Same clean order inside the opened mobile menu. */
-  .mobile-contact-label{margin:0 0 10px !important;}
-  .mobile-contact-row-text{gap:5px !important;}
-  .mobile-contact-row-text strong{margin:0 !important;font-size:13px !important;font-weight:600 !important;}
-}
-@media (max-width:560px){
-  .mobile-menu{top:56px !important;width:min(292px,calc(100vw - 24px)) !important;max-width:calc(100vw - 24px) !important;}
-  .topbar.mobile-scrolled ~ .mobile-menu,.topbar.mobile-scrolled + .mobile-menu{top:94px !important;}
-  .bottom-contact-title{margin-bottom:10px !important;}
-  .bottom-contact-name{font-size:12.5px !important;margin-bottom:10px !important;}
-}
-</style>
