@@ -2141,29 +2141,26 @@ html,body{overflow-anchor:none !important;}
 </style>
 <script id="absolute-refresh-top-lock-20260910">
 (function(){
-  // On a normal refresh, do not let the browser restore the old lesson position.
-  // Keep the top lock active briefly because some browsers restore scroll after load.
   if(location.hash) return;
   try{history.scrollRestoration='manual';}catch(e){}
-  var start=Date.now();
+  try{document.documentElement.style.scrollBehavior='auto';}catch(e){}
+
+  // Browsers can restore the old scroll position after the document starts
+  // rendering. Keep a hard top lock through that phase.
+  var until=Date.now()+5000;
   function top(){
     if(location.hash) return;
-    window.scrollTo(0,0);
+    try{window.scrollTo({top:0,left:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
     document.documentElement.scrollTop=0;
     document.body.scrollTop=0;
   }
   top();
   var timer=setInterval(function(){
     top();
-    if(Date.now()-start>1800) clearInterval(timer);
-  },50);
-  window.addEventListener('pageshow',function(){
-    if(!location.hash){
-      top();
-      setTimeout(top,50);
-      setTimeout(top,200);
-      setTimeout(top,600);
-    }
+    if(Date.now()>until) clearInterval(timer);
+  },25);
+  ['DOMContentLoaded','load','pageshow'].forEach(function(ev){
+    window.addEventListener(ev,function(){ if(!location.hash){ top(); setTimeout(top,10); setTimeout(top,100); setTimeout(top,500); } },{passive:true});
   });
 })();
 </script>
@@ -5781,42 +5778,14 @@ html{
 </style>
 
 <script id="final-refresh-scroll-top-fix">
-(function(){
-  if('scrollRestoration' in history){
-    history.scrollRestoration='manual';
-  }
-
-  function forceTopOnFreshLoad(){
-    if(location.hash) return;
-    window.scrollTo(0,0);
-    document.documentElement.scrollTop=0;
-    document.body.scrollTop=0;
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', forceTopOnFreshLoad, {once:true});
-  }else{
-    forceTopOnFreshLoad();
-  }
-
-  window.addEventListener('load', function(){
-    if(!location.hash){
-      requestAnimationFrame(function(){
-        window.scrollTo(0,0);
-        document.documentElement.scrollTop=0;
-        document.body.scrollTop=0;
-      });
-    }
-  }, {once:true});
-})();
+/* Refresh positioning is handled by absolute-refresh-top-lock-20260910 above. */
 </script>
 
 
 
 <style id="final-menu-smooth-scroll-fix">
-html{
-  scroll-behavior:smooth !important;
-}
+/* Do NOT use CSS smooth scrolling globally: it can animate the forced refresh reset. */
+html{scroll-behavior:auto !important;}
 </style>
 
 <script id="final-menu-smooth-scroll-fix-js">
