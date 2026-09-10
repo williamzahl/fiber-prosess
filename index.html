@@ -2141,20 +2141,27 @@ html,body{overflow-anchor:none !important;}
 </style>
 <script id="absolute-refresh-top-lock-20260910">
 (function(){
-  // Only lock the page at the top when there is no destination hash.
-  if(location.hash) return;
   try{history.scrollRestoration='manual';}catch(e){}
+  var nav=null;
+  try{nav=performance.getEntriesByType('navigation')[0];}catch(e){}
+  var reload=!!(nav && nav.type==='reload');
+  if(reload && /^#step-\d+$/.test(location.hash)){
+    history.replaceState(null,document.title,location.pathname+location.search);
+  }
+  if(!reload && location.hash) return;
+  var until=performance.now()+3500;
   function top(){
-    if(location.hash) return;
+    if(performance.now()>until) return;
+    if(location.hash && !reload) return;
     window.scrollTo(0,0);
     document.documentElement.scrollTop=0;
     document.body.scrollTop=0;
+    requestAnimationFrame(top);
   }
   top();
-  requestAnimationFrame(top);
-  setTimeout(top,50);
-  setTimeout(top,250);
-  setTimeout(top,800);
+  window.addEventListener('DOMContentLoaded',function(){window.scrollTo(0,0);},{once:true});
+  window.addEventListener('load',function(){window.scrollTo(0,0);},{once:true});
+  window.addEventListener('pageshow',function(e){if(e.persisted||reload) window.scrollTo(0,0);});
 })();
 </script>
 
@@ -2166,17 +2173,7 @@ html,body{overflow-anchor:none !important;}
 }
 </style>
 
-<script id="final-refresh-step-hash-guard-20260911">
-(function(){
-  try {
-    var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-    var isReload = nav && nav.type === 'reload';
-    if (isReload && /^#step-\d+$/.test(location.hash)) {
-      history.replaceState(null, document.title, location.pathname + location.search);
-    }
-  } catch(e) {}
-})();
-</script>
+
 </head>
 <body>
 
@@ -2690,15 +2687,15 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
     var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
     // On mobile keep the selected card comfortably below the fixed header.
     // This also prevents the following card from peeking in at the bottom.
-    var offset=isMobile ? Math.min(195, Math.max(185, window.innerHeight*0.115)) : 0;
+    var offset=isMobile ? Math.min(160, Math.max(145, window.innerHeight*0.09)) : 0;
     var end=target.getBoundingClientRect().top + start - offset;
     var distance=end-start;
     if(Math.abs(distance)<2){window.scrollTo(0,end);return;}
 
     // Deliberately slower than the previous version, with a soft ease-in/out.
     var duration=isMobile
-      ? Math.min(1450, Math.max(900, Math.abs(distance)*0.82))
-      : Math.min(900, Math.max(520, Math.abs(distance)*0.52));
+      ? Math.min(1050, Math.max(700, Math.abs(distance)*0.62))
+      : Math.min(800, Math.max(480, Math.abs(distance)*0.46));
     var t0=performance.now();
     function ease(t){
       return t < 0.5
@@ -2752,19 +2749,19 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 
 <style id="final-telenor-logo-size-20260911">
 /* Larger supplied Telenor logo across the index. */
-.hero-brand-logo{width:118px !important;}
-.risk-brand-logo{width:82px !important;}
-.final-brand-logo{width:94px !important;}
-.footer-logo{width:92px !important;height:auto !important;}
+.hero-brand-logo{width:155px !important;}
+.risk-brand-logo{width:105px !important;}
+.final-brand-logo{width:120px !important;}
+.footer-logo{width:120px !important;height:auto !important;}
 @media(max-width:850px){
-  .hero-brand-logo{width:104px !important;transform:translateY(-10px) !important;}
-  .risk-brand-logo{width:72px !important;}
-  .final-brand-logo{width:82px !important;}
+  .hero-brand-logo{width:145px !important;transform:translateY(-12px) !important;}
+  .risk-brand-logo{width:92px !important;}
+  .final-brand-logo{width:105px !important;}
 }
 @media(max-width:560px){
-  .hero-brand-logo{width:98px !important;transform:translateY(-10px) !important;}
-  .risk-brand-logo{width:68px !important;}
-  .final-brand-logo{width:78px !important;}
+  .hero-brand-logo{width:138px !important;transform:translateY(-12px) !important;}
+  .risk-brand-logo{width:86px !important;}
+  .final-brand-logo{width:100px !important;}
 }
 </style>
 </body>
