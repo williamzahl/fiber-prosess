@@ -2658,18 +2658,18 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 </style>
 
 <style id="final-mobile-step-spacing-and-smooth-nav-20260910">
-/* Mobile: leave a clean white breathing zone between lesson cards. */
+/* Mobile: generous white breathing room between cards and a stable nav area. */
 @media (max-width:850px){
-  .step{margin-bottom:20px !important;}
+  .step{margin-bottom:72px !important;}
   .step-nav{margin-top:20px !important;margin-bottom:20px !important;}
   .step + .step-nav{margin-top:20px !important;}
-  .step-nav + .step{margin-top:20px !important;}
+  .step-nav + .step{margin-top:72px !important;}
 }
 @media (max-width:560px){
-  .step{margin-bottom:20px !important;}
+  .step{margin-bottom:72px !important;}
   .step-nav{margin-top:20px !important;margin-bottom:20px !important;}
   .step + .step-nav{margin-top:20px !important;}
-  .step-nav + .step{margin-top:20px !important;}
+  .step-nav + .step{margin-top:72px !important;}
 }
 </style>
 <style id="final-step-nav-touch-responsive-20260911">
@@ -2678,40 +2678,47 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 </style>
 <script id="final-step-nav-smooth-20260910">
 (function(){
-  // Smooth step navigation: start immediately on touch and settle with the
-  // same generous top spacing as the finished mobile view.
   var raf=0, suppressClickUntil=0, handledPointer=0;
   function smoothTo(target){
     if(!target) return;
     if(raf) cancelAnimationFrame(raf);
-
     var start=window.pageYOffset || document.documentElement.scrollTop || 0;
     var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
-    // Keep a consistent 20px breathing space below the fixed mobile topbar.
-    // The target position is based on the actual card top, so different card
-    // heights cannot make the navigation drift or disappear after repeated taps.
     var topbar=document.querySelector('.topbar');
-    var headerH=isMobile ? (topbar ? topbar.getBoundingClientRect().height : 0) : 0;
-    var offset=isMobile ? headerH + 20 : 0;
-    var end=target.getBoundingClientRect().top + start - offset;
+    var headerH=isMobile ? (topbar ? Math.max(0, topbar.getBoundingClientRect().height) : 0) : 0;
+    var gap=isMobile ? 28 : 0;
+    var targetTop=target.getBoundingClientRect().top + start;
+    var desired=targetTop-headerH-gap;
+
+    /* On mobile, keep the current step nicely below the fixed bar, while also
+       reserving a 20px safety zone at the bottom for the next/previous buttons.
+       This makes every press land on a usable position even when card heights differ. */
+    if(isMobile){
+      var nav=target.querySelector('.step-nav');
+      if(nav){
+        var navRect=nav.getBoundingClientRect();
+        var navBottomDoc=navRect.bottom+start;
+        var viewportBottomLimit=window.innerHeight-20;
+        var minScroll=navBottomDoc-viewportBottomLimit;
+        var maxScroll=desired;
+        if(minScroll<=maxScroll) desired=minScroll;
+        else desired=maxScroll;
+      }
+    }
+    var maxY=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    var end=Math.max(0,Math.min(desired,maxY));
     var distance=end-start;
     if(Math.abs(distance)<2){window.scrollTo(0,end);return;}
-
-    // Deliberately slower than the previous version, with a soft ease-in/out.
     var duration=isMobile
-      ? Math.min(900, Math.max(560, Math.abs(distance)*0.52))
-      : Math.min(800, Math.max(480, Math.abs(distance)*0.46));
+      ? Math.min(720, Math.max(420, Math.abs(distance)*0.38))
+      : Math.min(760, Math.max(440, Math.abs(distance)*0.44));
     var t0=performance.now();
-    function ease(t){
-      return t < 0.5
-        ? 4*t*t*t
-        : 1-Math.pow(-2*t+2,3)/2;
-    }
+    function ease(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
     function frame(now){
       var t=Math.min(1,(now-t0)/duration);
       window.scrollTo(0,start+distance*ease(t));
       if(t<1) raf=requestAnimationFrame(frame);
-      else {raf=0; window.scrollTo(0,end); if(typeof updateProgress==='function') updateProgress();}
+      else {raf=0;window.scrollTo(0,end);if(typeof updateProgress==='function')updateProgress();}
     }
     raf=requestAnimationFrame(frame);
   }
@@ -2721,40 +2728,35 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
     var target=document.querySelector(href);
     if(!target) return false;
     if(e){e.preventDefault();e.stopPropagation();}
-    suppressClickUntil=performance.now()+900;
+    suppressClickUntil=performance.now()+800;
     smoothTo(target);
-    // Do not leave a step hash behind that can be restored on refresh.
     history.replaceState(null,document.title,location.pathname+location.search);
     return true;
   }
   document.addEventListener('pointerdown',function(e){
-    var a=e.target.closest && e.target.closest('.step-nav-btn');
-    if(!a) return;
-    if(e.pointerType==='mouse' && e.button!==0) return;
+    var a=e.target.closest&&e.target.closest('.step-nav-btn');
+    if(!a || (e.pointerType==='mouse'&&e.button!==0)) return;
     handledPointer=performance.now();
     go(a,e);
   },true);
   document.addEventListener('pointerup',function(e){
-    var a=e.target.closest && e.target.closest('.step-nav-btn');
+    var a=e.target.closest&&e.target.closest('.step-nav-btn');
     if(!a) return;
-    e.preventDefault(); e.stopPropagation();
-    suppressClickUntil=performance.now()+900;
+    e.preventDefault();e.stopPropagation();
+    suppressClickUntil=performance.now()+800;
   },true);
   document.addEventListener('click',function(e){
-    var a=e.target.closest && e.target.closest('.step-nav-btn');
+    var a=e.target.closest&&e.target.closest('.step-nav-btn');
     if(!a) return;
-    if(performance.now()<suppressClickUntil || performance.now()-handledPointer<1000){
-      e.preventDefault(); e.stopPropagation(); return;
-    }
+    if(performance.now()<suppressClickUntil || performance.now()-handledPointer<900){e.preventDefault();e.stopPropagation();return;}
     go(a,e);
   },true);
 })();
 </script>
 <style id="final-mobile-step-nav-spacing-20260911">
 @media(max-width:850px){
-  /* Exactly 20px breathing room around each step navigation block. */
   .step + .step-nav{margin-top:20px !important;}
-  .step-nav + .step{margin-top:20px !important;}
+  .step-nav + .step{margin-top:72px !important;}
   .step-nav{margin-bottom:20px !important;}
 }
 </style>
