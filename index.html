@@ -2141,27 +2141,40 @@ html,body{overflow-anchor:none !important;}
 </style>
 <script id="absolute-refresh-top-lock-20260910">
 (function(){
+  // Only lock the page at the top when there is no destination hash.
   if(location.hash) return;
   try{history.scrollRestoration='manual';}catch(e){}
-  try{document.documentElement.style.scrollBehavior='auto';}catch(e){}
-
-  // Browsers can restore the old scroll position after the document starts
-  // rendering. Keep a hard top lock through that phase.
-  var until=Date.now()+5000;
   function top(){
     if(location.hash) return;
-    try{window.scrollTo({top:0,left:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
+    window.scrollTo(0,0);
     document.documentElement.scrollTop=0;
     document.body.scrollTop=0;
   }
   top();
-  var timer=setInterval(function(){
-    top();
-    if(Date.now()>until) clearInterval(timer);
-  },25);
-  ['DOMContentLoaded','load','pageshow'].forEach(function(ev){
-    window.addEventListener(ev,function(){ if(!location.hash){ top(); setTimeout(top,10); setTimeout(top,100); setTimeout(top,500); } },{passive:true});
-  });
+  requestAnimationFrame(top);
+  setTimeout(top,50);
+  setTimeout(top,250);
+  setTimeout(top,800);
+})();
+</script>
+
+<style id="final-step-scroll-animation-20260911">
+@media (max-width:850px){
+  /* Extra breathing room so neighboring cards don't peek into the current step. */
+  .step-nav{margin-bottom:44px !important;}
+  .step{scroll-margin-top:72px !important;}
+}
+</style>
+
+<script id="final-refresh-step-hash-guard-20260911">
+(function(){
+  try {
+    var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+    var isReload = nav && nav.type === 'reload';
+    if (isReload && /^#step-\d+$/.test(location.hash)) {
+      history.replaceState(null, document.title, location.pathname + location.search);
+    }
+  } catch(e) {}
 })();
 </script>
 </head>
@@ -2646,6 +2659,64 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
   }
 }
 </style>
+
+<style id="final-mobile-step-spacing-and-smooth-nav-20260910">
+/* Mobile: leave a clean white breathing zone between lesson cards. */
+@media (max-width:850px){
+  .step{margin-bottom:110px !important;}
+  .step-nav{margin-bottom:110px !important;}
+  .step + .step-nav{margin-top:-55px !important;}
+}
+@media (max-width:560px){
+  .step{margin-bottom:125px !important;}
+  .step-nav{margin-bottom:125px !important;}
+  .step + .step-nav{margin-top:-62px !important;}
+}
+</style>
+<script id="final-step-nav-smooth-20260910">
+(function(){
+  function install(){
+    document.querySelectorAll('.step-nav-btn').forEach(function(a){
+      if(a.dataset.smoothStepInstalled) return;
+      a.dataset.smoothStepInstalled='1';
+      a.addEventListener('click',function(e){
+        var href=a.getAttribute('href')||'';
+        if(!href.startsWith('#step-')) return;
+        var target=document.querySelector(href);
+        if(!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+        history.replaceState(null,document.title,location.pathname+location.search);
+        setTimeout(updateProgress,350);
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install,{once:true});
+  else install();
+  window.addEventListener('load',install,{once:true});
+})();
+</script>
+
+<script id="final-smooth-step-navigation-20260911">
+(function(){
+  // Step navigation: always animate, and never keep a step hash that can be
+  // restored by the browser on refresh.
+  document.addEventListener('click', function(e){
+    var a=e.target.closest && e.target.closest('.step-nav-btn');
+    if(!a) return;
+    var href=a.getAttribute('href') || '';
+    if(!/^#step-\d+$/.test(href)) return;
+    var target=document.querySelector(href);
+    if(!target) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var y=target.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+    history.replaceState(null,document.title,location.pathname+location.search);
+    if(typeof updateProgress==='function') setTimeout(updateProgress,350);
+  }, true);
+})();
+</script>
 </body>
 </html>
 
