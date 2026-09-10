@@ -2690,14 +2690,14 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
     var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
     // On mobile keep the selected card comfortably below the fixed header.
     // This also prevents the following card from peeking in at the bottom.
-    var offset=isMobile ? Math.min(175, Math.max(145, window.innerHeight*0.105)) : 0;
+    var offset=isMobile ? Math.min(195, Math.max(185, window.innerHeight*0.115)) : 0;
     var end=target.getBoundingClientRect().top + start - offset;
     var distance=end-start;
     if(Math.abs(distance)<2){window.scrollTo(0,end);return;}
 
     // Deliberately slower than the previous version, with a soft ease-in/out.
     var duration=isMobile
-      ? Math.min(1250, Math.max(760, Math.abs(distance)*0.72))
+      ? Math.min(1450, Math.max(900, Math.abs(distance)*0.82))
       : Math.min(900, Math.max(520, Math.abs(distance)*0.52));
     var t0=performance.now();
     function ease(t){
@@ -2751,6 +2751,46 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 
 
 </body>
+
+<style id="final-mobile-mini-bar-no-clip-20260911">
+@media (max-width:850px){
+  /* The compact blue bar must stay fully inside the viewport while navigating. */
+  #mobileProgress{
+    transform:translate3d(0,0,0) !important;
+    opacity:1 !important;
+    transition:none !important;
+    will-change:auto !important;
+  }
+  #mobileProgress.is-visible{
+    transform:translate3d(0,0,0) !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+}
+</style>
+<script id="final-mobile-mini-bar-no-clip-js-20260911">
+(function(){
+  var bar=document.getElementById('mobileProgress');
+  if(!bar) return;
+  function sync(){
+    if(window.innerWidth<=850 && window.scrollY>70){
+      bar.classList.add('is-visible');
+      bar.style.transform='translate3d(0,0,0)';
+      bar.style.opacity='1';
+      bar.style.visibility='visible';
+    }else if(window.innerWidth<=850){
+      bar.classList.remove('is-visible');
+      bar.style.transform='translate3d(0,-14px,0)';
+      bar.style.opacity='0';
+      bar.style.visibility='hidden';
+    }
+  }
+  window.addEventListener('scroll',sync,{passive:true});
+  window.addEventListener('resize',sync);
+  sync();
+})();
+</script>
+
 </html>
 
 
