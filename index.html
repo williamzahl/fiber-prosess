@@ -2077,6 +2077,27 @@ button{font:inherit}
 }
 </style>
 
+
+<style id="final-user-request-20260910">
+/* User-requested final mobile fixes. */
+@media (max-width:850px){
+  /* Step 8: force the title break directly after “Ferdig –”. */
+  .step#step-8 .final-title-first{display:block !important;}
+
+  /* Remove the Telenor logo from the footer on mobile and recenter the footer text. */
+  .footer-logo{display:none !important;}
+  .footer-inner{justify-content:center !important;}
+  .footer-center{max-width:100% !important;width:100% !important;}
+
+  /* Down arrow: same bottom height as the up arrow, but on the left. */
+  .side-scroll-btn.down{top:auto !important;bottom:16px !important;left:4px !important;}
+  .side-scroll-btn.up{top:auto !important;bottom:16px !important;right:4px !important;}
+}
+@media (max-width:560px){
+  .side-scroll-btn.down{bottom:10px !important;left:2px !important;}
+  .side-scroll-btn.up{bottom:10px !important;right:2px !important;}
+}
+</style>
 </head>
 <body>
 
@@ -2210,7 +2231,7 @@ function renderSteps(){
     const prev=i>0?`<a class="step-nav-btn prev" href="#step-${i}">← <span>${esc(l.previousStep)}</span></a>`:'';
     const next=i<l.steps.length-1?`<a class="step-nav-btn next" href="#step-${i+2}"><span>${esc(l.nextStep)}</span> →</a>`:'';
     const nav=(prev||next)?`<div class="step-nav">${prev}${next}</div>`:'';
-    return `<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>${nav}`;
+    return `<article class="step" id="step-${i+1}"><div class="step-inner"><div class="step-head"><div class="num">${i+1}</div><h3>${i===7 && String(s[0]).includes(' – ')?`<span class="final-title-first">${esc(String(s[0]).split(' – ')[0])} –</span> <span class="final-title-rest">${esc(String(s[0]).split(' – ').slice(1).join(' – '))}</span>`:esc(s[0])}</h3></div><p>${esc(s[1])}</p>${stepMedia(s[2])}</div></article>${nav}`;
   }).join('');
   sideLinks.innerHTML=l.steps.map((s,i)=>`<a class="side-link side-step-link" href="#step-${i+1}"><b>${i+1}</b><span>${esc(s[0])}</span></a>`).join('');
   mobileMenu.innerHTML=`<div class="mobile-section-title">${esc(l.sideTitle)}</div>`+l.steps.map((s,i)=>`<a class="mobile-step-link mobile-step-process-link" href="#step-${i+1}">${i+1}. ${esc(s[0])}</a>`).join('')+`<div class="mobile-divider"></div><div class="mobile-section-title">${esc(l.tipsTitle)}</div><a class="mobile-step-link mobile-special-link" href="#extra">💰 ${esc(l.extraTitle)}</a><a class="mobile-step-link mobile-special-link" href="#ground">🛠️ ${esc(l.groundTitle)}</a><a class="mobile-step-link mobile-guide-link" href="#guide">💡 ${esc(l.tweIntro||'T-We Introduksjon')}</a><div class="mobile-divider"></div><a class="mobile-step-link mobile-contact-link" href="#contact"><span class="mobile-contact-icon">${icons.phone}</span><span>${esc(l.contactTitle)}</span></a>`;
