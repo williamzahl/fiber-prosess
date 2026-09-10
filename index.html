@@ -5663,3 +5663,60 @@ applyText();renderLangs();renderSteps();updateFooter();updateProgress();updateAc
   }
 }
 </style>
+
+
+
+<style id="final-mobile-menu-refresh-fix">
+@media (max-width:850px){
+  /* Keep the full mobile menu visible inside the viewport. */
+  #mobileMenu,
+  .mobile-menu{
+    max-height:calc(100dvh - 72px) !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    box-sizing:border-box !important;
+  }
+  #mobileMenu.open,
+  .mobile-menu.open{
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+}
+
+/* Never restore the previous scroll position after a refresh/load. */
+html{
+  scroll-behavior:auto !important;
+}
+</style>
+
+<script id="final-refresh-scroll-top-fix">
+(function(){
+  if('scrollRestoration' in history){
+    history.scrollRestoration='manual';
+  }
+
+  function forceTopOnFreshLoad(){
+    if(location.hash) return;
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', forceTopOnFreshLoad, {once:true});
+  }else{
+    forceTopOnFreshLoad();
+  }
+
+  window.addEventListener('load', function(){
+    if(!location.hash){
+      requestAnimationFrame(function(){
+        window.scrollTo(0,0);
+        document.documentElement.scrollTop=0;
+        document.body.scrollTop=0;
+      });
+    }
+  }, {once:true});
+})();
+</script>
