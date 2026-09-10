@@ -2679,24 +2679,37 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 </style>
 <script id="final-step-nav-smooth-20260910">
 (function(){
-  // Fast, responsive step navigation. Pointer-up handles touch immediately
-  // instead of waiting for a delayed synthetic click.
-  var suppressClickUntil=0;
-  var raf=0;
+  // Smooth step navigation: start immediately on touch and settle with the
+  // same generous top spacing as the finished mobile view.
+  var raf=0, suppressClickUntil=0, handledPointer=0;
   function smoothTo(target){
     if(!target) return;
     if(raf) cancelAnimationFrame(raf);
+
     var start=window.pageYOffset || document.documentElement.scrollTop || 0;
-    var end=target.getBoundingClientRect().top + start;
+    var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
+    // On mobile keep the selected card comfortably below the fixed header.
+    // This also prevents the following card from peeking in at the bottom.
+    var offset=isMobile ? Math.min(175, Math.max(145, window.innerHeight*0.105)) : 0;
+    var end=target.getBoundingClientRect().top + start - offset;
     var distance=end-start;
-    var duration=Math.min(560,Math.max(300,Math.abs(distance)*0.42));
+    if(Math.abs(distance)<2){window.scrollTo(0,end);return;}
+
+    // Deliberately slower than the previous version, with a soft ease-in/out.
+    var duration=isMobile
+      ? Math.min(1250, Math.max(760, Math.abs(distance)*0.72))
+      : Math.min(900, Math.max(520, Math.abs(distance)*0.52));
     var t0=performance.now();
-    function ease(t){return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;}
+    function ease(t){
+      return t < 0.5
+        ? 4*t*t*t
+        : 1-Math.pow(-2*t+2,3)/2;
+    }
     function frame(now){
       var t=Math.min(1,(now-t0)/duration);
       window.scrollTo(0,start+distance*ease(t));
       if(t<1) raf=requestAnimationFrame(frame);
-      else {raf=0;if(typeof updateProgress==='function') updateProgress();}
+      else {raf=0; window.scrollTo(0,end); if(typeof updateProgress==='function') updateProgress();}
     }
     raf=requestAnimationFrame(frame);
   }
@@ -2706,19 +2719,31 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
     var target=document.querySelector(href);
     if(!target) return false;
     if(e){e.preventDefault();e.stopPropagation();}
-    suppressClickUntil=performance.now()+700;
+    suppressClickUntil=performance.now()+900;
     smoothTo(target);
+    // Do not leave a step hash behind that can be restored on refresh.
     history.replaceState(null,document.title,location.pathname+location.search);
     return true;
   }
+  document.addEventListener('pointerdown',function(e){
+    var a=e.target.closest && e.target.closest('.step-nav-btn');
+    if(!a) return;
+    if(e.pointerType==='mouse' && e.button!==0) return;
+    handledPointer=performance.now();
+    go(a,e);
+  },true);
   document.addEventListener('pointerup',function(e){
     var a=e.target.closest && e.target.closest('.step-nav-btn');
-    if(a) go(a,e);
+    if(!a) return;
+    e.preventDefault(); e.stopPropagation();
+    suppressClickUntil=performance.now()+900;
   },true);
   document.addEventListener('click',function(e){
     var a=e.target.closest && e.target.closest('.step-nav-btn');
     if(!a) return;
-    if(performance.now()<suppressClickUntil){e.preventDefault();e.stopPropagation();return;}
+    if(performance.now()<suppressClickUntil || performance.now()-handledPointer<1000){
+      e.preventDefault(); e.stopPropagation(); return;
+    }
     go(a,e);
   },true);
 })();
