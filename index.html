@@ -2135,6 +2135,38 @@ button{font:inherit}
   }
 }
 </style>
+
+<style id="absolute-refresh-top-lock-20260910">
+html,body{overflow-anchor:none !important;}
+</style>
+<script id="absolute-refresh-top-lock-20260910">
+(function(){
+  // On a normal refresh, do not let the browser restore the old lesson position.
+  // Keep the top lock active briefly because some browsers restore scroll after load.
+  if(location.hash) return;
+  try{history.scrollRestoration='manual';}catch(e){}
+  var start=Date.now();
+  function top(){
+    if(location.hash) return;
+    window.scrollTo(0,0);
+    document.documentElement.scrollTop=0;
+    document.body.scrollTop=0;
+  }
+  top();
+  var timer=setInterval(function(){
+    top();
+    if(Date.now()-start>1800) clearInterval(timer);
+  },50);
+  window.addEventListener('pageshow',function(){
+    if(!location.hash){
+      top();
+      setTimeout(top,50);
+      setTimeout(top,200);
+      setTimeout(top,600);
+    }
+  });
+})();
+</script>
 </head>
 <body>
 
