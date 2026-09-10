@@ -2660,14 +2660,16 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 <style id="final-mobile-step-spacing-and-smooth-nav-20260910">
 /* Mobile: leave a clean white breathing zone between lesson cards. */
 @media (max-width:850px){
-  .step{margin-bottom:110px !important;}
-  .step-nav{margin-bottom:110px !important;}
-  .step + .step-nav{margin-top:-55px !important;}
+  .step{margin-bottom:20px !important;}
+  .step-nav{margin-top:20px !important;margin-bottom:20px !important;}
+  .step + .step-nav{margin-top:20px !important;}
+  .step-nav + .step{margin-top:20px !important;}
 }
 @media (max-width:560px){
-  .step{margin-bottom:125px !important;}
-  .step-nav{margin-bottom:125px !important;}
-  .step + .step-nav{margin-top:-62px !important;}
+  .step{margin-bottom:20px !important;}
+  .step-nav{margin-top:20px !important;margin-bottom:20px !important;}
+  .step + .step-nav{margin-top:20px !important;}
+  .step-nav + .step{margin-top:20px !important;}
 }
 </style>
 <style id="final-step-nav-touch-responsive-20260911">
@@ -2685,16 +2687,19 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 
     var start=window.pageYOffset || document.documentElement.scrollTop || 0;
     var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
-    // On mobile keep the selected card comfortably below the fixed header.
-    // This also prevents the following card from peeking in at the bottom.
-    var offset=isMobile ? Math.min(160, Math.max(145, window.innerHeight*0.09)) : 0;
+    // Keep a consistent 20px breathing space below the fixed mobile topbar.
+    // The target position is based on the actual card top, so different card
+    // heights cannot make the navigation drift or disappear after repeated taps.
+    var topbar=document.querySelector('.topbar');
+    var headerH=isMobile ? (topbar ? topbar.getBoundingClientRect().height : 0) : 0;
+    var offset=isMobile ? headerH + 20 : 0;
     var end=target.getBoundingClientRect().top + start - offset;
     var distance=end-start;
     if(Math.abs(distance)<2){window.scrollTo(0,end);return;}
 
     // Deliberately slower than the previous version, with a soft ease-in/out.
     var duration=isMobile
-      ? Math.min(1050, Math.max(700, Math.abs(distance)*0.62))
+      ? Math.min(900, Math.max(560, Math.abs(distance)*0.52))
       : Math.min(800, Math.max(480, Math.abs(distance)*0.46));
     var t0=performance.now();
     function ease(t){
@@ -2745,7 +2750,14 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
   },true);
 })();
 </script>
-
+<style id="final-mobile-step-nav-spacing-20260911">
+@media(max-width:850px){
+  /* Exactly 20px breathing room around each step navigation block. */
+  .step + .step-nav{margin-top:20px !important;}
+  .step-nav + .step{margin-top:20px !important;}
+  .step-nav{margin-bottom:20px !important;}
+}
+</style>
 
 <style id="final-telenor-logo-size-20260911">
 /* Larger supplied Telenor logo across the index. */
