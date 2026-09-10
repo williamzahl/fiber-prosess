@@ -2673,50 +2673,58 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
   .step + .step-nav{margin-top:-62px !important;}
 }
 </style>
+<style id="final-step-nav-touch-responsive-20260911">
+.step-nav-btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer;}
+.step-nav-btn:active{transform:translateY(1px) !important;}
+</style>
 <script id="final-step-nav-smooth-20260910">
 (function(){
-  function install(){
-    document.querySelectorAll('.step-nav-btn').forEach(function(a){
-      if(a.dataset.smoothStepInstalled) return;
-      a.dataset.smoothStepInstalled='1';
-      a.addEventListener('click',function(e){
-        var href=a.getAttribute('href')||'';
-        if(!href.startsWith('#step-')) return;
-        var target=document.querySelector(href);
-        if(!target) return;
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-        history.replaceState(null,document.title,location.pathname+location.search);
-        setTimeout(updateProgress,350);
-      });
-    });
+  // Fast, responsive step navigation. Pointer-up handles touch immediately
+  // instead of waiting for a delayed synthetic click.
+  var suppressClickUntil=0;
+  var raf=0;
+  function smoothTo(target){
+    if(!target) return;
+    if(raf) cancelAnimationFrame(raf);
+    var start=window.pageYOffset || document.documentElement.scrollTop || 0;
+    var end=target.getBoundingClientRect().top + start;
+    var distance=end-start;
+    var duration=Math.min(560,Math.max(300,Math.abs(distance)*0.42));
+    var t0=performance.now();
+    function ease(t){return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;}
+    function frame(now){
+      var t=Math.min(1,(now-t0)/duration);
+      window.scrollTo(0,start+distance*ease(t));
+      if(t<1) raf=requestAnimationFrame(frame);
+      else {raf=0;if(typeof updateProgress==='function') updateProgress();}
+    }
+    raf=requestAnimationFrame(frame);
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',install,{once:true});
-  else install();
-  window.addEventListener('load',install,{once:true});
+  function go(a,e){
+    var href=a.getAttribute('href')||'';
+    if(!/^#step-\d+$/.test(href)) return false;
+    var target=document.querySelector(href);
+    if(!target) return false;
+    if(e){e.preventDefault();e.stopPropagation();}
+    suppressClickUntil=performance.now()+700;
+    smoothTo(target);
+    history.replaceState(null,document.title,location.pathname+location.search);
+    return true;
+  }
+  document.addEventListener('pointerup',function(e){
+    var a=e.target.closest && e.target.closest('.step-nav-btn');
+    if(a) go(a,e);
+  },true);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest && e.target.closest('.step-nav-btn');
+    if(!a) return;
+    if(performance.now()<suppressClickUntil){e.preventDefault();e.stopPropagation();return;}
+    go(a,e);
+  },true);
 })();
 </script>
 
-<script id="final-smooth-step-navigation-20260911">
-(function(){
-  // Step navigation: always animate, and never keep a step hash that can be
-  // restored by the browser on refresh.
-  document.addEventListener('click', function(e){
-    var a=e.target.closest && e.target.closest('.step-nav-btn');
-    if(!a) return;
-    var href=a.getAttribute('href') || '';
-    if(!/^#step-\d+$/.test(href)) return;
-    var target=document.querySelector(href);
-    if(!target) return;
-    e.preventDefault();
-    e.stopPropagation();
-    var y=target.getBoundingClientRect().top + window.pageYOffset;
-    window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
-    history.replaceState(null,document.title,location.pathname+location.search);
-    if(typeof updateProgress==='function') setTimeout(updateProgress,350);
-  }, true);
-})();
-</script>
+
 </body>
 </html>
 
