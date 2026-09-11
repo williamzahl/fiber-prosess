@@ -2908,41 +2908,6 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 </script>
 
 
-<style id="FINAL-step6-logo-navigation-fix-20260911">
-/* Final requested positioning: desktop down 10px; mobile another 0.5px up. */
-.hero-brand-logo{top:0 !important;}
-@media (min-width:851px){
-  .hero-brand-logo{transform:translateY(10px) !important;top:0 !important;}
-}
-@media (max-width:850px){
-  .hero-brand-logo{transform:translateY(-31px) !important;top:0 !important;}
-}
-@media (max-width:560px){
-  .hero-brand-logo{transform:translateY(-27px) !important;top:0 !important;}
-}
-
-/* Step 6: land high enough in the page that the navigation below the card is visible. */
-#step-6{scroll-margin-top:70px !important;}
-</style>
-<script id="FINAL-step6-navigation-fix-20260911">
-(function(){
-  function goToStep6(e){
-    var a=e.target.closest && e.target.closest('a[href="#step-6"]');
-    if(!a) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    var el=document.getElementById('step-6');
-    if(!el) return;
-    var offset=window.innerWidth<=850 ? 70 : 70;
-    var y=el.getBoundingClientRect().top + window.pageYOffset - offset;
-    var max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
-    y=Math.max(0,Math.min(y,max));
-    window.scrollTo({top:y,behavior:'smooth'});
-    history.replaceState(null,document.title,location.pathname+location.search+'#step-6');
-  }
-  document.addEventListener('click',goToStep6,true);
-})();
-</script>
 </html>
 
 
@@ -6227,3 +6192,65 @@ html{scroll-behavior:auto !important;}
 @media (max-width:850px){#step-6{scroll-margin-top:250px !important;}}
 @media (min-width:851px){#step-6{scroll-margin-top:190px !important;}}
 </style>
+
+
+<style id="ULTIMATE-logo-and-step6-fix-20260911">
+/* ULTIMATE: PC logo 10px down; mobile 0.5px higher than the previous mobile position. */
+@media (min-width:851px){
+  .hero-brand-logo{transform:translateY(10px) !important;top:0 !important;}
+}
+@media (max-width:850px){
+  .hero-brand-logo{transform:translateY(-31px) !important;top:0 !important;}
+}
+@media (max-width:560px){
+  .hero-brand-logo{transform:translateY(-27px) !important;top:0 !important;}
+}
+
+/* Step 6: intentionally scroll farther down into the card so the navigation below it is usable. */
+#step-6{scroll-margin-top:250px !important;}
+</style>
+<script id="ULTIMATE-step6-navigation-20260911">
+(function(){
+  function step6TargetY(){
+    var el=document.getElementById('step-6');
+    if(!el) return null;
+    var nav=el.nextElementSibling;
+    var navIsStepNav=nav && nav.classList && nav.classList.contains('step-nav');
+    var max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    var current=window.pageYOffset || document.documentElement.scrollTop || 0;
+    /* Prefer positioning the navigation below Step 6 near the bottom of the viewport.
+       This guarantees the Next step button is visible/clickable when possible. */
+    if(navIsStepNav){
+      var navTop=nav.getBoundingClientRect().top + current;
+      var desired=navTop - window.innerHeight + 86;
+      if(desired>current+20) return Math.min(max,desired);
+      if(desired>=0) return Math.min(max,desired);
+    }
+    /* Fallback: put Step 6 well above the top edge so more of the card is visible. */
+    var top=el.getBoundingClientRect().top + current;
+    return Math.max(0,Math.min(max,top-250));
+  }
+  function goStep6(e){
+    var a=e.target.closest && e.target.closest('a[href="#step-6"]');
+    if(!a) return;
+    var y=step6TargetY();
+    if(y===null) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    window.scrollTo({top:y,behavior:'smooth'});
+    history.replaceState(null,document.title,location.pathname+location.search+'#step-6');
+  }
+  /* Pointerdown catches Next/Previous before their older click handlers. */
+  document.addEventListener('pointerdown',function(e){
+    var a=e.target.closest && e.target.closest('a[href="#step-6"]');
+    if(!a || (e.pointerType==='mouse' && e.button!==0)) return;
+    var y=step6TargetY();
+    if(y===null) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    window.scrollTo({top:y,behavior:'smooth'});
+    history.replaceState(null,document.title,location.pathname+location.search+'#step-6');
+  },true);
+  document.addEventListener('click',goStep6,true);
+})();
+</script>
