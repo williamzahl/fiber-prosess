@@ -7,19 +7,13 @@
 <meta name="description" content="En enkel og oversiktlig forklaring på hvordan fiber føres fra Telenors nett i nabolaget og inn til boligen.">
 <link rel="icon" type="image/png" href="favicon.png?v=27">
 <link rel="apple-touch-icon" href="favicon.png?v=27">
-<script>
+<script id="instant-refresh-top">
 (function(){
-  try { history.scrollRestoration = "manual"; } catch(e) {}
-  function resetInitialScroll(){
-    if(!location.hash){
-      document.documentElement.classList.add("no-initial-scroll");
-      window.scrollTo(0,0);
-      requestAnimationFrame(function(){ window.scrollTo(0,0); });
-      setTimeout(function(){ window.scrollTo(0,0); }, 0);
-    }
-  }
-  window.addEventListener("load", resetInitialScroll, {once:true});
-  window.addEventListener("pageshow", function(e){ if(e.persisted) resetInitialScroll(); });
+  try{history.scrollRestoration='manual';}catch(e){}
+  var nav=null; try{nav=performance.getEntriesByType('navigation')[0];}catch(e){}
+  var isReload=!!(nav && nav.type==='reload');
+  if(isReload && /^#step-\d+$/.test(location.hash)) history.replaceState(null,document.title,location.pathname+location.search);
+  if(isReload || !location.hash){window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}
 })();
 </script>
 <style>
@@ -2142,26 +2136,11 @@ html,body{overflow-anchor:none !important;}
 <script id="absolute-refresh-top-lock-20260910">
 (function(){
   try{history.scrollRestoration='manual';}catch(e){}
-  var nav=null;
-  try{nav=performance.getEntriesByType('navigation')[0];}catch(e){}
-  var reload=!!(nav && nav.type==='reload');
-  if(reload && /^#step-\d+$/.test(location.hash)){
-    history.replaceState(null,document.title,location.pathname+location.search);
-  }
-  if(!reload && location.hash) return;
-  var until=performance.now()+3500;
-  function top(){
-    if(performance.now()>until) return;
-    if(location.hash && !reload) return;
-    window.scrollTo(0,0);
-    document.documentElement.scrollTop=0;
-    document.body.scrollTop=0;
-    requestAnimationFrame(top);
-  }
-  top();
-  window.addEventListener('DOMContentLoaded',function(){window.scrollTo(0,0);},{once:true});
-  window.addEventListener('load',function(){window.scrollTo(0,0);},{once:true});
-  window.addEventListener('pageshow',function(e){if(e.persisted||reload) window.scrollTo(0,0);});
+  var nav=null; try{nav=performance.getEntriesByType('navigation')[0];}catch(e){}
+  var isReload=!!(nav && nav.type==='reload');
+  if(isReload && /^#step-\d+$/.test(location.hash)) history.replaceState(null,document.title,location.pathname+location.search);
+  if(isReload){window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}
+  window.addEventListener('pageshow',function(e){if(e.persisted || isReload){window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}},{once:false});
 })();
 </script>
 
