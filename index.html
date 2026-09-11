@@ -2804,48 +2804,88 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 
 
 <style id="single-step-navigation-final-20260911">
-/* One navigation rule for every process-step link. Step 6 lands lower so the
-   navigation below the card is visible and usable. */
+/* Mobile step navigation: frame step 6 so BOTH its heading and the
+   Previous/Next bar are visible after tapping the menu or Next. */
 html{scroll-behavior:auto !important;}
+
+@media(max-width:850px){
+  #step-6{scroll-margin-top:64px !important;}
+}
 </style>
 <script id="single-step-navigation-final-20260911">
 (function(){
   function goToStepLink(e){
     var a=e.target.closest && e.target.closest('a[href^="#step-"]');
     if(!a) return;
+
     var href=a.getAttribute('href') || '';
     var m=href.match(/^#step-(\d+)$/);
     if(!m) return;
+
     var target=document.getElementById('step-'+m[1]);
     if(!target) return;
-    /* Take over before native hash scrolling or any older menu/nav handler. */
+
+    /* Take over before native hash scrolling and before older menu/nav handlers. */
     e.preventDefault();
     e.stopImmediatePropagation();
+
     var current=window.pageYOffset || document.documentElement.scrollTop || 0;
     var rect=target.getBoundingClientRect();
     var absoluteTop=rect.top+current;
-    var isStep6=m[1]==='6';
-    var nav=target.nextElementSibling;
-    var navTop=nav && nav.classList && nav.classList.contains('step-nav')
-      ? nav.getBoundingClientRect().top+current : null;
-    var maxY=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
     var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
+    var maxY=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
     var desired;
-    if(isStep6 && navTop!==null){
-      /* Step 6: keep the heading/card in view and leave the navigation lower in the viewport. */
-      desired=navTop-window.innerHeight-125;
+
+    if(isMobile && m[1]==='6'){
+      var nav=target.nextElementSibling;
+      var navRect=(nav && nav.classList && nav.classList.contains('step-nav'))
+        ? nav.getBoundingClientRect() : null;
+
+      if(navRect){
+        var navTop=navRect.top+current;
+        var navBottom=navRect.bottom+current;
+
+        /*
+         * The mobile UI occupies roughly the top 55px once scrolling starts.
+         * Keep the step heading below it, while also keeping the navigation
+         * bar above the bottom edge. Choose the middle of that safe range so
+         * both are visible instead of biasing the scroll toward the button.
+         */
+        var topSafe=68;
+        var bottomSafe=62;
+        var topAligned=absoluteTop-topSafe;
+        var bottomAligned=navBottom-window.innerHeight+bottomSafe;
+
+        if(topAligned <= bottomAligned){
+          /* Both can fit: use the midpoint for a comfortable composition. */
+          desired=(topAligned+bottomAligned)/2;
+        }else{
+          /*
+           * If the card is taller than the viewport, both cannot physically
+           * fit. Prioritize the heading and bring the Next bar as close as
+           * possible to the bottom without hiding it.
+           */
+          desired=topAligned;
+        }
+      }else{
+        desired=absoluteTop-68;
+      }
     }else{
-      /* Normal steps: title starts comfortably below the fixed top UI. */
-      desired=absoluteTop-(isMobile?72:90);
+      /* Other steps: title starts comfortably below the fixed top UI. */
+      desired=absoluteTop-(isMobile?68:90);
     }
+
     desired=Math.max(0,Math.min(desired,maxY));
     history.replaceState(null,document.title,location.pathname+location.search+href);
     window.scrollTo({top:desired,behavior:'smooth'});
+
     setTimeout(function(){
       if(typeof updateProgress==='function') updateProgress();
       if(typeof updateActiveNav==='function') updateActiveNav();
     },500);
   }
+
+  /* Both mobile menu links and the Previous/Next buttons use this exact path. */
   document.addEventListener('pointerdown',goToStepLink,true);
   document.addEventListener('click',goToStepLink,true);
 })();
