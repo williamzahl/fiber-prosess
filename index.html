@@ -2684,33 +2684,20 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
     if(raf) cancelAnimationFrame(raf);
     var start=window.pageYOffset || document.documentElement.scrollTop || 0;
     var isMobile=window.matchMedia && window.matchMedia('(max-width:850px)').matches;
-    var topbar=document.querySelector('.topbar');
-    var headerH=isMobile ? (topbar ? Math.max(0, topbar.getBoundingClientRect().height) : 0) : 0;
-    var gap=isMobile ? 28 : 0;
     var targetTop=target.getBoundingClientRect().top + start;
-    var desired=targetTop-headerH-gap;
-
-    /* On mobile, keep the current step nicely below the fixed bar, while also
-       reserving a 20px safety zone at the bottom for the next/previous buttons.
-       This makes every press land on a usable position even when card heights differ. */
-    if(isMobile){
-      var nav=target.querySelector('.step-nav');
-      if(nav){
-        var navRect=nav.getBoundingClientRect();
-        var navBottomDoc=navRect.bottom+start;
-        var viewportBottomLimit=window.innerHeight-20;
-        var minScroll=navBottomDoc-viewportBottomLimit;
-        var maxScroll=desired;
-        if(minScroll<=maxScroll) desired=minScroll;
-        else desired=maxScroll;
-      }
-    }
+    /* Match the same landing position used by the normal step/menu navigation.
+       The cards already have scroll-margin-top, so do not add another header/gap
+       calculation here. This keeps Next/Previous identical to the menu position. */
+    var computed=window.getComputedStyle ? window.getComputedStyle(target) : null;
+    var marginTop=computed ? parseFloat(computed.scrollMarginTop || computed.scrollMargin || '0') : 0;
+    if(!isFinite(marginTop)) marginTop=0;
+    var desired=targetTop-marginTop;
     var maxY=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
     var end=Math.max(0,Math.min(desired,maxY));
     var distance=end-start;
     if(Math.abs(distance)<2){window.scrollTo(0,end);return;}
     var duration=isMobile
-      ? Math.min(720, Math.max(420, Math.abs(distance)*0.38))
+      ? Math.min(620, Math.max(360, Math.abs(distance)*0.32))
       : Math.min(760, Math.max(440, Math.abs(distance)*0.44));
     var t0=performance.now();
     function ease(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
