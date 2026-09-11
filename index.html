@@ -2818,7 +2818,7 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 <style id="final-desktop-hero-logo-up-20260911">
 /* Desktop only: bring the hero Telenor logo up to the same vertical zone as the menu/progress box. */
 @media (min-width:851px){
-  .hero-brand-logo{transform:translateY(-40px) !important;}
+  .hero-brand-logo{transform:translateY(-20px) !important;}
 }
 @media (max-width:850px){
   .hero-brand-logo{transform:translateY(-28px) !important;}
@@ -6101,5 +6101,12 @@ html{scroll-behavior:auto !important;}
   .hero-brand-logo{width:58px !important;max-width:26vw !important;transform:translateY(-8px) !important;}
   .risk-brand-logo{width:64px !important;}
   .final-brand-logo{width:76px !important;}
+}
+</style>
+
+<style id="final-desktop-logo-restore-20260911">
+/* Desktop: restore the original good logo position. Mobile positioning is unchanged. */
+@media (min-width:851px){
+  .hero-brand-logo{transform:translateY(0) !important;}
 }
 </style>
