@@ -2856,25 +2856,16 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 }
 </style>
 
-<script id="step6-next-scroll-fix-js">
-(function(){
-  function adjustStep6(){
-    var el=document.getElementById('step-6');
-    if(!el) return;
-    var extra=window.innerWidth<=850?90:55;
-    var y=el.getBoundingClientRect().top+window.pageYOffset-extra;
-    window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
+
+
+<style id="desktop-globe-up-2px-20260911">
+@media (min-width:851px){
+  .topbar #langBtn.lang-btn .globe{
+    transform:translateY(-2px) !important;
   }
-  document.addEventListener('click',function(e){
-    var a=e.target.closest && e.target.closest('a[href="#step-6"]');
-    if(a){
-      e.preventDefault();
-      history.replaceState(null,document.title,location.pathname+location.search+'#step-6');
-      adjustStep6();
-    }
-  },true);
-})();
-</script>
+}
+</style>
+
 </body>
 
 <style id="final-mobile-mini-bar-no-clip-20260911">
@@ -2916,6 +2907,42 @@ if(!location.hash){window.scrollTo(0,0);} applyText();renderLangs();renderSteps(
 })();
 </script>
 
+
+<style id="FINAL-step6-logo-navigation-fix-20260911">
+/* Final requested positioning: desktop down 10px; mobile another 0.5px up. */
+.hero-brand-logo{top:0 !important;}
+@media (min-width:851px){
+  .hero-brand-logo{transform:translateY(10px) !important;top:0 !important;}
+}
+@media (max-width:850px){
+  .hero-brand-logo{transform:translateY(-31px) !important;top:0 !important;}
+}
+@media (max-width:560px){
+  .hero-brand-logo{transform:translateY(-27px) !important;top:0 !important;}
+}
+
+/* Step 6: land high enough in the page that the navigation below the card is visible. */
+#step-6{scroll-margin-top:70px !important;}
+</style>
+<script id="FINAL-step6-navigation-fix-20260911">
+(function(){
+  function goToStep6(e){
+    var a=e.target.closest && e.target.closest('a[href="#step-6"]');
+    if(!a) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var el=document.getElementById('step-6');
+    if(!el) return;
+    var offset=window.innerWidth<=850 ? 70 : 70;
+    var y=el.getBoundingClientRect().top + window.pageYOffset - offset;
+    var max=Math.max(0,document.documentElement.scrollHeight-window.innerHeight);
+    y=Math.max(0,Math.min(y,max));
+    window.scrollTo({top:y,behavior:'smooth'});
+    history.replaceState(null,document.title,location.pathname+location.search+'#step-6');
+  }
+  document.addEventListener('click',goToStep6,true);
+})();
+</script>
 </html>
 
 
@@ -6200,18 +6227,3 @@ html{scroll-behavior:auto !important;}
 @media (max-width:850px){#step-6{scroll-margin-top:250px !important;}}
 @media (min-width:851px){#step-6{scroll-margin-top:190px !important;}}
 </style>
-<script id="final-step6-scroll-more-down-20260911">
-(function(){
-  document.addEventListener('click',function(e){
-    var a=e.target.closest && e.target.closest('a[href="#step-6"]');
-    if(!a) return;
-    e.preventDefault();
-    var el=document.getElementById('step-6');
-    if(!el) return;
-    var offset=window.innerWidth<=850 ? 250 : 190;
-    var y=el.getBoundingClientRect().top+window.pageYOffset-offset;
-    window.scrollTo({top:Math.max(0,y),behavior:'smooth'});
-    history.replaceState(null,document.title,location.pathname+location.search+'#step-6');
-  },true);
-})();
-</script>
